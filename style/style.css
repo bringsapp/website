@@ -1,7 +1,28 @@
 *{
     font-family: 'Sen', sans-serif;
+    /* font-family: 'Euclid Circular B', sans-serif; */
 }
 #logo{
     font-size: 48px;
     font-weight: bold;
+}
+.font-big{
+    font-size: 35px;
+}
+.text-cen{
+    text-align: center;
+}
+#title{
+    background-color: #fffcf3;
+    padding: 90px;
+    font-weight: bold;
+}
+.padding-30{
+    padding: 30px;
+}
+.title-city{
+    color: #0800ffa3;
+}
+a{
+    color: black;
 }
