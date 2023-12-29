@@ -1,9 +1,13 @@
 *{
     font-family: 'Sen', sans-serif;
     /* font-family: 'Euclid Circular B', sans-serif; */
+    margin: 0;
 }
 #logo{
     font-size: 48px;
+    padding: 10px;
+}
+.bold{
     font-weight: bold;
 }
 .font-big{
