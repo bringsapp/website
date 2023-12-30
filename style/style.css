@@ -2,6 +2,7 @@
     font-family: 'Sen', sans-serif;
     /* font-family: 'Euclid Circular B', sans-serif; */
     margin: 0;
+    font-size: large;
 }
 #logo{
     font-size: 48px;
@@ -19,14 +20,118 @@
 #title{
     background-color: #fffcf3;
     padding: 90px;
-    font-weight: bold;
+    /* font-weight: bold; */
 }
 .padding-30{
     padding: 30px;
 }
 .title-city{
     color: #0800ffa3;
+    font-size: inherit;
 }
 a{
     color: black;
+}
+
+#login{
+    padding: 10px;
+}
+
+#loginspan{
+    /* border: 1px solid #0800ffa3; */
+    padding: 10px;
+    /* border-radius: 3px; */
+    background-color: #0800ffa3;
+}
+
+#loginspan a{
+    color: white;
+}
+
+.forminput{
+    border: none;
+    padding: 15px;
+    background-color: #f4f4f6;
+}
+
+.width-80{
+    width: 80%;
+}
+
+.butt{
+    border: none;
+    background-color: #0800ffa3;
+    padding: 15px;
+    color: white;
+}
+
+#login{
+    width: 50%;
+}
+
+#how{
+    width: 50%;
+}
+
+.sections{
+    float: left;
+    box-sizing: border-box;
+    /* border: 1px solid red; */
+    margin: auto;
+    /* text-align: center; */
+}
+
+#faqs{
+    clear: both;
+    /* background-color: #0800ffa3; */
+    width: 50%;
+    margin: auto;
+}
+
+.sectioncontainer{
+    width: 60%;
+    margin: auto;
+    padding: 20px;
+}
+
+.companyname{
+    background-color: #0800ffa3;
+    padding: 5px;
+    color: white;
+}
+
+.questions{
+    margin-top: 15px;
+}
+
+hr{
+    margin-top: 30px;
+    width: 50%;
+    margin: auto;
+	height: 1px;
+	border: none;
+	background-color: #0800ffa3;
+}
+
+@media (max-width:1200px){
+    .sectioncontainer{
+        width: 80%;
+    }
+}
+@media (max-width:900px){
+    .sectioncontainer{
+        width: 100%;
+    }
+}
+
+@media (max-width:750px){
+    #login{
+        width: 100%;
+    }
+    #how{
+        width: 100%;
+    }
+    .sectioncontainer{
+        width: 80%;
+    }
 }
