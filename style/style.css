@@ -48,10 +48,11 @@ a{
     color: white;
 }
 
-.forminput{
+.loginforminput{
     border: none;
     padding: 15px;
     background-color: #f4f4f6;
+    width: 90%;
 }
 
 .width-80{
@@ -86,6 +87,7 @@ a{
     /* background-color: #0800ffa3; */
     width: 50%;
     margin: auto;
+    margin-top: 10px;
 }
 
 .sectioncontainer{
@@ -101,7 +103,11 @@ a{
 }
 
 .questions{
-    margin-top: 15px;
+    margin-top: 20px;
+}
+
+.answers{
+    margin-top: 10px;
 }
 
 hr{
