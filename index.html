@@ -7,6 +7,7 @@
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <link rel='stylesheet' type='text/css' media='screen' href='style/style.css'>
     <script src='scripts/script.js'></script>
+    <script src='scripts/fetch.js'></script>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -34,19 +35,23 @@
                     Contact No./Username:
                 </div>
                 <div style="margin-top: 10px;">
-                    <input class="loginforminput" type="text" placeholder="Your email here">
+                    <input class="loginforminput" type="text" id="username" placeholder="Your email here">
                 </div>
                 <div style="margin-top: 20px;">
                     Password:
                 </div>
                 <div style="margin-top: 10px;">
-                    <input class="loginforminput" type="password" placeholder="*******">
+                    <input class="loginforminput" type="password" id="password" placeholder="*******">
                 </div>
                 <div style="margin-top: 20px;">
                     <input type="button" class="butt" id="loginbutton" value="Login"> Or, <a href="#">create an account</a>.
                 </div>
+                <div>
+                    <span id="loginerror"></span>
+                </div>
             </form>
         </div>
+
         <div id="how" class="sections">
             <div class="sectioncontainer">
                 <div class="bold">

@@ -141,3 +141,13 @@ hr{
         width: 80%;
     }
 }
+
+#loginerror{
+    font-size: medium;
+    margin-top: 5px;
+    color: red;
+}
+
+#loginbutton{
+    cursor: pointer;
+}
