@@ -1,4 +1,4 @@
-host = "http://localhost:8080"
+host = "http://161.35.86.239:8080"
 
 document.addEventListener("DOMContentLoaded", function(){
     document.getElementById("loginbutton").addEventListener("click", function Login() {
