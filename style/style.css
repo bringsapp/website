@@ -1,6 +1,5 @@
 *{
     font-family: 'Sen', sans-serif;
-    /* font-family: 'Euclid Circular B', sans-serif; */
     margin: 0;
     font-size: large;
 }
@@ -55,6 +54,12 @@ a{
     width: 90%;
 }
 
+#reggender{
+    border: none;
+    padding: 15px;
+    background-color: #f4f4f6;
+}
+
 .width-80{
     width: 80%;
 }
@@ -66,7 +71,7 @@ a{
     color: white;
 }
 
-#login{
+#forms{
     width: 50%;
 }
 
@@ -77,7 +82,6 @@ a{
 .sections{
     float: left;
     box-sizing: border-box;
-    /* border: 1px solid red; */
     margin: auto;
     /* text-align: center; */
 }
@@ -126,12 +130,12 @@ hr{
 }
 @media (max-width:900px){
     .sectioncontainer{
-        width: 100%;
+        width: 90%;
     }
 }
 
 @media (max-width:750px){
-    #login{
+    #forms{
         width: 100%;
     }
     #how{
@@ -150,4 +154,8 @@ hr{
 
 #loginbutton{
     cursor: pointer;
+}
+
+#registration{
+    display: none;
 }

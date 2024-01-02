@@ -13,12 +13,17 @@ async function postData(url = "", data = {}, headers = {}, method = "GET") {
 
         // in some cases we wouldn't want ok response and wouldn't want to throw an
         // error, for example invalid password et
-        if (!response.ok){
-            throw new Error("Network response was not ok")
-        }
+        // if (!response.ok){
+        //     throw new Error("Network response was not ok")
+        // }
+        ok = response.ok
 
         const result = await response.json()
-        return result;
+        console.log("result and ok in fetch.js is ", result, ok)
+        if (ok) {
+            return result
+        }
+        return ok
     }
     catch (error){
         console.log("Error in catch ",error)
