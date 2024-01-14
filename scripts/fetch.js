@@ -1,15 +1,21 @@
 async function postData(url = "", data = {}, headers = {}, method = "GET") {
     try{
-        const response = await fetch(url, {
-        method: method,
-        mode: "cors",
-        cache: "no-cache",
-        credentials: "same-origin",
-        headers: headers,
-        redirect: "follow",
-        referrerPolicy: "no-referrer",
-        body: JSON.stringify(data),
-        });
+        requestInfo = {
+            method: method,
+            mode: "cors",
+            cache: "no-cache",
+            credentials: "omit",
+            // credentials: "include",
+            headers: headers,
+            redirect: "follow",
+            referrerPolicy: "no-referrer",
+        }
+
+        if (method !="GET"){
+            requestInfo.body = JSON.stringify(data)
+        }
+
+        const response = await fetch(url, requestInfo);
 
         // in some cases we wouldn't want ok response and wouldn't want to throw an
         // error, for example invalid password et
@@ -19,9 +25,10 @@ async function postData(url = "", data = {}, headers = {}, method = "GET") {
         ok = response.ok
 
         const result = await response.json()
-        console.log("result and ok in fetch.js is ", result, ok)
         if (ok) {
             return result
+        } else {
+            console.log(result)
         }
         return ok
     }

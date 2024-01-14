@@ -7,9 +7,9 @@
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <link rel='stylesheet' type='text/css' media='screen' href='../style/style.css'>
 
-    <script src='../scripts/entries.js'></script>
-    <script src='../scripts/fetch.js'></script>
+    <script src='../scripts/users.js'></script>
     <script src='../scripts/utils.js'></script>
+    <script src='../scripts/fetch.js'></script>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -32,7 +32,8 @@
                 <a id="loggedinusername"></a>
             </div>
             <div id="loggedinusermeta">
-                <!-- <span><a id="msgspn">Messages (<span id="msgcount">0</span>)</a></span> -->
+                <span><a id="msgspn">Messages (<span id="msgcount">0</span>)</a></span>
+                <span>Logout</span>
             </div>
             <div id="navigation">
                 <div id="profile" class="navdiv">
@@ -53,12 +54,37 @@
             </div>
         </div>
     </div>
-    <div id="entrieswrapper">
-        <div id="leftentriessection" class="entriessections">
+    <div id="userdetailswrapper">
+        <div id="leftuserdetailssection" class="userdetailssections">
         </div>
-        <div id="travels" class="entriessections">
+        <div id="userdetails" class="userdetailssections">
+            <div id="userdetailstop" class="text-cen"">
+                <div class="userimgdiv">
+                <img id="userimg" class="userdp">
+                </div>
+                <div id="usersname"></div>
+                <div id="username"></div>
+                <span id="hiddenuserid" class="none" style="display: none;"></span>
+                <div class="usermeta">
+                    <div id="usermessagebutton">Message</div>
+                    <div class="userphoneverified">Phone no. verified?<span id="isphoneverified">false</span></div>
+                </div>
+            </div>
+            <div id="userentries">
+            </div>
+            <div id="messageboxtouser">
+                <span id="closemessagebox"><-</span><br>
+                <div>Conversations between you and <span id="convwuser">_</span></div>
+                <div id="messagebox">
+                    <div id="messageshere">
+                    </div>
+                    <div id="newmessagebox">
+                        <textarea id="messageinput" class="messagebox" placeholder="Hit enter to send."></textarea>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div id="rightentriessection" class="entriessections">
+        <div id="rightuserdetailssection" class="userdetailssections">
         </div>
     </div>
     <footer class="text-cen padding-30 bold clearboth">

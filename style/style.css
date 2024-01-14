@@ -6,6 +6,7 @@
 #logo{
     font-size: 48px;
     padding: 10px;
+    cursor: pointer;
 }
 .bold{
     font-weight: bold;
@@ -86,8 +87,11 @@ a{
     /* text-align: center; */
 }
 
-#faqs{
+.clearboth{
     clear: both;
+}
+
+#faqs{
     /* background-color: #0800ffa3; */
     width: 50%;
     margin: auto;
@@ -158,4 +162,300 @@ hr{
 
 #registration{
     display: none;
+}
+
+#leftentriessection, #rightentriessection{
+    width: 25%;
+}
+
+#travels{
+    width: 50%;
+}
+
+.entriessections{
+    padding: 20px;
+    float: left;
+    box-sizing: border-box;
+}
+
+#leftuserdetailssection, #rightuserdetailssection{
+    width: 25%;
+}
+
+#userdetails{
+    width: 50%;
+}
+
+.userdetailssections{
+    padding: 20px;
+    float: left;
+    box-sizing: border-box;
+}
+
+.travellerdp{
+    width: 30px;
+    height: 30px;
+    float: left;
+}
+
+.dpimg{
+    height: inherit;
+    width: inherit;
+
+}
+
+.namewrapper{
+    height: 30px;
+}
+
+.travelpost{
+    /* padding: 20px; */
+    margin-top: 20px;
+}
+
+.atravel{
+    border: 1px solid #0800ffa3;
+    padding: 20px;
+    margin-top: 20px;
+}
+
+.travellingdate{
+    margin-top: 20px;
+}
+
+.travellocation{
+    font-weight: bold;
+}
+
+.userimgdiv img{
+    width: inherit;
+    height: inherit;
+}
+
+.userimgdiv{
+    width: 100px;
+    height: 100px;
+    margin: auto;
+}
+
+.userdetailstop{
+    text-align: center;
+}
+
+.usermeta{
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.userentrieswrapper{
+    padding: 20px;
+    border: 1px solid #0800ffa3;
+    margin-top: 20px;
+}
+
+.entrytype{
+    background-color: #0800ffa3;
+    padding: 5px;
+    color: white;
+}
+
+.userentry{
+    margin-top: 10px;
+}
+
+.loggedinuserdetails{
+    text-align: center;
+    margin: auto;
+}
+
+#entries{
+    width: 50%;
+}
+
+#entriesmaindp{
+    width: 100px;
+    height: 100px;
+    margin: auto;
+}
+
+#entriesmaindp img{
+    width: inherit;
+    height: inherit;
+}
+
+.entrytypediv{
+    margin-top: 10px;
+}
+
+#messageboxtouser{
+    /* border: 1px solid red; */
+    padding: 10px;
+    display: none;
+}
+
+#newmessagebox{
+    margin-top: 20px;
+}
+
+.messagebox{
+    padding: 12px;
+    border: none;
+    width: 80%;
+    border: 1px solid #0800ffa3
+}
+
+#usermessagebutton{
+    cursor: pointer;
+}
+
+#closemessagebox{
+    cursor: pointer;
+}
+
+
+#messageshere{
+    height: 500px;
+    /* background-color: #f4f4f6; */
+    overflow-y: scroll;
+    border: 1px solid #0800ffa3;
+    padding: 20px;
+}
+
+.newmsg{
+    width: fit-content;
+    background-color: #f4f4f6;
+    overflow-wrap: normal;
+    padding: 20px;
+
+    margin-top: 10px;
+}
+
+.fromloggedintouser{
+    text-align: right;
+}
+
+.fromusertologgedin{
+    text-align: left;
+}
+
+.convmsg{
+
+    /* background-color: #0800ffa3; */
+    color: white;
+    /* width: fit-content; */
+    margin-top: 20px;
+
+    /* width: 100px; */
+}
+
+.convmsgspan{
+    background-color: #0800ffa3;
+    padding: 5px;
+    border-radius: 10px;
+}
+
+.convmsgspantwo{
+    background-color: #ffbf00a3;
+    padding: 5px;
+    border-radius: 10px;
+}
+
+#createentries{
+    margin-top: 20px !important;
+    width: 30%;
+    margin: auto;
+}
+
+.entrybuttons{
+    width: 50%;
+    box-sizing: border-box;
+    float: left;
+}
+
+.entrybuttons button{
+    padding: 10px;
+    background-color: #0800ffa3;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.entryform{
+    border: 1px solid red;
+    width: 50%;
+    margin: auto;
+    display: none;
+    padding: 20px;
+}
+
+.entryform input{
+    background-color: #f4f4f6;
+    /* text-align: center; */
+    padding: 8px;
+    margin-left: 15px;
+    border: 1px solid #0800ffa3;
+    /* border-radius: 5px; */
+}
+
+.fromselect,.toselect{
+    float: left;
+    box-sizing: border-box;
+}
+
+.formsections{
+    margin-top: 20px;
+}
+
+.submitentrybutton{
+    background-color: #0800ffa3;
+    border: none;
+    color: white;
+    padding: 8px;
+}
+
+.warn{
+    color: red;
+}
+
+.success{
+    color: green;
+}
+
+.closeentryforms{
+    cursor: pointer;
+}
+
+.navdiv{
+    float: left;
+    width: 32px;
+    height: 32px;
+    cursor: pointer;
+}
+
+.navdiv a{
+    width: inherit;
+    height: inherit;
+    display: block;
+}
+
+.navdivimg{
+    width: inherit;
+    height: inherit;
+}
+
+.ml-20{
+    margin-left: 20px;
+}
+
+#navigation{
+    margin-top: 20px !important;
+    margin: auto;
+    width: 240px;
+}
+
+#searchcontent{
+    width: 50%;
+    margin: auto;
+    border: 1px solid;
+    padding: 20px;
 }

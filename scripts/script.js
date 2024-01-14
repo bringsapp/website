@@ -1,4 +1,4 @@
-host = "https://api.bringsapp.com"
+
 
 document.addEventListener("DOMContentLoaded", function(){
     document.getElementById("createacclink").addEventListener("click", showRegistrationForm);
@@ -27,6 +27,7 @@ document.addEventListener("DOMContentLoaded", function(){
             // 200-299 https://developer.mozilla.org/en-US/docs/Web/API/Response/ok
             if (data){
                 if (data.Token !=""){
+                    createCookie("token", data.Token)
                     window.location = "entries"
                 }
             } else {
