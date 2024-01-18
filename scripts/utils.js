@@ -10,6 +10,9 @@ document.addEventListener("DOMContentLoaded", function(){
 })
 
 function logout(){
+    // get the new token that expires immediately
+    // set that in cookie
+    // redirect to logout.html
 
 }
 
@@ -54,11 +57,12 @@ function handleLogoClick(){
     let jwt=getCookie("token=")
     let validateToken = host+"/token/validate?token="+jwt
 
-    postData(validateToken, {}, headers, "GET").then((data)=>{
+    postData(validateToken, {}, {}, "GET").then((data)=>{
         if (data){
             window.location = "/entries"
         } else {
             window.location = "/"
+            // TODO: remove the cookie
         }
     })
 }

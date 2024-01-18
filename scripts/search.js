@@ -15,66 +15,159 @@ document.addEventListener("DOMContentLoaded", function(){
         })
     }
 
-    let citiElems = document.getElementsByClassName("selectcity")
-    for (var i=0; i< citiElems.length; i++){
-        citiElems[i].addEventListener("change", search)
+    let cityElems = document.getElementsByClassName("selectcity")
+    for (var i=0; i< cityElems.length; i++){
+        cityElems[i].addEventListener("change", search)
     }
 
+    // let citiElems = document.getElementsByClassName("selectcity")
+    // for (var i=0; i< citiElems.length; i++){
+    //     citiElems[i].addEventListener("change", search)
+    // }
+
     showCountries()
+
+    // document.getElementById("searchbutton").addEventListener("click", search)
 })
 
 function search(){
     console.log("search")
     // validate if at least from and to countries are provided
 
-    fromCountry = document.getElementById("travelfromselectcountryip")
-    fromState = document.getElementById("travelselectstateip")
-    fromCity = document.getElementById("travelselectcityip")
+    let fromCountry = document.getElementById("travelfromselectcountryip")
+    let fromState = document.getElementById("travelselectstateip")
+    let fromCity = document.getElementById("travelselectcityip")
 
-    fromCountryId = getDatalistOptionsAttr(fromCountry, "countryid", fromCountry.value)
-    fromStateId = getDatalistOptionsAttr(fromState, "stateid", fromState.value)
-    fromCityId = getDatalistOptionsAttr(fromCity, "cityid", fromCity.value)
+    let fromCountryId = getDatalistOptionsAttr(fromCountry, "countryid", fromCountry.value)
+    let fromStateId = getDatalistOptionsAttr(fromState, "stateid", fromState.value)
+    let fromCityId = getDatalistOptionsAttr(fromCity, "cityid", fromCity.value)
 
+    let toCountry = document.getElementById("traveltoselectcountryip")
+    let toState = document.getElementById("traveltoselectstateip")
+    let toCity = document.getElementById("traveltoselectcityip")
 
-    toCountry = document.getElementById("traveltoselectcountryip")
-    toState = document.getElementById("traveltoselectstateip")
-    toCity = document.getElementById("traveltoselectcityip")
+    let toCountryId = getDatalistOptionsAttr(toCountry, "countryid", toCountry.value)
+    let toStateId = getDatalistOptionsAttr(toState, "stateid", toState.value)
+    let toCityId = getDatalistOptionsAttr(toCity, "cityid", toCity.value)
 
-    toCountryId = getDatalistOptionsAttr(toCountry, "countryid", toCountry.value)
-    toStateId = getDatalistOptionsAttr(toState, "stateid", toState.value)
-    toCityId = getDatalistOptionsAttr(toCity, "cityid", toCity.value)
+    if (fromCountry.value =="" || toCountry.value =="" || fromCountry.value =="start" || fromState.value =="start" || fromCity.value == "start" || toCountry.value == "start" || toState.value == "start" || toCity.value =="start"){
+        console.log("form not filled properly")
+        return
+    }
 
-    jwt=getCookie("token=")
+    let jwt=getCookie("token=")
     // get username from token
-    encodedPayload = jwt.split(".")[1]
-    payload=atob(encodedPayload)
-    payloadObj=JSON.parse(payload)
+    let encodedPayload = jwt.split(".")[1]
+    let payload=atob(encodedPayload)
+    let payloadObj=JSON.parse(payload)
 
-    searchTravelURL = host+"/travels/search?token="+jwt
-    headers = {
+    let searchTravelURL = host+"/travels/search?token="+jwt
+    let headers = {
         // "Authorization":"Bearer "+jwt
     }
+
 
     let req = {
         "From":{
             "Country": Number(fromCountryId),
-            "State": Number(fromStateId),
-            "City": Number(fromCityId)
         },
         "To":{
             "Country": Number(toCountryId),
-            "State":Number(toStateId),
-            "City":Number(toCityId)
         }
     }
 
-    postData(searchTravelURL, req, headers, "GET").then((data)=>{
+    if (fromState.value != ""){
+        req.From.State = Number(fromStateId)
+    }
+    if (fromCity.value != ""){
+        req.From.City = Number(fromCityId)
+    }
+    if (toState.value != ""){
+        req.To.State = Number(toStateId)
+    }
+    if (toCity.value !=""){
+        req.To.City = Number(toCityId)
+    }
+
+    console.log(req)
+
+    postData(searchTravelURL, req, headers, "POST").then((data)=>{
         if (data){
-            console.log("travel search was successful, data ", data)
+            console.log("search result ", data)
+            let e = document.getElementById("searchresult")
+            e.innerHTML = ""
+
+            if (data.length ==0){
+                document.getElementById("noresult").innerHTML ="No results found."
+                return
+            } else {
+                document.getElementById("noresult").innerHTML =""
+            }
+
+
+            for (let i=0; i< data.length; i++){
+                displayTravel(data[i], e)
+            }
         } else {
             console.log("failed searching for travels")
         }
     })
+}
+
+function displayTravel(travel, travelsElem){
+    // travelElem would have one travel entry
+    var travelElem = document.createElement("div")
+	travelElem.classList.add("atravel");
+        // namewrapper would have name and profile picture
+        var nameWrapper = document.createElement("div")
+        nameWrapper.classList.add("namewrapper")
+        travelElem.appendChild(nameWrapper)
+            var dp = document.createElement("div")
+            dp.classList.add("travellerdp")
+            nameWrapper.appendChild(dp)
+                var img = document.createElement("img")
+                img.setAttribute("src", travel.Traveller.ProfilePicture);
+                img.classList.add("dpimg")
+                dp.appendChild(img)
+
+
+            var name = document.createElement("div")
+            name.classList.add("travellername")
+            // name.innerHTML = travel.Traveller.FirstName+" "+travel.Traveller.LastName
+            nameWrapper.appendChild(name)
+                var nameanchor = document.createElement("a")
+                nameanchor.setAttribute("href", "../users#username="+travel.Traveller.Username);
+                nameanchor.innerHTML=travel.Traveller.FirstName+" "+travel.Traveller.LastName
+                nameWrapper.appendChild(nameanchor)
+
+
+        // travelPost would have actual content/details of travel
+        var travelPost = document.createElement("div")
+        travelPost.classList.add("travelpost")
+        travelPost.innerHTML = "I am travelling from <span class=\"travellocation\">"+travel.From.Country+"/"+
+            travel.From.State+"/"+travel.From.City+"</span> to <span class=\"travellocation\">"+travel.To.Country+"/"+
+            travel.To.State+"/"+travel.To.City+"</span> and can bring around "+travel.Weight+
+            "grams of parcel with me."
+        travelElem.appendChild(travelPost)
+
+        // travellingDate would have travel dates of traveller
+        var travellingDate = document.createElement("div")
+        travellingDate.classList.add("travellingdate")
+        travellingDate.innerHTML = "Travelling between "+travel.TravelDateRangeStart+
+        " and "+travel.TravelDateRangeEnd+"."
+        travelElem.appendChild(travellingDate)
+
+        var entryTypeDiv = document.createElement("div")
+        entryTypeDiv.classList.add("entrytypediv")
+        travelElem.appendChild(entryTypeDiv)
+
+        var entryType = document.createElement("span")
+            entryType.classList.add("entrytype")
+            entryType.innerHTML = "travel"
+            entryTypeDiv.appendChild(entryType)
+
+
+    travelsElem.appendChild(travelElem)
 }
 
 function showCities(e){

@@ -40,7 +40,7 @@
                     <a href="../search/"><img class="navdivimg" src="../images/navigation/search.png"/></a>
                 </div>
                 <div id="messages" class="navdiv ml-20">
-                    <img class="navdivimg" src="../images/navigation/messages.png"/>
+                    <a href="../messages/"><img class="navdivimg" src="../images/navigation/messages.png"/></a>
                 </div>
                 <div id="logout" class="navdiv ml-20">
                     <img class="navdivimg" src="../images/navigation/logout.png"/>
@@ -65,17 +65,19 @@
                         <div id="travelfromcountries" class="fromselect">
                             <input id="travelfromselectcountryip" list="travelfromselectcountry" class="selectcountry" statesElemId="travelselectstate" placeholder="Country" />
                             <datalist id="travelfromselectcountry">
-
+                                <option value="start">Start typing name</option>
                             </datalist>
                         </div>
                         <div id="travelfromstates" class="fromselect">
                             <input id="travelselectstateip" list="travelselectstate" class="selectstate" citiesElemId="travelselectcity" placeholder="State" />
                             <datalist id="travelselectstate">
+                                <option value="start">Start typing name</option>
                             </datalist>
                         </div>
                         <div id="travelfromcities">
                             <input id="travelselectcityip" list="travelselectcity" class="selectcity" placeholder="City"/>
                             <datalist id="travelselectcity">
+                                <option value="start">Start typing name</option>
                             </datalist>
                         </div>
                     </div>
@@ -86,23 +88,32 @@
                         <div id="traveltocountries" class="toselect">
                             <input id="traveltoselectcountryip" list="traveltoselectcountry" class="selectcountry" statesElemId="traveltoselectstate" placeholder="Country"/>
                             <datalist id="traveltoselectcountry">
+                                <option value="start">Start typing name</option>
                             </datalist>
                         </div>
                         <div id="traveltostates" class="toselect">
                             <input id="traveltoselectstateip" list="traveltoselectstate" class="selectstate" citiesElemId="traveltoselectcity" placeholder="State"/>
                             <datalist id="traveltoselectstate">
+                                <option value="start">Start typing name</option>
                             </datalist>
                         </div>
                         <div id="traveltocities">
                             <input id="traveltoselectcityip" list="traveltoselectcity" class="selectcity" placeholder="City"/>
                             <datalist id="traveltoselectcity">
+                                <option value="start">Start typing name</option>
                             </datalist>
                         </div>
                     </div>
                 </div>
-                <span>Select countries to initiate the search.</span>
+                <div>
+                    <!-- <button id="searchbutton" onclick="return false">Search</button> -->
+                    <span>Select countries to initiate search</span>
+                </div>
             </div>
-            <div id="searchresult">
+            <div>
+                <span id="noresult"></span>
+                <div id="searchresult">
+                </div>
             </div>
         </div>
     </div>

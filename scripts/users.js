@@ -52,54 +52,6 @@ function showPreviousMessages(){
             console.log("something  went wrong getting all the conversations")
         }
     })
-    // fromLoggedInToUser = []
-    // getConversationOne = host+"/messages?to="+payloadObj.Username+"&from="+userTow+"&token="+jwt
-    // p1 = postData(getConversationOne, {}, {}, "GET").then((data)=>{
-    //     if (data){
-    //         fromLoggedInToUser = data
-    //     } else {
-    //         console.log("something went wrong getting conversation between ", userTow, payloadObj.UserID)
-    //     }
-    // })
-
-    // fromUserToLoggedIn = []
-    // getConversationTwo = host+"/messages?from="+payloadObj.Username+"&to="+userTow+"&token="+jwt
-    // p2 = postData(getConversationTwo, {}, {}, "GET").then((data)=>{
-    //     if (data){
-    //         fromUserToLoggedIn = data
-    //     } else {
-    //         console.log("something went wrong getting conversation between ", userTow, payloadObj.UserID)
-    //     }
-    // })
-
-    // Promise.all([p1, p2]).then(()=>{
-    //     messagesBox = document.getElementById("messageshere")
-    //     maxIndex = Math.max(fromLoggedInToUser.length, fromUserToLoggedIn.length)
-
-    //     for  (var i=0; i<maxIndex; i++){
-    //         if (fromLoggedInToUser[i]){
-    //             msg = document.createElement("div")
-    //             msg.classList.add("fromloggedintouser")
-    //             msg.classList.add("convmsg")
-    //                 msgSpan = document.createElement("span")
-    //                 msgSpan.classList.add("convmsgspan")
-    //                 msgSpan.innerHTML = fromLoggedInToUser[i].Body
-    //                 msg.appendChild(msgSpan)
-    //             messagesBox.appendChild(msg)
-    //         }
-    //         if (fromUserToLoggedIn[i]){
-    //             aMsg = document.createElement("div")
-    //             aMsg.classList.add("fromusertologgedin")
-    //             aMsg.classList.add("convmsg")
-    //                 msgSpan = document.createElement("span")
-    //                 msgSpan.classList.add("convmsgspan")
-    //                 msgSpan.innerHTML = fromUserToLoggedIn[i].Body
-    //                 aMsg.appendChild(msgSpan)
-    //             messagesBox.appendChild(aMsg)
-    //         }
-    //     }
-    // })
-
 }
 
 function messageTyped(e){
@@ -141,8 +93,8 @@ function sendMessage(body, to, msgElementId){
             var newMessage = document.createElement("div")
             newMessage.classList.add("newmsg")
             newMessage.innerHTML = body
-
             messagesHere.appendChild(newMessage)
+            newMessage.scrollIntoView()
         } else {
             console.log("something went wront writng the message", data)
         }
