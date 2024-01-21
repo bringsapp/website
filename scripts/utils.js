@@ -1,5 +1,5 @@
 // host = "https://api.bringsapp.com"
-host = "http://localhost:8080"
+host = "http://127.0.0.1:8080"
 
 document.addEventListener("DOMContentLoaded", function(){
     let logoutButton = document.getElementById("logout")
@@ -7,13 +7,23 @@ document.addEventListener("DOMContentLoaded", function(){
         logoutButton.addEventListener("click", logout)
     }
 
+    document.getElementById("logo").addEventListener("click", handleLogoClick)
 })
 
 function logout(){
     // get the new token that expires immediately
-    // set that in cookie
-    // redirect to logout.html
+    let jwt=getCookie("token=")
+    let logout = host+"/logout?token="+jwt
 
+    postData(logout, {}, {}, "GET").then((data)=>{
+        if (data){
+            eraseCookie()
+            window.location = "/logout"
+        } else {
+            window.location = "/"
+            // TODO: remove the cookie
+        }
+    })
 }
 
 function showDivWithID(id){
@@ -24,18 +34,28 @@ function hideDivWithID(id){
     document.getElementById(id).style.display = "none";
 }
 
-function createCookie(name, value, days) {
-    console.log("createCookie was called with name and value ", name, value)
+function eraseCookie() {
+    // let t = getCookie("token")
+    // const event = new Date('14 Jun 2017 00:00:00 PDT');
+    // let expires = event.toUTCString()
+    // c = name + "="+t+";"+ expires+"; SameSite=None; Secure";
+    // console.log("expires cookie ", c)
+    // document.cookie = c
+    document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+}
+
+function createCookie(name, value, expiration) {
     var expires;
-    if (days) {
+    if (expiration) {
         var date = new Date();
-        date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
-        expires = "; expires=" + date.toGMTString();
+        date.setTime(date.getTime() + (expiration * 24 * 60 * 60 * 1000));
+        expires = " expires=" + date.toGMTString();
     }
     else {
         expires = "";
     }
-    c = name + "=" + value + "; SameSite=None; Secure";
+    c = name + "=" + value + ";"+ expires+"; SameSite=None; Secure";
+    console.log("setting cookie ", c)
     document.cookie = c
 }
 
@@ -47,14 +67,16 @@ function getCookie(name) {
     ?.split("=")[1];
 }
 
-document.addEventListener("DOMContentLoaded", function(){
-    document.getElementById("logo").addEventListener("click", handleLogoClick)
-})
-
 // buggy
 // even if token is invalid, it would be set in the cookie
 function handleLogoClick(){
     let jwt=getCookie("token=")
+    console.log("token is ", jwt)
+    if (jwt == null){
+        window.location = "/"
+        return
+    }
+
     let validateToken = host+"/token/validate?token="+jwt
 
     postData(validateToken, {}, {}, "GET").then((data)=>{
@@ -77,6 +99,10 @@ function showLoadingIcon(){
 function displayLoggedInUserDetails(){
     jwt=getCookie("token=")
 
+    if (jwt == null){
+        window.location ="/logout"
+    }
+
     // get username from token
     encodedPayload = jwt.split(".")[1]
     payload=atob(encodedPayload) // prints '{"UserID":2,"exp":1704534268}'
@@ -97,5 +123,44 @@ function displayLoggedInUserDetails(){
         } else {
             console.log("something broke while getting details of a user", data)
         }
+    })
+}
+
+function showMessagesCount(){
+    jwt=getCookie("token=")
+
+    // get username from token
+    encodedPayload = jwt.split(".")[1]
+    payload=atob(encodedPayload) // prints '{"UserID":2,"exp":1704534268}'
+    payloadObj=JSON.parse(payload)
+
+    getUnreadMessagesCountTo(payloadObj.Username).then((data)=>{
+        if (data.length > 0){
+            let unreadMsgsCount = 0
+            for (let i = 0; i< data.length; i++){
+                unreadMsgsCount+= data[i].NoOfUnreadMsgs
+            }
+            if (unreadMsgsCount>0){
+                let countElem = document.getElementById("msgcount")
+                countElem.innerHTML  = unreadMsgsCount
+                countElem.style.padding = "5px"
+            }
+        }
+    })
+}
+
+function getUnreadMessagesCountTo(to = ""){
+    let getMessagesCount = host+"/messages/count?to="+payloadObj.Username+"&token="+jwt
+    let headers = {
+        // "Authorization":"Bearer "+jwt
+    }
+
+    return postData(getMessagesCount, {}, headers, "GET").then((data)=>{
+        if (data){
+            return data
+        } else {
+            console.log("something went wrong getting all the unread messages")
+        }
+
     })
 }

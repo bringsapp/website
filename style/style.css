@@ -494,7 +494,7 @@ hr{
 }
 
 .postmessage{
-
+    margin-top: 10px;
 }
 
 .usermsgbox{
@@ -510,3 +510,22 @@ hr{
 textarea{
     resize: none;
 }
+
+#msgcount{
+    position: absolute;
+    margin-left: 10px;
+    margin-top: -10px;
+    background-color: #0800ffa3;
+    color: white;
+    /* padding: 5px; */
+    font-size: x-small;
+    border-radius: 10px;
+}
+
+/* .convmsgspan{
+    line-height: 5px;
+}
+
+.convmsgspantwo{
+    line-height: 5px;
+} */

@@ -1,4 +1,8 @@
 document.addEventListener("DOMContentLoaded", function(){
+    displayLoggedInUserDetails()
+
+    document.getElementById("notifsubs").addEventListener("click", subscribeForNotifs)
+
     let jwt=getCookie("token=")
     // get username from token
     let encodedPayload = jwt.split(".")[1]
@@ -9,10 +13,8 @@ document.addEventListener("DOMContentLoaded", function(){
     let headers = {
         // "Authorization":"Bearer "+jwt
     }
-
     postData(getMessagesCount, {}, headers, "GET").then((data)=>{
         if (data){
-            console.log("got inread message ", data)
             let msgsOfUserElem = document.getElementById("messageswrapper")
             for (let i=0; i< data.length; i++){
                 let messanger = document.createElement("div")
@@ -22,7 +24,11 @@ document.addEventListener("DOMContentLoaded", function(){
                     namewrapper.classList.add("convnamewrapper")
                         let nameAndCount = document.createElement("div")
                         nameAndCount.classList.add("messagenameandcount")
-                        nameAndCount.innerHTML = data[i].From.FirstName +" "+ data[i].From.LastName +" ("+data[i].NoOfUnreadMsgs+")"
+                        if (data[i].NoOfUnreadMsgs>0){
+                            nameAndCount.innerHTML = data[i].From.FirstName +" "+ data[i].From.LastName +" ("+data[i].NoOfUnreadMsgs+")"
+                        } else {
+                            nameAndCount.innerHTML = data[i].From.FirstName +" "+ data[i].From.LastName
+                        }
                         namewrapper.appendChild(nameAndCount)
 
                         let showConv = document.createElement("div")
@@ -55,6 +61,8 @@ document.addEventListener("DOMContentLoaded", function(){
             console.log("soemthing went wrong gettting messages count")
         }
     })
+
+    showMessagesCount()
 })
 
 function showConversation(e){
@@ -84,7 +92,6 @@ function showConversation(e){
     payload=atob(encodedPayload)
     payloadObj=JSON.parse(payload)
 
-    console.log(payloadObj)
     let getConv = host+"/conversations?to="+payloadObj.Username+"&from="+senderUsername+"&token="+jwt
     postData(getConv, {}, {}, "GET").then((data)=>{
         messagesBox = document.getElementById("conv-"+senderUsername)
@@ -110,6 +117,20 @@ function showConversation(e){
             }
         } else {
             console.log("something  went wrong getting all the conversations")
+        }
+    })
+    // TODO: scroll to the bottom if there are two many messages, there is no point staying at the top
+    // mark all the message from this user (senderUsername) to logged in user read
+    readAllMessage(payloadObj.Username, senderUsername)
+}
+
+function readAllMessage(to, from){
+    let readMessages = host+"/messages/readall?to="+to+"&from="+from+"&token="+jwt
+    postData(readMessages, {}, {}, "POST").then((data)=>{
+        if (data){
+            console.log(data)
+        } else {
+            console.log("Something went wrong reading data from ", from , " to ", to)
         }
     })
 }
@@ -161,4 +182,80 @@ function sendMessage(body, to, msgElementId, toUsername){
             console.log("something went wront writng the message", data)
         }
     })
+}
+
+function subscribeForNotifs(){
+    let jwt=getCookie("token=")
+    let encodedPayload = jwt.split(".")[1]
+    let payload=atob(encodedPayload)
+    let payloadObj=JSON.parse(payload)
+    let from = payloadObj.UserID
+
+    let vapidPublicKey =
+      'BOZ5ZT9HIZPM9r_fFh5DIiv5uNQ80i10m1kMcxTVEB522WujTj6q6x9JNIjPUj5i5DlTJssaX5K7f8XOiM13-nQ';
+    if ('serviceWorker' in navigator){
+        navigator.serviceWorker.register('sw.js').then(function (registration){
+            return registration.pushManager.getSubscription().then(function (subscription){
+                if (subscription){
+                    // already subscribed
+                    console.log("already subd ", subscription)
+                    return
+                }
+
+                // not subscribed
+                return registration.pushManager.subscribe({
+                    userVisibleOnly: true,
+                    applicationServerKey: urlBase64ToUint8Array(vapidPublicKey)
+                }).then(function (subscription){
+                    let rawKey = subscription.getKey ? subscription.getKey('p256dh'):'';
+                    key = rawKey ? btoa(String.fromCharCode.apply(null, new Uint8Array(rawKey))): '';
+                    let rawAuthSecret = subscription.getKey ? subscription.getKey('auth'):'';
+                    authSecret = rawAuthSecret ? btoa(String.fromCharCode.apply(null, new Uint8Array(rawAuthSecret))):'';
+                    endpoint = subscription.endpoint
+
+                    let jwt=getCookie("token=")
+                    return fetch(host+'/notifs/register?userid='+from+'&token='+jwt, {
+                        method: 'post',
+                        mode: 'no-cors',
+                        headers: new Headers({
+                            'content-type': 'application/json'
+                        }),
+                        body: JSON.stringify({
+                            endpoint: endpoint,
+                            key: key,
+                            authSecret: authSecret,
+                        })
+                    })
+                    // postData(host+"/notifs/register", {
+                    //     endpoint: endpoint,
+                    //     key: key,
+                    //     authSecret: authSecret,
+                    // },
+                    // {
+                    //     'content-type': 'application/json'
+                    // },
+                    // "POST"
+                    // )
+                })
+
+            })
+        }).catch(function (err){
+            console.log("service worker registration failed ", err)
+        })
+    }
+}
+
+function urlBase64ToUint8Array(pubKey){
+    const padding = '='.repeat((4 - pubKey.length % 4) % 4);
+    const base64 = (pubKey + padding)
+      .replace(/\-/g, '+')
+      .replace(/_/g, '/');
+
+    const rawData = window.atob(base64);
+    const outputArray = new Uint8Array(rawData.length);
+
+    for (let i = 0; i < rawData.length; ++i) {
+      outputArray[i] = rawData.charCodeAt(i);
+    }
+    return outputArray;
 }

@@ -9,35 +9,6 @@ document.addEventListener("DOMContentLoaded", function(){
     showMessagesCount()
 })
 
-
-function showMessagesCount(){
-    jwt=getCookie("token=")
-
-    // get username from token
-    encodedPayload = jwt.split(".")[1]
-    payload=atob(encodedPayload) // prints '{"UserID":2,"exp":1704534268}'
-    payloadObj=JSON.parse(payload)
-
-    getAllMessagesToUserFromUser(payloadObj.Username).then((data)=>{
-        if (data.length > 0){
-            document.getElementById("msgcount").innerHTML = data.length
-        }
-    })
-}
-
-function getAllMessagesToUserFromUser(to = "", from = ""){
-    getMessageURL = host+"/messages?to="+to+"&from="+from+"&token="+jwt
-    return postData(getMessageURL, {}, headers, "GET").then((data)=>{
-        if (data){
-            return data
-        } else {
-            console.log("something went wrong while getting all the messages")
-        }
-    })
-}
-
-
-
 function displayTravels(){
     jwt=getCookie("token=")
 

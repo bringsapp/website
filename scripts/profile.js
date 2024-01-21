@@ -1,4 +1,6 @@
 document.addEventListener("DOMContentLoaded", function(){
+    displayLoggedInUserDetails()
+
     document.getElementById("travelbutton").addEventListener("click", showTravelForm)
     document.getElementById("requestbutton").addEventListener("click", showRequestForm)
     document.getElementById("submittravel").addEventListener("click", createTravel)
@@ -25,10 +27,11 @@ document.addEventListener("DOMContentLoaded", function(){
     }
 
     showLoadingIcon()
-    showOwnDetails()
+    // showOwnDetails()
     showEntries()
 
     showCountries()
+    showMessagesCount()
 })
 
 function hideEntryForms(){

@@ -1,5 +1,3 @@
-
-
 document.addEventListener("DOMContentLoaded", function(){
     document.getElementById("createacclink").addEventListener("click", showRegistrationForm);
     document.getElementById("loginlink").addEventListener("click", showLoginForm);
@@ -27,7 +25,11 @@ document.addEventListener("DOMContentLoaded", function(){
             // 200-299 https://developer.mozilla.org/en-US/docs/Web/API/Response/ok
             if (data){
                 if (data.Token !=""){
-                    createCookie("token", data.Token)
+                    let encodedPayload = data.Token.split(".")[1]
+                    let payload=atob(encodedPayload)
+                    let payloadObj=JSON.parse(payload)
+                    createCookie("token", data.Token, payloadObj.exp)
+
                     window.location = "entries"
                 }
             } else {

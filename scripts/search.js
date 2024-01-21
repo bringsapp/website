@@ -20,19 +20,23 @@ document.addEventListener("DOMContentLoaded", function(){
         cityElems[i].addEventListener("change", search)
     }
 
+    let searchType = document.getElementById("searchtype")
+    searchType.addEventListener("change", search)
+
     // let citiElems = document.getElementsByClassName("selectcity")
     // for (var i=0; i< citiElems.length; i++){
     //     citiElems[i].addEventListener("change", search)
     // }
 
     showCountries()
+    showMessagesCount()
 
     // document.getElementById("searchbutton").addEventListener("click", search)
 })
 
 function search(){
-    console.log("search")
     // validate if at least from and to countries are provided
+    let searchType = document.getElementById("searchtype").value
 
     let fromCountry = document.getElementById("travelfromselectcountryip")
     let fromState = document.getElementById("travelselectstateip")
@@ -61,7 +65,13 @@ function search(){
     let payload=atob(encodedPayload)
     let payloadObj=JSON.parse(payload)
 
-    let searchTravelURL = host+"/travels/search?token="+jwt
+    let searchTravelURL = ""
+    if (searchType == "travel"){
+        searchTravelURL = host+"/travels/search?token="+jwt
+    } else {
+        searchTravelURL = host+"/requests/search?token="+jwt
+    }
+
     let headers = {
         // "Authorization":"Bearer "+jwt
     }
@@ -106,12 +116,73 @@ function search(){
 
 
             for (let i=0; i< data.length; i++){
-                displayTravel(data[i], e)
+                if (searchType == "travel"){
+                    displayTravel(data[i], e)
+                } else {
+                    displayRequest(data[i], e)
+                }
+
             }
         } else {
             console.log("failed searching for travels")
         }
     })
+}
+
+function displayRequest(request, requestsElem){
+    console.log("show ", request, " in ", requestsElem)
+    // travelElem would have one travel entry
+    var travelElem = document.createElement("div")
+	travelElem.classList.add("atravel");
+        // namewrapper would have name and profile picture
+        var nameWrapper = document.createElement("div")
+        nameWrapper.classList.add("namewrapper")
+        travelElem.appendChild(nameWrapper)
+            var dp = document.createElement("div")
+            dp.classList.add("travellerdp")
+            nameWrapper.appendChild(dp)
+                var img = document.createElement("img")
+                img.setAttribute("src", request.Requester.ProfilePicture);
+                img.classList.add("dpimg")
+                dp.appendChild(img)
+
+
+            var name = document.createElement("div")
+            name.classList.add("travellername")
+            // name.innerHTML = travel.Traveller.FirstName+" "+travel.Traveller.LastName
+            nameWrapper.appendChild(name)
+                var nameanchor = document.createElement("a")
+                nameanchor.setAttribute("href", "../users#username="+request.Requester.Username);
+                nameanchor.innerHTML=request.Requester.FirstName+" "+request.Requester.LastName
+                nameWrapper.appendChild(nameanchor)
+
+
+        // travelPost would have actual content/details of travel
+        var travelPost = document.createElement("div")
+        travelPost.classList.add("travelpost")
+        travelPost.innerHTML = "Is anyone travelling from <span class=\"travellocation\">"+request.From.Country+"/"+
+            request.From.State+"/"+request.From.City+"</span> to <span class=\"travellocation\">"+request.To.Country+"/"+
+            request.To.State+"/"+request.To.City+"</span> and can bring around "+request.Weight+
+            "grams of parcel with me."
+        travelElem.appendChild(travelPost)
+
+        // travellingDate would have travel dates of traveller
+        var travellingDate = document.createElement("div")
+        travellingDate.classList.add("travellingdate")
+        travellingDate.innerHTML = "Can I get it before "+request.BeforeDate+"?"
+        travelElem.appendChild(travellingDate)
+
+        var entryTypeDiv = document.createElement("div")
+        entryTypeDiv.classList.add("entrytypediv")
+        travelElem.appendChild(entryTypeDiv)
+
+        var entryType = document.createElement("span")
+            entryType.classList.add("entrytype")
+            entryType.innerHTML = "request"
+            entryTypeDiv.appendChild(entryType)
+
+
+    requestsElem.appendChild(travelElem)
 }
 
 function displayTravel(travel, travelsElem){

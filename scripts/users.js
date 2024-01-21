@@ -13,6 +13,7 @@ document.addEventListener("DOMContentLoaded", function(){
     // and this will be shown when a logged in user clicked on a name to visit
     // their profile
     showEntries()
+    showMessagesCount()
 })
 
 function showPreviousMessages(){
