@@ -18,6 +18,7 @@
     text-align: center;
 }
 #title{
+    /* background: linear-gradient(90deg, #fffcf3, #0800ffa3); */
     background-color: #fffcf3;
     padding: 90px;
     /* font-weight: bold; */
@@ -150,6 +151,19 @@ hr{
     }
 }
 
+
+@media (max-width:650px) {
+    #travels,#entries,#searchcontent,#messageswrapper,#userdetails{
+        width: 70% !important;
+    }
+}
+
+@media (max-width:500px) {
+    #travels,#entries,#searchcontent,#messageswrapper,#userdetails{
+        width: 90% !important;
+    }
+}
+
 #loginerror{
     font-size: medium;
     margin-top: 5px;
@@ -170,27 +184,25 @@ hr{
 
 #travels{
     width: 50%;
+    margin: auto;
 }
 
 .entriessections{
     padding: 20px;
-    float: left;
+    /* float: left; */
     box-sizing: border-box;
-}
-
-#leftuserdetailssection, #rightuserdetailssection{
-    width: 25%;
 }
 
 #userdetails{
     width: 50%;
+    margin: auto;
 }
 
-.userdetailssections{
+/* .userdetailssections{
     padding: 20px;
     float: left;
     box-sizing: border-box;
-}
+} */
 
 .travellerdp{
     width: 30px;
@@ -210,13 +222,15 @@ hr{
 
 .travelpost{
     /* padding: 20px; */
-    margin-top: 20px;
+    margin-top: 10px;
 }
 
-.atravel{
-    border: 1px solid #0800ffa3;
+.atravel,.userentrieswrapper{
+    /* border: 1px solid #0800ffa3; */
+    background-color: #f5f6f7;
     padding: 20px;
     margin-top: 20px;
+    border-radius: 10px;
 }
 
 .travellingdate{
@@ -249,7 +263,7 @@ hr{
 
 .userentrieswrapper{
     padding: 20px;
-    border: 1px solid #0800ffa3;
+    /* border: 1px solid #0800ffa3; */
     margin-top: 20px;
 }
 
@@ -257,6 +271,8 @@ hr{
     background-color: #0800ffa3;
     padding: 5px;
     color: white;
+    border-radius: 5px;
+    font-size: small;
 }
 
 .userentry{
@@ -270,6 +286,7 @@ hr{
 
 #entries{
     width: 50%;
+    margin: auto;
 }
 
 #entriesmaindp{
@@ -459,22 +476,27 @@ hr{
 #searchcontent{
     width: 50%;
     margin: auto;
-    border: 1px solid;
+    /* border: 1px solid; */
     padding: 20px;
 }
 
 #messageswrapper{
     width: 50%;
     margin: auto;
-    padding: 10px;
+    /* padding: 10px; */
 }
 
 .conversationwrapper{
-    border: 1px solid #0800ffa3;
-    margin-top: 20px;
+    /* border: 1px solid #0800ffa3; */
+    /* margin-top: 20px; */
     padding: 5px;
+    /* background-color: gray; */
 }
-
+.convnamewrapper{
+    background-color: #f5f6f7;
+    padding: 20px;
+    border-radius: 10px;
+}
 .showconv{
     font-size: small;
     cursor: pointer;
@@ -489,8 +511,7 @@ hr{
     height: 300px;
     overflow-y: scroll;
     display: none;
-    -webkit-transition:all ease .5s;
-    transition: all ease .5s;
+    /* border: 1px solid red; */
 }
 
 .postmessage{
@@ -529,3 +550,12 @@ textarea{
 .convmsgspantwo{
     line-height: 5px;
 } */
+
+.travellername{
+    padding-top: 5px;
+}
+
+.travellername a{
+    margin-left: 5px;
+    font-weight: bold;
+}

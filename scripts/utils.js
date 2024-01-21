@@ -8,7 +8,25 @@ document.addEventListener("DOMContentLoaded", function(){
     }
 
     document.getElementById("logo").addEventListener("click", handleLogoClick)
+    animateLocations()
 })
+
+
+function animateLocations(){
+    let sources = ["The Hague", "New Delhi", "Berlin", "San Francisco"]
+    let targets = ["Banglore", "Amsterdam", "Istanbul", "Mumbai"]
+    let r = Math.floor(Math.random() * 4)
+
+    let source = document.getElementById("source")
+    let target = document.getElementById("target")
+    if (source && target){
+        source.innerHTML = sources[r]
+        target.innerHTML = targets[r]
+        setTimeout(() => {
+        animateLocations()
+        }, "3000");
+    }
+}
 
 function logout(){
     // get the new token that expires immediately

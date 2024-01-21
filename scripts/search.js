@@ -154,7 +154,7 @@ function displayRequest(request, requestsElem){
                 var nameanchor = document.createElement("a")
                 nameanchor.setAttribute("href", "../users#username="+request.Requester.Username);
                 nameanchor.innerHTML=request.Requester.FirstName+" "+request.Requester.LastName
-                nameWrapper.appendChild(nameanchor)
+                name.appendChild(nameanchor)
 
 
         // travelPost would have actual content/details of travel
@@ -209,7 +209,7 @@ function displayTravel(travel, travelsElem){
                 var nameanchor = document.createElement("a")
                 nameanchor.setAttribute("href", "../users#username="+travel.Traveller.Username);
                 nameanchor.innerHTML=travel.Traveller.FirstName+" "+travel.Traveller.LastName
-                nameWrapper.appendChild(nameanchor)
+                name.appendChild(nameanchor)
 
 
         // travelPost would have actual content/details of travel

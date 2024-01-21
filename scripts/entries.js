@@ -51,15 +51,13 @@ function displayRequest(travel){
                 dp.appendChild(img)
 
 
-            var name = document.createElement("div")
-            name.classList.add("travellername")
-            // name.innerHTML = travel.Traveller.FirstName+" "+travel.Traveller.LastName
-            nameWrapper.appendChild(name)
+            var named = document.createElement("div")
+            named.classList.add("travellername")
                 var nameanchor = document.createElement("a")
                 nameanchor.setAttribute("href", "../users#username="+travel.CreatedBy.Username);
                 nameanchor.innerHTML=travel.CreatedBy.FirstName+" "+travel.CreatedBy.LastName
-                nameWrapper.appendChild(nameanchor)
-
+                named.appendChild(nameanchor)
+            nameWrapper.appendChild(named)
 
         // travelPost would have actual content/details of travel
         var travelPost = document.createElement("div")
@@ -114,7 +112,7 @@ function displayTravel(travel){
                 var nameanchor = document.createElement("a")
                 nameanchor.setAttribute("href", "../users#username="+travel.CreatedBy.Username);
                 nameanchor.innerHTML=travel.CreatedBy.FirstName+" "+travel.CreatedBy.LastName
-                nameWrapper.appendChild(nameanchor)
+                name.appendChild(nameanchor)
 
 
         // travelPost would have actual content/details of travel
