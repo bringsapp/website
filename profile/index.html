@@ -27,7 +27,7 @@
                 <img id="loggedinuserimg"/>
             </div>
             <div>
-                <a id="loggedinusername"></a>
+                <a id="loggedinusername" class="bold"></a>
             </div>
             <div id="loggedinusermeta">
                 <span><a id="verifyphone" href="#" onclick="return false">Verify Phone</a></span>
@@ -53,39 +53,39 @@
         </div>
 
         <div id="createentries" class="clearboth">
-            <div id="createtravel" class="entrybuttons text-cen">
-                <button id="travelbutton">+ Travel</button>
-            </div>
-            <div id="createrequest" class="entrybuttons text-cen">
-                <button id="requestbutton">+ Request</button>
-            </div>
+            <!-- <div id="createtravel" class="entrybuttons text-cen"> -->
+                <span class="addentryspn" id="travelbutton">Add Travel</span>
+            <!-- </div>
+            <div id="createrequest" class="entrybuttons text-cen"> -->
+                <span class="addentryspn" id="requestbutton">Add Request</span>
+            <!-- </div> -->
         </div>
     </div>
 
     <div id="entryforms">
         <div id="travelform" class="entryform">
             <div>
-                <span class="closeentryforms"><-</span>
+                <span class="closeentryforms"><img src="../images/left-arrow.png" class="backarrow" /></span>
             </div>
-            <form>
+            <form id="">
                 <div id="travelfrom" class="formsections">
                     <div>
                         Travelling From:
                     </div>
-                    <div id="travelfromcountries" class="fromselect">
-                        <input id="travelfromselectcountryip" list="travelfromselectcountry" class="selectcountry" statesElemId="travelselectstate"/>
+                    <div id="travelfromcountries" class="fromselect fromselectipdiv">
+                        <input placeholder="Country" id="travelfromselectcountryip" list="travelfromselectcountry" class="selectcountry" statesElemId="travelselectstate"/>
                         <datalist id="travelfromselectcountry">
                             <option value="select">Country</option>
                         </datalist>
                     </div>
-                    <div id="travelfromstates" class="fromselect">
-                        <input id="travelselectstateip" list="travelselectstate" class="selectstate" citiesElemId="travelselectcity"/>
+                    <div id="travelfromstates" class="fromselect fromselectipdiv">
+                        <input placeholder="State" id="travelselectstateip" list="travelselectstate" class="selectstate" citiesElemId="travelselectcity"/>
                         <datalist id="travelselectstate">
                             <option value="select">State</option>
                         </datalist>
                     </div>
-                    <div id="travelfromcities">
-                        <input id="travelselectcityip" list="travelselectcity"/>
+                    <div id="travelfromcities" class="fromselectipdiv">
+                        <input placeholder="City" id="travelselectcityip" list="travelselectcity"/>
                         <datalist id="travelselectcity">
                             <option value="select">City</option>
                         </datalist>
@@ -95,20 +95,20 @@
                     <div>
                         Travelling To:
                     </div>
-                    <div id="traveltocountries" class="toselect">
-                        <input id="traveltoselectcountryip" list="traveltoselectcountry" class="selectcountry" statesElemId="traveltoselectstate"/>
+                    <div id="traveltocountries" class="toselect toselectipdiv">
+                        <input placeholder="Country" id="traveltoselectcountryip" list="traveltoselectcountry" class="selectcountry" statesElemId="traveltoselectstate"/>
                         <datalist id="traveltoselectcountry">
                             <option value="select">Country</option>
                         </datalist>
                     </div>
-                    <div id="traveltostates" class="toselect">
-                        <input id="traveltoselectstateip" list="traveltoselectstate" class="selectstate" citiesElemId="traveltoselectcity"/>
+                    <div id="traveltostates" class="toselect toselectipdiv">
+                        <input placeholder="State" id="traveltoselectstateip" list="traveltoselectstate" class="selectstate" citiesElemId="traveltoselectcity"/>
                         <datalist id="traveltoselectstate">
                             <option value="select">State</option>
                         </datalist>
                     </div>
-                    <div id="traveltocities">
-                        <input id="traveltoselectcityip" list="traveltoselectcity"/>
+                    <div id="traveltocities" class="toselectipdiv">
+                        <input placeholder="City" id="traveltoselectcityip" list="traveltoselectcity"/>
                         <datalist id="traveltoselectcity">
                             <option value="select">City</option>
                         </datalist>
@@ -126,27 +126,27 @@
         </div>
         <div id="requestform" class="entryform">
             <div>
-                <span class="closeentryforms"><-</span>
+                <span class="closeentryforms"><img src="../images/left-arrow.png" class="backarrow" /></span>
             </div>
             <form>
                 <div id="requestfrom" class="formsections">
                     <div>
                         Requesting From:
                     </div>
-                    <div id="requestfromcountries" class="fromselect">
-                        <input id="requestfromselectcountryip" list="requestfromselectcountry" class="selectcountry" statesElemId="requestselectstate"/>
+                    <div id="requestfromcountries" class="fromselect fromselectipdiv">
+                        <input placeholder="Country" id="requestfromselectcountryip" list="requestfromselectcountry" class="selectcountry" statesElemId="requestselectstate"/>
                         <datalist id="requestfromselectcountry">
                             <option value="select">Country</option>
                         </datalist>
                     </div>
-                    <div id="requestfromstates" class="fromselect">
-                        <input id="requestselectstateip" list="requestselectstate" class="selectstate" citiesElemId="requestselectcity"/>
+                    <div id="requestfromstates" class="fromselect fromselectipdiv">
+                        <input placeholder="State" id="requestselectstateip" list="requestselectstate" class="selectstate" citiesElemId="requestselectcity"/>
                         <datalist id="requestselectstate">
                             <option value="select">State</option>
                         </datalist>
                     </div>
-                    <div id="requestfromcities">
-                        <input id="requestselectcityip" list="requestselectcity"/>
+                    <div id="requestfromcities" class="fromselectipdiv">
+                        <input placeholder="City" id="requestselectcityip" list="requestselectcity"/>
                         <datalist id="requestselectcity">
                             <option value="select">City</option>
                         </datalist>
@@ -156,20 +156,20 @@
                     <div>
                         Requesting To:
                     </div>
-                    <div id="requesttocountries" class="toselect">
-                        <input id="requesttoselectcountryip" list="requesttoselectcountry" class="selectcountry" statesElemId="requesttoselectstate"/>
+                    <div id="requesttocountries" class="toselect toselectipdiv">
+                        <input placeholder="Country" id="requesttoselectcountryip" list="requesttoselectcountry" class="selectcountry" statesElemId="requesttoselectstate"/>
                         <datalist id="requesttoselectcountry">
                             <option value="select">Country</option>
                         </datalist>
                     </div>
-                    <div id="requesttostates" class="toselect">
-                        <input id="requesttoselectstateip" list="requesttoselectstate" class="selectstate" citiesElemId="requesttoselectcity"/>
+                    <div id="requesttostates" class="toselect toselectipdiv">
+                        <input placeholder="State" id="requesttoselectstateip" list="requesttoselectstate" class="selectstate" citiesElemId="requesttoselectcity"/>
                         <datalist id="requesttoselectstate">
                             <option value="select">State</option>
                         </datalist>
                     </div>
-                    <div id="requesttocities">
-                        <input id="requesttoselectcityip" list="requesttoselectcity"/>
+                    <div id="requesttocities" class="toselectipdiv">
+                        <input placeholder="City" id="requesttoselectcityip" list="requesttoselectcity"/>
                         <datalist id="requesttoselectcity">
                             <option value="select">City</option>
                         </datalist>
