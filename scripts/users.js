@@ -227,7 +227,16 @@ function showUser(){
                 userid.setAttribute("userid", data.Id)
 
                 var phoneVerified = document.getElementById("isphoneverified")
-                phoneVerified.innerHTML = data.PhoneVerified
+                let verifImg = document.createElement("img")
+                console.log("phone verified ", data.PhoneVerified)
+                if (data.PhoneVerified == true){
+                    verifImg.setAttribute("src", "../images/success.png")
+                } else {
+                    verifImg.setAttribute("src", "../images/cross.png")
+                }
+                phoneVerified.appendChild(verifImg)
+
+                document.getElementById("convwuser").innerHTML = data.FirstName +" "+ data.LastName
         } else{
             console.log("something broke while loading the profile", data)
         }

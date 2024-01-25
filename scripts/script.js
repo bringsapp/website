@@ -1,6 +1,7 @@
 document.addEventListener("DOMContentLoaded", function(){
     document.getElementById("createacclink").addEventListener("click", showRegistrationForm);
     document.getElementById("loginlink").addEventListener("click", showLoginForm);
+    document.getElementById("loginlinkreg").addEventListener("click", showLoginForm);
 
     document.getElementById("loginbutton").addEventListener("click", function Login() {
         u=document.getElementById("username").value
@@ -82,6 +83,7 @@ function showRegistrationForm(){
 }
 
 function showLoginForm(){
+    console.log("showLoginForm was clicked")
     hideDivWithID("registration")
     showDivWithID("login")
 }

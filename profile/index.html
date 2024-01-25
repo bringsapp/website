@@ -30,7 +30,7 @@
                 <a id="loggedinusername" class="bold"></a>
             </div>
             <div id="loggedinusermeta">
-                <span><a id="verifyphone" href="#" onclick="return false">Verify Phone</a></span>
+                <span class="addentryspn" id="verifyphone"><a href="#" onclick="return false">Verify Phone</a></span>
             </div>
             <div id="navigation">
                 <div id="profile" class="navdiv">
@@ -61,7 +61,17 @@
             <!-- </div> -->
         </div>
     </div>
-
+    <div id="otpwrapper">
+        <div>
+            <img id="closeotpbox" src="../images/left-arrow.png" class="backarrow pointer" />
+        </div>
+        <div id="otpip" class="text-cen">
+            <span>OTP has been sent to your registered mobile number.</span><br>
+            <input id="otp" type="text" placeholder="Enter OTP  "/><br>
+            <button id="otpverifybuton" class="pointer">Verify</button><br>
+            <span id="otpverifmsg"></span>
+        </div>
+    </div>
     <div id="entryforms">
         <div id="travelform" class="entryform">
             <div>

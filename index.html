@@ -26,10 +26,11 @@
     </div>
     <div id="wrapper">
         <div id="forms" class="sections">
+            <div class="text-cen">
+                <span id="loginspan"><a href="#" id="loginlink" onclick="return false">Login</a> | <a href="#" id="createacclink" onclick="return false">Sign Up</a></span>
+            </div>
             <div id="login">
-                <!-- <div class="text-cen">
-                    <span id="loginspan">Login | Register</span>
-                </div> -->
+
                 <form class="sectioncontainer">
                     <div>
                         Username:
@@ -44,7 +45,7 @@
                         <input class="loginforminput" type="password" id="password" placeholder="*******">
                     </div>
                     <div style="margin-top: 20px;">
-                        <input type="button" class="butt" id="loginbutton" value="Login"> Or, <a href="#" id="createacclink" onclick="return false">create an account</a>.
+                        <input type="button" class="butt" id="loginbutton" value="Login"> <a href="forgot/" >Forgot Password</a>?
                     </div>
                     <div>
                         <span id="loginerror"></span>
@@ -99,7 +100,7 @@
                         <input class="loginforminput" type="text" id="regphone" placeholder="+31123456789">
                     </div>
                     <div style="margin-top: 20px;">
-                        <input type="button" class="butt" id="registrationbutton" value="Register"> Or, <a href="#" id="loginlink" onclick="return false">login</a>.
+                        <input type="button" class="butt" id="registrationbutton" value="Register"> Or, <a href="#" id="loginlinkreg" onclick="return false">login</a>.
                     </div>
                     <div>
                         <span id="registrationerror"></span>
@@ -124,11 +125,11 @@
             </div>
         </div>
     </div>
-    <hr>
+    <hr class="clearboth">
     <div id="faqs" class="clearboth">
         <h2><span>FAQs:</span></h2>
         <div class="questions">
-            Q. Is <span class="companyname">brings</span> free to use, right now?
+            Q. Is <span class="highlight">brings</span> free to use, right now?
         </div>
         <div class="answers">
             A. Yes.
@@ -153,6 +154,7 @@
         </div>
         <div class="answers">
             A. It's just their phone number that is verified right now. We are planning to add ID verification soon.
+            User's profile can be visited to see if their phone is verified or not.
         </div>
     </div>
     <hr style="margin-top: 10px;">

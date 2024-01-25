@@ -6,6 +6,11 @@ document.addEventListener("DOMContentLoaded", function(){
     document.getElementById("submittravel").addEventListener("click", createTravel)
     document.getElementById("submitrequest").addEventListener("click", createRequest)
 
+    document.getElementById("verifyphone").addEventListener("click", sendOTPAndVerify)
+    document.getElementById("otpverifybuton").addEventListener("click", verifyOTP)
+
+    document.getElementById("closeotpbox").addEventListener("click", hideOTPBox)
+
     let closes =  document.getElementsByClassName("closeentryforms")
     for (var i=0; i< closes.length; i++){
         closes[i].addEventListener("click", hideEntryForms)
@@ -33,6 +38,52 @@ document.addEventListener("DOMContentLoaded", function(){
     showCountries()
     showMessagesCount()
 })
+
+function hideOTPBox(){
+    hideDivWithID("otpwrapper")
+}
+
+function verifyOTP(){
+    let otp = document.getElementById("otp").value
+    let jwt=getCookie("token=")
+    let otpRequest = host+"/contactno/verifyotp?otp="+otp+"&token="+jwt
+    let headers = {
+        // "Authorization":"Bearer "+jwt
+    }
+
+    let msg = document.getElementById("otpverifmsg")
+    postData(otpRequest, {}, headers, "POST").then((data)=>{
+        if (data){
+            msg.innerHTML=""
+            msg.classList.add("success")
+            msg.innerHTML = "OTP verification was successful"
+
+        } else{
+            msg.innerHTML=""
+            msg.classList.add("warn")
+            msg.innerHTML = "Something went wrong while verifying the OTP."
+            console.log("something went wrong verifying the OTP")
+        }
+    })
+}
+
+function sendOTPAndVerify(){
+    let jwt=getCookie("token=")
+    let otpRequest = host+"/contactno/sendotp?token="+jwt
+    let headers = {
+        // "Authorization":"Bearer "+jwt
+    }
+
+    postData(otpRequest, {}, headers, "POST").then((data)=>{
+        if (data){
+            console.log("message was sent successfully")
+            // show div
+            document.getElementById("otpwrapper").style.display = "block"
+        } else{
+            console.log("something went wrong sending the OTP, try again")
+        }
+    })
+}
 
 function hideEntryForms(){
     hideDivWithID("travelform")

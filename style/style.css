@@ -19,7 +19,7 @@
     text-align: center;
 }
 #title{
-    /* background: linear-gradient(90deg, #fffcf3, #0800ffa3); */
+    /* background-image: url('../images/Contour_Line.svg'); */
     background-color: #fffcf3;
     padding: 90px;
     /* font-weight: bold; */
@@ -106,7 +106,7 @@ a{
     padding: 20px;
 }
 
-.companyname{
+.highlight{
     background-color: #0800ffa3;
     padding: 5px;
     color: white;
@@ -209,7 +209,7 @@ hr{
 }
 
 .entriessections{
-    padding: 20px;
+    /* padding: 20px; */
     /* float: left; */
     box-sizing: border-box;
 }
@@ -550,6 +550,7 @@ hr{
     padding: 5px;
     border-radius: 5px;
     color: white;
+    cursor: pointer;
 }
 
 #searchcontent{
@@ -559,9 +560,18 @@ hr{
     padding: 20px;
 }
 
+#loggedinusermeta{
+    margin-top: 10px;
+}
+
+#loggedinusermeta a{
+    color: white;
+}
+
 #messageswrapper{
     width: 50%;
     margin: auto;
+    margin-top: 10px;
     /* padding: 10px; */
 }
 
@@ -583,6 +593,10 @@ hr{
 }
 
 .messagenameandcount{
+    cursor: pointer;
+}
+
+.pointer{
     cursor: pointer;
 }
 
@@ -664,4 +678,65 @@ textarea{
 
 .hidden{
     display: none;
+}
+
+#otpwrapper{
+    width: 50%;
+    margin: auto;
+    padding: 20px;
+    box-sizing: border-box;
+    background-color: #f5f6f7;
+    border-radius: 10px;
+    display: none;
+}
+
+#otpwrapper input{
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+}
+
+#otpverifybuton{
+    background-color: #0800ffa3;
+    border: none;
+    color: white;
+    padding: 10px;
+    margin-top: 5px;
+    border-radius: 5px;
+}
+
+#isphoneverified img{
+    width: 20px;
+    height: 20px;
+}
+
+#sendcodeforgotpwd{
+    margin-top: 10px;
+    background-color: #0800ffa3;
+    border: none;
+    color: white;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+#forgotpass{
+    width: 30%;
+    margin: auto;
+}
+
+
+@media (max-width:1000px) {
+    #forgotpass{
+        width: 60%;
+    }
+}
+
+@media (max-width:500px) {
+    #forgotpass{
+        width: 80%;
+    }
+}
+
+.fontsmall{
+    font-size: small;
 }

@@ -8,14 +8,14 @@ document.addEventListener("DOMContentLoaded", function(){
     }
 
     document.getElementById("logo").addEventListener("click", handleLogoClick)
-    animateLocations()
+    // animateLocations()
 })
 
 
 function animateLocations(){
-    let sources = ["The Hague", "New Delhi", "Berlin", "San Francisco"]
-    let targets = ["Banglore", "Amsterdam", "Istanbul", "Mumbai"]
-    let r = Math.floor(Math.random() * 4)
+    let sources = ["The Hague", "New Delhi"]
+    let targets = ["Mumbai",  "Berlin"]
+    let r = Math.floor(Math.random() * 2)
 
     let source = document.getElementById("source")
     let target = document.getElementById("target")
