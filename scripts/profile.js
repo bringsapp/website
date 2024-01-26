@@ -32,7 +32,7 @@ document.addEventListener("DOMContentLoaded", function(){
     }
 
     showLoadingIcon()
-    // showOwnDetails()
+    showOwnDetails()
     showEntries()
 
     showCountries()
@@ -385,6 +385,8 @@ function showRequestForm(){
     hideDivWithID("travelform")
 }
 
+// showOwnDetails just make sure verify phone is proper, that would mean
+// show the button only if the user's phone is not verified
 function showOwnDetails(){
     let jwt =  getCookie("token=")
 
@@ -400,11 +402,13 @@ function showOwnDetails(){
 
     postData(getUserDetails, {}, headers, "GET").then((data)=>{
         if (data){
-            ownImg = document.getElementById("ownimg")
-            ownImg.setAttribute("src", data.ProfilePicture)
-
-            ownName = document.getElementById("ownname")
-            ownName.innerHTML = data.FirstName +" "+ data.LastName
+            if (data.PhoneVerified){
+                let metaElem = document.getElementById("loggedinusermeta")
+                metaElem.innerHTML = ""
+                let verifiedElem = document.createElement("span")
+                verifiedElem.innerHTML = "Phone is verified"
+                metaElem.appendChild(verifiedElem)
+            }
         } else {
             console.log("something broke while loading the profile", data)
         }

@@ -62,48 +62,63 @@
                         Username:
                     </div>
                     <div style="margin-top: 10px;">
-                        <input class="loginforminput" type="text" id="regusername" placeholder="username">
+                        <input class="loginforminput" type="text" id="regusername" placeholder="username" valid="false">
+                    </div>
+                    <div id="usernamemsg" class="fontsmall">
+
                     </div>
                     <div style="margin-top: 20px;">
                         First Name:
                     </div>
                     <div style="margin-top: 10px;">
-                        <input class="loginforminput" type="text" id="regfirstname" placeholder="Vivek">
+                        <input class="loginforminput" type="text" id="regfirstname" placeholder="Vivek" valid="false">
                     </div>
+                    <div id="fnamemsg" class="fontsmall"></div>
                     <div style="margin-top: 20px;">
                         Last Name:
                     </div>
                     <div style="margin-top: 10px;">
-                        <input class="loginforminput" type="text" id="reglastname" placeholder="Vivek">
+                        <input class="loginforminput" type="text" id="reglastname" placeholder="Vivek" valid="false">
                     </div>
+                    <div id="lnamemsg" class="fontsmall"></div>
                     <div style="margin-top: 20px; clear: both;">
                         Password:
                     </div>
                     <div style="margin-top: 10px;">
-                        <input class="loginforminput" type="password" id="regpassword" placeholder="******">
+                        <input class="loginforminput" type="password" id="regpassword" placeholder="******" valid="false">
                     </div>
+                    <div id="passmsg" class="fontsmall"></div>
+                    <div style="margin-top: 20px; clear: both;">
+                        Confirm Password:
+                    </div>
+                    <div style="margin-top: 10px;">
+                        <input class="loginforminput" type="password" id="regpasswordconf" placeholder="******" valid="false">
+                    </div>
+                    <div id="confpassmsg" class="fontsmall"></div>
                     <div style="margin-top: 20px;">
                         Gender:
                     </div>
                     <div style="margin-top: 10px;">
-                        <select id="reggender">
-                            <option>Select</option>
+                        <select class="loginforminput" id="reggender" valid="false" style="width: inherit;">
+                            <option value="select">Select</option>
                             <option value="m">Male</option>
                             <option value="f">Female</option>
                         </select>
                         <!-- <input class="loginforminput" type="text" id="lastname" placeholder="Singh"> -->
                     </div>
+                    <div id="gmsg" class="fontsmall"></div>
                     <div style="margin-top: 20px;">
                         Phone:
                     </div>
                     <div style="margin-top: 10px;">
-                        <input class="loginforminput" type="text" id="regphone" placeholder="+31123456789">
+                        <input class="loginforminput" type="text" id="regphone" placeholder="+31123456789 (with country code)" valid="false">
                     </div>
+                    <div id="phonemsg" class="fontsmall"></div>
                     <div style="margin-top: 20px;">
                         <input type="button" class="butt" id="registrationbutton" value="Register"> Or, <a href="#" id="loginlinkreg" onclick="return false">login</a>.
                     </div>
                     <div>
-                        <span id="registrationerror"></span>
+                        <span id="registrationerror" class="fontsmall"></span>
                     </div>
                 </form>
             </div>

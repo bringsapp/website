@@ -19,7 +19,7 @@
     text-align: center;
 }
 #title{
-    /* background-image: url('../images/Contour_Line.svg'); */
+    background-image: url('../images/dot-grid.png');
     background-color: #fffcf3;
     padding: 90px;
     /* font-weight: bold; */
@@ -740,3 +740,4 @@ textarea{
 .fontsmall{
     font-size: small;
 }
+
