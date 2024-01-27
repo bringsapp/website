@@ -202,10 +202,17 @@ function subscribeForNotifs(){
         }
         navigator.serviceWorker.register('sw.js').then(function (registration){
             if (registration){
-                console.log("registration is found")
+                console.log("registration is found " , registration)
             } else {
                 console.log("registration is not found")
             }
+
+            if (registration.pushManager){
+                console.log("pushmanager was found on registration and calling getSubscription() ", registration.pushManager.getSubscription())
+            } else{
+                console.log("pushmanager was not found on registration")
+            }
+
             return registration.pushManager.getSubscription().then(function (subscription){
                 if (subscription){
                     // already subscribed
