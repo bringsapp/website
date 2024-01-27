@@ -393,21 +393,21 @@ hr{
     /* background-color: #0800ffa3; */
     color: white;
     /* width: fit-content; */
-    margin-top: 15px;
+    margin-top: 5px;
 
     /* width: 100px; */
 }
 
 .convmsgspan{
-    background-color: #0800ff;
-    padding: 5px;
-    border-radius: 10px;
+    background-color: #0800ffa3;
+    /* padding: 0px; */
+    border-radius: 5px;
 }
 
 .convmsgspantwo{
-    background-color: #ffbf00;
-    padding: 5px;
-    border-radius: 10px;
+    background-color: #ffbf00a9;
+    /* padding: 0px; */
+    border-radius: 5px;
 }
 
 #createentries{
