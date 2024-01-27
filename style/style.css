@@ -163,6 +163,7 @@ hr{
 @media (max-width:500px) {
     #travels,#entries,#searchcontent,#messageswrapper,#userdetails{
         width: 90% !important;
+        box-sizing: border-box;
     }
 }
 
@@ -183,6 +184,7 @@ hr{
 @media (max-width: 400px) {
     #travelform,#requestform{
         width: 100%;
+        box-sizing: border-box;
     }
 }
 
@@ -462,20 +464,21 @@ hr{
 
 #travelform input{
     text-align: center;
-    padding: 10px;
+    padding: 15px;
     margin-top: 5px;
     border: none;
     background-color: #f5f6f7;
-    border-radius: 5px;
+    border-radius: 10px;
+    box-sizing: border-box;
 }
 
 #requestform input{
     text-align: center;
-    padding: 10px;
+    padding: 15px;
     margin-top: 5px;
     border: none;
     background-color: #f5f6f7;
-    border-radius: 5px;
+    border-radius: 10px;
 }
 
 /* #travelfrom input{
@@ -558,7 +561,7 @@ hr{
     width: 50%;
     margin: auto;
     /* border: 1px solid; */
-    padding: 20px;
+    /* padding: 20px; */
 }
 
 #loggedinusermeta{
@@ -670,11 +673,11 @@ textarea{
 
 #searchbox input, #searchbox select{
     text-align: center;
-    padding: 10px;
+    padding: 15px;
     margin-top: 5px;
     border: none;
     background-color: #f5f6f7;
-    border-radius: 5px;
+    border-radius: 10px;
 }
 
 .hidden{
