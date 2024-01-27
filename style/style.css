@@ -11,6 +11,7 @@
 }
 .bold{
     font-weight: bold;
+    /* font-weight: 600; */
 }
 .font-big{
     font-size: 35px;
