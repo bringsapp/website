@@ -393,19 +393,19 @@ hr{
     /* background-color: #0800ffa3; */
     color: white;
     /* width: fit-content; */
-    margin-top: 20px;
+    margin-top: 15px;
 
     /* width: 100px; */
 }
 
 .convmsgspan{
-    background-color: #0800ffa3;
+    background-color: #0800ff;
     padding: 5px;
     border-radius: 10px;
 }
 
 .convmsgspantwo{
-    background-color: #ffbf00a3;
+    background-color: #ffbf00;
     padding: 5px;
     border-radius: 10px;
 }
