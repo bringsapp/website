@@ -1,5 +1,5 @@
-host = "https://api.bringsapp.com"
-// host = "http://127.0.0.1:8080"
+// host = "https://api.bringsapp.com"
+host = "http://127.0.0.1:8080"
 
 document.addEventListener("DOMContentLoaded", function(){
     let logoutButton = document.getElementById("logout")
@@ -182,3 +182,20 @@ function getUnreadMessagesCountTo(to = ""){
 
     })
 }
+
+// backend might return country/unselected/unselected or country/state/unselected or country/state/city
+// we have to remove unnecessary `unselected` and `/` in every case.
+function createDisplayableLocation(location){
+    // data.From.Country+"/"+data.From.State+"/"+data.From.City
+    let loc = location.Country
+    if (location.State !="unselected"){
+        loc +="/"+location.State
+    }
+
+    if (location.City!="unselected"){
+        loc += "/"+location.City
+    }
+
+    return loc
+}
+

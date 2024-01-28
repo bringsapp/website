@@ -184,12 +184,12 @@ function showUserEntry(data){
             entry.classList.add("userentry")
             if (data.EntryType =="travel"){
                 entry.innerHTML = "I am travelling from <span class=\"bold\">"+
-                data.From.Country+"/"+data.From.State+"/"+data.From.City+"</span> to <span class=\"bold\">"+
-                data.To.Country+"/"+data.To.State+"/"+data.To.City+".";
+                createDisplayableLocation(data.From)+"</span> to <span class=\"bold\">"+
+                createDisplayableLocation(data.To)+".";
             } else if (data.EntryType =="request") {
                 entry.innerHTML = "Is anyone travelling from <span class=\"bold\">"+
-                data.From.Country+"/"+data.From.State+"/"+data.From.City+"</span> to <span class=\"bold\">"+
-                data.To.Country+"/"+data.To.State+"/"+data.To.City+".";
+                createDisplayableLocation(data.From)+"</span> to <span class=\"bold\">"+
+                createDisplayableLocation(data.To)+".";
             }
         entriesWrapper.appendChild(entry)
 

@@ -160,9 +160,8 @@ function displayRequest(request, requestsElem){
         // travelPost would have actual content/details of travel
         var travelPost = document.createElement("div")
         travelPost.classList.add("travelpost")
-        travelPost.innerHTML = "Is anyone travelling from <span class=\"travellocation\">"+request.From.Country+"/"+
-            request.From.State+"/"+request.From.City+"</span> to <span class=\"travellocation\">"+request.To.Country+"/"+
-            request.To.State+"/"+request.To.City+"</span> and can bring around "+request.Weight+
+        travelPost.innerHTML = "Is anyone travelling from <span class=\"travellocation\">"+createDisplayableLocation(request.From)+
+        "</span> to <span class=\"travellocation\">"+createDisplayableLocation(request.To)+"</span> and can bring around "+request.Weight+
             "grams of parcel with me."
         travelElem.appendChild(travelPost)
 
@@ -215,9 +214,8 @@ function displayTravel(travel, travelsElem){
         // travelPost would have actual content/details of travel
         var travelPost = document.createElement("div")
         travelPost.classList.add("travelpost")
-        travelPost.innerHTML = "I am travelling from <span class=\"travellocation\">"+travel.From.Country+"/"+
-            travel.From.State+"/"+travel.From.City+"</span> to <span class=\"travellocation\">"+travel.To.Country+"/"+
-            travel.To.State+"/"+travel.To.City+"</span> and can bring around "+travel.Weight+
+        travelPost.innerHTML = "I am travelling from <span class=\"travellocation\">"+createDisplayableLocation(travel.From)+
+        "</span> to <span class=\"travellocation\">"+createDisplayableLocation(travel.To)+"</span> and can bring around "+travel.Weight+
             "grams of parcel with me."
         travelElem.appendChild(travelPost)
 

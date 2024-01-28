@@ -88,6 +88,8 @@ function sendOTPAndVerify(){
 function hideEntryForms(){
     hideDivWithID("travelform")
     hideDivWithID("requestform")
+    document.getElementById("travelmessage").innerHTML = ""
+    document.getElementById("requestmessage").innerHTML = ""
 }
 
 function createRequest(){
@@ -111,6 +113,20 @@ function createRequest(){
     requestedDate = document.getElementById("requesteddate").value
     requestWeight = document.getElementById("requestedweight").value
 
+    let msg = document.getElementById("requestmessage")
+    if (fromCountry.value =="" || fromCountry.value =="select"
+        || toCountry.value ==""  || toCountry.value == "select"
+        || requestedDate =="" || requestWeight =="") {
+        msg.innerHTML ="From country, to country, date and weight are required fields."
+        msg.classList.remove("success")
+        msg.classList.add("warn")
+        return
+    } else {
+        msg.innerHTML =""
+        msg.classList.remove("warn")
+        msg.classList.remove("success")
+    }
+
     let request = {
         "From":{
             "Country": Number(fromCountryId),
@@ -133,7 +149,7 @@ function createRequest(){
         // "Authorization":"Bearer "+jwt
     }
 
-    let msg = document.getElementById("requestmessage")
+
     postData(submitRequest, request, headers, "POST").then((data)=>{
         if (data){
             msg.innerHTML = ""
@@ -177,6 +193,19 @@ function createTravel(){
 
     weight = document.getElementById("travelitemweight").value
 
+    let msg = document.getElementById("travelmessage")
+    if (fromCountry.value =="" || fromCountry.value =="select"
+        || toCountry.value ==""  || toCountry.value == "select"
+        || dateRangeStart =="" || dateRangeEnd=="" || weight =="") {
+        msg.innerHTML ="From country, to country, dates and weight are required fields."
+        msg.classList.remove("success")
+        msg.classList.add("warn")
+        return
+    } else {
+        msg.innerHTML =""
+        msg.classList.remove("warn")
+        msg.classList.remove("success")
+    }
 
     travel = {
         "From":{
@@ -195,7 +224,7 @@ function createTravel(){
     }
 
     console.log("creating travel with ", travel)
-    let msg = document.getElementById("travelmessage")
+
     travelEntry = host+"/travels?token="+jwt
     postData(travelEntry, travel, headers, "POST").then((data)=>{
         if (data){
@@ -455,12 +484,12 @@ function showUserEntry(data){
             entry.classList.add("userentry")
             if (data.EntryType =="travel"){
                 entry.innerHTML = "I am travelling from <span class=\"bold\">"+
-                data.From.Country+"/"+data.From.State+"/"+data.From.City+"</span> to <span class=\"bold\">"+
-                data.To.Country+"/"+data.To.State+"/"+data.To.City+".";
+                createDisplayableLocation(data.From)+"</span> to <span class=\"bold\">"+
+                createDisplayableLocation(data.To)+".";
             } else if (data.EntryType =="request") {
                 entry.innerHTML = "Is anyone travelling from <span class=\"bold\">"+
-                data.From.Country+"/"+data.From.State+"/"+data.From.City+"</span> to <span class=\"bold\">"+
-                data.To.Country+"/"+data.To.State+"/"+data.To.City+".";
+                createDisplayableLocation(data.From)+"</span> to <span class=\"bold\">"+
+                createDisplayableLocation(data.To)+".";
             }
         entriesWrapper.appendChild(entry)
 
