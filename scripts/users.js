@@ -59,7 +59,11 @@ function messageTyped(e){
      if (e.keyCode == 13){
         body = document.getElementById(e.srcElement.id).value
         to = document.getElementById("hiddenuserid").innerHTML
-        sendMessage(body, to, e.srcElement.id)
+        if (body.trim() !=""){
+            sendMessage(body, to, e.srcElement.id)
+        } else {
+            e.srcElement.value =""
+        }
      }
 }
 

@@ -372,11 +372,10 @@ hr{
     width: fit-content;
     background-color: #f4f4f6;
     overflow-wrap: normal;
-    padding: 20px;
+    /* padding: 20px; */
     background-color: #0800ffa3;
-    padding: 5px;
-    border-radius: 10px;
-    margin-top: 10px;
+    border-radius: 5px;
+    margin-top: 5px;
     color: white;
 }
 

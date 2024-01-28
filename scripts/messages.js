@@ -140,7 +140,11 @@ function msgBoxKeyPress(e){
        body = document.getElementById(e.srcElement.id).value
        to = e.srcElement.getAttribute("userid")
        toUsername = e.srcElement.getAttribute("username")
-       sendMessage(body, to, e.srcElement.id, toUsername)
+       if (body.trim() != ""){
+        sendMessage(body, to, e.srcElement.id, toUsername)
+       } else {
+        e.srcElement.value =""
+       }
     }
 }
 

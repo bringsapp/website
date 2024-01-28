@@ -116,7 +116,7 @@ function createRequest(){
     let msg = document.getElementById("requestmessage")
     if (fromCountry.value =="" || fromCountry.value =="select"
         || toCountry.value ==""  || toCountry.value == "select"
-        || requestedDate =="" || requestWeight =="") {
+        || requestedDate =="" || requestWeight =="" || requestWeight == "0" ) {
         msg.innerHTML ="From country, to country, date and weight are required fields."
         msg.classList.remove("success")
         msg.classList.add("warn")
@@ -196,7 +196,7 @@ function createTravel(){
     let msg = document.getElementById("travelmessage")
     if (fromCountry.value =="" || fromCountry.value =="select"
         || toCountry.value ==""  || toCountry.value == "select"
-        || dateRangeStart =="" || dateRangeEnd=="" || weight =="") {
+        || dateRangeStart =="" || dateRangeEnd=="" || weight =="" || weight == "0" ) {
         msg.innerHTML ="From country, to country, dates and weight are required fields."
         msg.classList.remove("success")
         msg.classList.add("warn")
