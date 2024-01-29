@@ -197,8 +197,12 @@ function subscribeForNotifs(){
 
     let vapidPublicKey =
       'BOZ5ZT9HIZPM9r_fFh5DIiv5uNQ80i10m1kMcxTVEB522WujTj6q6x9JNIjPUj5i5DlTJssaX5K7f8XOiM13-nQ';
-    if ('serviceWorker' in navigator && 'PushManager' in window){
-        console.log("servicew is found in navigator and pushManaer in window")
+    if ('serviceWorker' in navigator ){
+        console.log("servicew is found in navigator")
+
+        if ('PushManager' in window){
+            console.log("PushManager is not found in window")
+        }
 
         navigator.serviceWorker.register('sw.js').then(function (registration){
             if (registration){
