@@ -197,74 +197,78 @@ function subscribeForNotifs(){
 
     let vapidPublicKey =
       'BOZ5ZT9HIZPM9r_fFh5DIiv5uNQ80i10m1kMcxTVEB522WujTj6q6x9JNIjPUj5i5DlTJssaX5K7f8XOiM13-nQ';
-    if ('serviceWorker' in navigator ){
-        console.log("servicew is found in navigator")
 
-        if ('PushManager' in window){
-            console.log("PushManager is not found in window")
-        }
 
-        navigator.serviceWorker.register('sw.js').then(function (registration){
-            if (registration){
-                console.log("registration is found " , registration)
-            } else {
-                console.log("registration is not found")
+    Notification.requestPermission().then(function(){
+        if ('serviceWorker' in navigator ){
+            console.log("servicew is found in navigator")
+
+            if ('PushManager' in window){
+                console.log("PushManager is not found in window")
             }
 
-            if (registration.pushManager){
-                console.log("pushmanager was found on registration and calling getSubscription() ", registration.pushManager.getSubscription())
-            } else{
-                console.log("pushmanager was not found on registration")
-            }
-
-            return registration.pushManager.getSubscription().then(function (subscription){
-                if (subscription){
-                    // already subscribed
-                    console.log("already subd ", subscription)
-                    return
+            navigator.serviceWorker.register('sw.js').then(function (registration){
+                if (registration){
+                    console.log("registration is found " , registration)
+                } else {
+                    console.log("registration is not found")
                 }
 
-                // not subscribed
-                return registration.pushManager.subscribe({
-                    userVisibleOnly: true,
-                    applicationServerKey: urlBase64ToUint8Array(vapidPublicKey)
-                }).then(function (subscription){
-                    let rawKey = subscription.getKey ? subscription.getKey('p256dh'):'';
-                    key = rawKey ? btoa(String.fromCharCode.apply(null, new Uint8Array(rawKey))): '';
-                    let rawAuthSecret = subscription.getKey ? subscription.getKey('auth'):'';
-                    authSecret = rawAuthSecret ? btoa(String.fromCharCode.apply(null, new Uint8Array(rawAuthSecret))):'';
-                    endpoint = subscription.endpoint
+                if (registration.pushManager){
+                    console.log("pushmanager was found on registration and calling getSubscription() ", registration.pushManager.getSubscription())
+                } else{
+                    console.log("pushmanager was not found on registration")
+                }
 
-                    let jwt=getCookie("token=")
-                    return fetch(host+'/notifs/register?userid='+from+'&token='+jwt, {
-                        method: 'post',
-                        mode: 'no-cors',
-                        headers: new Headers({
-                            'content-type': 'application/json'
-                        }),
-                        body: JSON.stringify({
-                            endpoint: endpoint,
-                            key: key,
-                            authSecret: authSecret,
+                return registration.pushManager.getSubscription().then(function (subscription){
+                    if (subscription){
+                        // already subscribed
+                        console.log("already subd ", subscription)
+                        return
+                    }
+
+                    // not subscribed
+                    return registration.pushManager.subscribe({
+                        userVisibleOnly: true,
+                        applicationServerKey: urlBase64ToUint8Array(vapidPublicKey)
+                    }).then(function (subscription){
+                        let rawKey = subscription.getKey ? subscription.getKey('p256dh'):'';
+                        key = rawKey ? btoa(String.fromCharCode.apply(null, new Uint8Array(rawKey))): '';
+                        let rawAuthSecret = subscription.getKey ? subscription.getKey('auth'):'';
+                        authSecret = rawAuthSecret ? btoa(String.fromCharCode.apply(null, new Uint8Array(rawAuthSecret))):'';
+                        endpoint = subscription.endpoint
+                        console.log("subscribing")
+                        let jwt=getCookie("token=")
+                        return fetch(host+'/notifs/register?userid='+from+'&token='+jwt, {
+                            method: 'post',
+                            mode: 'no-cors',
+                            headers: new Headers({
+                                'content-type': 'application/json'
+                            }),
+                            body: JSON.stringify({
+                                endpoint: endpoint,
+                                key: key,
+                                authSecret: authSecret,
+                            })
                         })
+                        // postData(host+"/notifs/register", {
+                        //     endpoint: endpoint,
+                        //     key: key,
+                        //     authSecret: authSecret,
+                        // },
+                        // {
+                        //     'content-type': 'application/json'
+                        // },
+                        // "POST"
+                        // )
                     })
-                    // postData(host+"/notifs/register", {
-                    //     endpoint: endpoint,
-                    //     key: key,
-                    //     authSecret: authSecret,
-                    // },
-                    // {
-                    //     'content-type': 'application/json'
-                    // },
-                    // "POST"
-                    // )
-                })
 
+                })
+            }).catch(function (err){
+                console.log("service worker registration failed ", err)
             })
-        }).catch(function (err){
-            console.log("service worker registration failed ", err)
-        })
-    }
+        }
+    })
 }
 
 function urlBase64ToUint8Array(pubKey){
