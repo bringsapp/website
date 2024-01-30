@@ -1,0 +1,21 @@
+{
+    "name": "brings",
+    "short_name": "brings",
+    "description": "Web application that can be used to figure out if someone is travelling between locations to that people can request them to bring someting.",
+    "icons": [
+      {
+        "src": "images/brings-logo.png",
+        "sizes": "32x32",
+        "type": "image/png"
+      },
+      {
+        "src": "images/brings-logo.png",
+        "sizes": "512x512",
+        "type": "image/png"
+      }
+    ],
+    "start_url": "index.html",
+    "display": "fullscreen",
+    "theme_color": "#B12A34",
+    "background_color": "#0800ffa3"
+  }
