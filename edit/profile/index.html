@@ -31,13 +31,40 @@
             <div>
                 <a id="loggedinusername" class="bold"></a>
             </div>
+            <div id="navigation">
+                <div id="profile" class="navdiv">
+                    <a href="../../profile"><img class="navdivimg" src="../../images/navigation/profile.png"/></a>
+                </div>
+                <div id="entriesnav" class="navdiv ml-20">
+                    <a href="../../entries/"><img class="navdivimg" src="../../images/navigation/feed.png"/></a>
+                </div>
+                <div id="search" class="navdiv ml-20">
+                    <a href="../../search/"><img class="navdivimg" src="../../images/navigation/search.png"/></a>
+                </div>
+                <div id="messages" class="navdiv ml-20">
+                    <span id="msgcount"></span>
+                    <a href="../../messages/"><img class="navdivimg" src="../../images/navigation/messages.png"/></a>
+                </div>
+                <div id="logout" class="navdiv ml-20">
+                    <img class="navdivimg" src="../../images/navigation/logout.png"/>
+                </div>
+            </div>
         </div>
     </div>
-    <div>
+    <div id="editdpwrapper">
+        <div style="font-size: small;">
+            Photos with aspect ratio 1:1 are recommended.
+        </div>
         <form runat="server">
-            <input accept="image/*" type='file' id="imgInp" />
-            <img id="blah" src="#" alt="your image" />
-            <button id="updatedp" onclick="return false">Update display picture</button>
+            <div class="text-cen">
+                <input class="text-cen" accept="image/*" type='file' id="imgInp" />
+            </div>
+            <div id="imgpreview">
+                <img id="preview" src="#" alt="Current display picture" />
+            </div>
+            <div>
+                <button id="updatedp" onclick="return false">Update</button>
+            </div>
           </form>
     </div>
     <footer class="text-cen padding-30 bold clearboth">

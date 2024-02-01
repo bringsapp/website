@@ -40,10 +40,14 @@ a{
     padding: 10px;
 }
 
+#login input{
+    border-radius: 5px;
+}
+
 #loginspan{
     /* border: 1px solid #0800ffa3; */
     padding: 10px;
-    /* border-radius: 3px; */
+    border-radius: 5px;
     background-color: #0800ffa3;
 }
 
@@ -151,6 +155,9 @@ hr{
     .sectioncontainer{
         width: 80%;
     }
+    #faqs{
+        width: 70%;
+    }
 }
 
 
@@ -196,10 +203,15 @@ hr{
 
 #loginbutton{
     cursor: pointer;
+    border-radius: 5px;
 }
 
 #registration{
     display: none;
+}
+
+#registration input{
+    border-radius: 5px;
 }
 
 #leftentriessection, #rightentriessection{
@@ -229,15 +241,15 @@ hr{
 } */
 
 .travellerdp{
-    width: 30px;
-    height: 30px;
+    width: 50px;
+    height: 50px;
     float: left;
 }
 
 .dpimg{
     height: inherit;
     width: inherit;
-
+    border-radius: 5px;
 }
 
 .namewrapper{
@@ -246,7 +258,7 @@ hr{
 
 .travelpost{
     /* padding: 20px; */
-    margin-top: 10px;
+    margin-top: 25px;
 }
 
 .atravel,.userentrieswrapper{
@@ -322,6 +334,7 @@ hr{
 #entriesmaindp img{
     width: inherit;
     height: inherit;
+    border-radius: 10px;
 }
 
 .entrytypediv{
@@ -657,7 +670,7 @@ textarea{
 } */
 
 .travellername{
-    padding-top: 5px;
+    padding-top: 15px;
 }
 
 .travellername a{
@@ -727,6 +740,9 @@ textarea{
     margin: auto;
 }
 
+#forgotpass input{
+    border-radius: 5px;
+}
 
 @media (max-width:1000px) {
     #forgotpass{
@@ -744,3 +760,76 @@ textarea{
     font-size: small;
 }
 
+
+#editdpwrapper{
+    width: 70%;
+    margin: auto;
+    text-align: center;
+}
+
+@media (max-width:540px) {
+    #editdpwrapper{
+        width: 90%;
+    }
+}
+
+@media (max-width:425px) {
+    #editdpwrapper input{
+        width: 90%;
+    }
+}
+
+#imgpreview{
+    width: 100px;
+    height: 100px;
+    margin: auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+#imgpreview img{
+    width: inherit;
+    height: inherit;
+}
+
+#editdpwrapper input{
+    text-align: center;
+    padding: 15px;
+    margin-top: 5px;
+    border: none;
+    background-color: #f5f6f7;
+    border-radius: 10px;
+    box-sizing: border-box;
+}
+
+#editdpwrapper button{
+    text-align: center;
+    padding: 15px;
+    margin-top: 5px;
+    border: none;
+    background-color: #0800ffa3;
+    color: white;
+    cursor: pointer;
+    border-radius: 10px;
+    box-sizing: border-box;
+}
+
+.showconversation{
+    direction: rtl;
+}
+
+.showconversation img{
+    width: 32px;
+    height: 32px;
+}
+
+.msgusername{
+    font-size: small;
+}
+
+.pencil{
+    background-color: white;
+    border-radius: 5px;
+    padding: 5px;
+    opacity: .5;
+}

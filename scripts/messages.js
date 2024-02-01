@@ -1,5 +1,6 @@
 document.addEventListener("DOMContentLoaded", function(){
-    displayLoggedInUserDetails()
+    let loggedInuserDetails = displayLoggedInUserDetails()
+    console.log("loggedInuserDetails ", loggedInuserDetails)
 
     document.getElementById("notifsubs").addEventListener("click", subscribeForNotifs)
 
@@ -20,21 +21,36 @@ document.addEventListener("DOMContentLoaded", function(){
                 let messanger = document.createElement("div")
                 messanger.classList.add("conversationwrapper")
                     let namewrapper = document.createElement("div")
-                    namewrapper.addEventListener("click", showConversation)
+                    // namewrapper.addEventListener("click", showConversation)
                     namewrapper.classList.add("convnamewrapper")
                         let nameAndCount = document.createElement("div")
                         nameAndCount.classList.add("messagenameandcount")
-                        if (data[i].NoOfUnreadMsgs>0){
-                            nameAndCount.innerHTML = data[i].From.FirstName +" "+ data[i].From.LastName +" ("+data[i].NoOfUnreadMsgs+")"
-                        } else {
-                            nameAndCount.innerHTML = data[i].From.FirstName +" "+ data[i].From.LastName
-                        }
+                            let nameAndCountA = document.createElement("a")
+                            nameAndCountA.setAttribute("href", "../users#username="+data[i].From.Username)
+                            if (data[i].NoOfUnreadMsgs>0){
+                                nameAndCountA.innerHTML = data[i].From.FirstName +" "+ data[i].From.LastName +" ("+data[i].NoOfUnreadMsgs+")"
+                            } else {
+                                nameAndCountA.innerHTML = data[i].From.FirstName +" "+ data[i].From.LastName
+                            }
+                            nameAndCount.appendChild(nameAndCountA)
                         namewrapper.appendChild(nameAndCount)
 
                         let showConv = document.createElement("div")
-                        showConv.classList.add("showconv")
+                        showConv.classList.add("msgusername")
                         showConv.innerHTML = data[i].From.Username
                         namewrapper.appendChild(showConv)
+
+                        let showConversationIcon = document.createElement("div")
+                        showConversationIcon.classList.add("showconversation")
+                            let showConvImg = document.createElement("img")
+                            showConvImg.setAttribute("src", "../images/right-arrow.png")
+                            showConvImg.classList.add("showconv")
+                            showConvImg.setAttribute("id", data[i].From.Username)
+                            showConvImg.addEventListener("click", showConversation)
+                            showConversationIcon.appendChild(showConvImg)
+                        namewrapper.appendChild(showConversationIcon)
+
+
                     messanger.appendChild(namewrapper)
 
                     let convs = document.createElement("div")
@@ -50,7 +66,7 @@ document.addEventListener("DOMContentLoaded", function(){
                         msgBox.setAttribute("id", "msgbox-"+data[i].From.Username)
                         msgBox.setAttribute("userid", data[i].From.Id)
                         msgBox.setAttribute("username", data[i].From.Username)
-                        msgBox.setAttribute("placeholder", "Hit ente to send.")
+                        msgBox.setAttribute("placeholder", "Hit enter to send.")
                         msgBox.addEventListener("keypress", msgBoxKeyPress)
                         postMessageSection.appendChild(msgBox)
                     messanger.appendChild(postMessageSection)
@@ -66,24 +82,42 @@ document.addEventListener("DOMContentLoaded", function(){
 })
 
 function showConversation(e){
-    let senderUsername = e.srcElement.parentNode.children[1].innerHTML
-
+    let senderUsername = e.srcElement.parentNode.parentNode.children[1].innerHTML
+    let clickedId = e.srcElement.getAttribute("id")
     // hide all the conversation boxes and just show the clicked one
     let conversationsBox = document.getElementsByClassName("conv")
     for (let i=0; i< conversationsBox.length; i++){
-        conversationsBox[i].style.display = "none"
+        let id = conversationsBox[i].getAttribute("id")
+        if ( id != "conv-"+clickedId){
+            conversationsBox[i].style.display = "none"
+        }
     }
     let convBox = document.getElementById("conv-"+senderUsername)
-    convBox.style.display ="block"
+    if (convBox.style.display == "block"){
+        convBox.style.display ="none"
+    } else if (convBox.style.display == "none"){
+        convBox.style.display ="block"
+    } else {
+        convBox.style.display ="block"
+    }
     convBox.innerHTML = ""
 
     // hide all the post message text areas and just how the clicked one
     let allMsgBoxes = document.getElementsByClassName("usermsgbox")
     for (let i=0; i< allMsgBoxes.length; i++){
-        allMsgBoxes[i].style.display = "none"
+        let id = allMsgBoxes[i].getAttribute("id")
+        if (id != "msgbox-"+clickedId){
+            allMsgBoxes[i].style.display = "none"
+        }
     }
     let msgBox = document.getElementById("msgbox-"+senderUsername)
-    msgBox.style.display = "block"
+    if (msgBox.style.display == "block"){
+        msgBox.style.display ="none"
+    } else if (msgBox.style.display == "none"){
+        msgBox.style.display ="block"
+    } else {
+        msgBox.style.display ="block"
+    }
 
     jwt=getCookie("token=")
 
@@ -199,76 +233,55 @@ function subscribeForNotifs(){
       'BOZ5ZT9HIZPM9r_fFh5DIiv5uNQ80i10m1kMcxTVEB522WujTj6q6x9JNIjPUj5i5DlTJssaX5K7f8XOiM13-nQ';
 
 
-    Notification.requestPermission().then(function(){
-        if ('serviceWorker' in navigator ){
-            console.log("servicew is found in navigator")
-
-            if ('PushManager' in window){
-                console.log("PushManager is not found in window")
-            }
-
-            navigator.serviceWorker.register('sw.js').then(function (registration){
-                if (registration){
-                    console.log("registration is found " , registration)
-                } else {
-                    console.log("registration is not found")
+    if ('serviceWorker' in navigator ){
+        navigator.serviceWorker.register('sw.js').then(function (registration){
+            return registration.pushManager.getSubscription().then(function (subscription){
+                if (subscription){
+                    // already subscribed
+                    console.log("already subd ", subscription)
+                    return
                 }
 
-                if (registration.pushManager){
-                    console.log("pushmanager was found on registration and calling getSubscription() ", registration.pushManager.getSubscription())
-                } else{
-                    console.log("pushmanager was not found on registration")
-                }
-
-                return registration.pushManager.getSubscription().then(function (subscription){
-                    if (subscription){
-                        // already subscribed
-                        console.log("already subd ", subscription)
-                        return
-                    }
-
-                    // not subscribed
-                    return registration.pushManager.subscribe({
-                        userVisibleOnly: true,
-                        applicationServerKey: urlBase64ToUint8Array(vapidPublicKey)
-                    }).then(function (subscription){
-                        let rawKey = subscription.getKey ? subscription.getKey('p256dh'):'';
-                        key = rawKey ? btoa(String.fromCharCode.apply(null, new Uint8Array(rawKey))): '';
-                        let rawAuthSecret = subscription.getKey ? subscription.getKey('auth'):'';
-                        authSecret = rawAuthSecret ? btoa(String.fromCharCode.apply(null, new Uint8Array(rawAuthSecret))):'';
-                        endpoint = subscription.endpoint
-                        console.log("subscribing")
-                        let jwt=getCookie("token=")
-                        return fetch(host+'/notifs/register?userid='+from+'&token='+jwt, {
-                            method: 'post',
-                            mode: 'no-cors',
-                            headers: new Headers({
-                                'content-type': 'application/json'
-                            }),
-                            body: JSON.stringify({
-                                endpoint: endpoint,
-                                key: key,
-                                authSecret: authSecret,
-                            })
+                // not subscribed
+                return registration.pushManager.subscribe({
+                    userVisibleOnly: true,
+                    applicationServerKey: urlBase64ToUint8Array(vapidPublicKey)
+                }).then(function (subscription){
+                    let rawKey = subscription.getKey ? subscription.getKey('p256dh'):'';
+                    key = rawKey ? btoa(String.fromCharCode.apply(null, new Uint8Array(rawKey))): '';
+                    let rawAuthSecret = subscription.getKey ? subscription.getKey('auth'):'';
+                    authSecret = rawAuthSecret ? btoa(String.fromCharCode.apply(null, new Uint8Array(rawAuthSecret))):'';
+                    endpoint = subscription.endpoint
+                    let jwt=getCookie("token=")
+                    return fetch(host+'/notifs/register?userid='+from+'&token='+jwt, {
+                        method: 'post',
+                        mode: 'no-cors',
+                        headers: new Headers({
+                            'content-type': 'application/json'
+                        }),
+                        body: JSON.stringify({
+                            endpoint: endpoint,
+                            key: key,
+                            authSecret: authSecret,
                         })
-                        // postData(host+"/notifs/register", {
-                        //     endpoint: endpoint,
-                        //     key: key,
-                        //     authSecret: authSecret,
-                        // },
-                        // {
-                        //     'content-type': 'application/json'
-                        // },
-                        // "POST"
-                        // )
                     })
-
+                    // postData(host+"/notifs/register", {
+                    //     endpoint: endpoint,
+                    //     key: key,
+                    //     authSecret: authSecret,
+                    // },
+                    // {
+                    //     'content-type': 'application/json'
+                    // },
+                    // "POST"
+                    // )
                 })
-            }).catch(function (err){
-                console.log("service worker registration failed ", err)
+
             })
-        }
-    })
+        }).catch(function (err){
+            console.log("service worker registration failed ", err)
+        })
+    }
 }
 
 function urlBase64ToUint8Array(pubKey){

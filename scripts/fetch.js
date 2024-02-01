@@ -63,7 +63,7 @@ async function postData(url = "", data = {}, headers = {}, method = "GET") {
         //     throw new Error("Network response was not ok")
         // }
         ok = response.ok
-
+        // console.log("response is ", response.json())
         const result = await response.json()
         if (ok) {
             return result
