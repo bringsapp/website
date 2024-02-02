@@ -271,6 +271,11 @@ hr{
 
 .travellingdate{
     margin-top: 20px;
+    /* border: 1px solid white;
+    padding: 10px;
+    background-color: #0800ff24;
+    border-radius: 10px;
+    text-align: center; */
 }
 
 .travellocation{

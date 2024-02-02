@@ -2,12 +2,14 @@ document.addEventListener("DOMContentLoaded", function(){
     document.getElementById("usermessagebutton").addEventListener("click", showMessageBox)
     document.getElementById("closemessagebox").addEventListener("click", hideMessageBox)
 
-    document.getElementById("messageinput").addEventListener("keypress", (e)=>{
-        messageTyped(e)
+    showLoadingIcon()
+
+    displayLoggedInUserDetails().then((data)=>{
+        document.getElementById("messageinput").addEventListener("keypress", (e)=>{
+            messageTyped(e, data.PhoneVerified)
+        })
     })
 
-    showLoadingIcon()
-    displayLoggedInUserDetails()
     showUser()
     // will show the entires made by a user
     // and this will be shown when a logged in user clicked on a name to visit
@@ -55,8 +57,18 @@ function showPreviousMessages(){
     })
 }
 
-function messageTyped(e){
+function messageTyped(e, phoneVerified){
      if (e.keyCode == 13){
+        let i = document.getElementById("newmsginfo")
+        if (!phoneVerified){
+            i.innerHTML = "Your contact no doesn't seem to be verified. Please verify it to be able to send messages."
+            i.classList.add("warn")
+            return
+        } else {
+            i.innerHTML = ""
+            i.classList.remove("warn")
+        }
+
         body = document.getElementById(e.srcElement.id).value
         to = document.getElementById("hiddenuserid").innerHTML
         if (body.trim() !=""){
@@ -92,6 +104,8 @@ function sendMessage(body, to, msgElementId){
     messagesHere = document.getElementById("messageshere")
 
     postData(postMessage, message, {}, "POST").then((data)=>{
+        let i = document.getElementById("newmsginfo")
+        i.innerHTML = ""
         if (data){
             document.getElementById(msgElementId).value = ""
 
@@ -101,6 +115,8 @@ function sendMessage(body, to, msgElementId){
             messagesHere.appendChild(newMessage)
             newMessage.scrollIntoView()
         } else {
+            i.classList.add("warn")
+            i.innerHTML = "Something went wrong sending the message."
             console.log("something went wront writng the message", data)
         }
     })
@@ -121,34 +137,34 @@ function hideMessageBox(){
     hideDivWithID("messageboxtouser")
 }
 
-// is going to show details of the logged in user
-// and links for them to go to their profile and
-// link to see messages
-function displayLoggedInUserDetails(){
-    jwt=getCookie("token=")
+// // is going to show details of the logged in user
+// // and links for them to go to their profile and
+// // link to see messages
+// function displayLoggedInUserDetails(){
+//     jwt=getCookie("token=")
 
-    // get username from token
-    encodedPayload = jwt.split(".")[1]
-    payload=atob(encodedPayload) // prints '{"UserID":2,"exp":1704534268}'
-    payloadObj=JSON.parse(payload)
+//     // get username from token
+//     encodedPayload = jwt.split(".")[1]
+//     payload=atob(encodedPayload) // prints '{"UserID":2,"exp":1704534268}'
+//     payloadObj=JSON.parse(payload)
 
-    getUserDetails = host+"/users/"+payloadObj.Username+"/?token="+jwt
-    headers = {
-        // "Authorization":"Bearer "+jwt
-    }
-    postData(getUserDetails, {}, headers, "GET").then((data)=>{
-        if (data){
-            imgElem = document.getElementById("loggedinuserimg")
-            imgElem.setAttribute("src", data.ProfilePicture)
+//     getUserDetails = host+"/users/"+payloadObj.Username+"/?token="+jwt
+//     headers = {
+//         // "Authorization":"Bearer "+jwt
+//     }
+//     postData(getUserDetails, {}, headers, "GET").then((data)=>{
+//         if (data){
+//             imgElem = document.getElementById("loggedinuserimg")
+//             imgElem.setAttribute("src", data.ProfilePicture)
 
-            nameElem = document.getElementById("loggedinusername")
-            nameElem.innerHTML = data.FirstName+" "+ data.LastName
-            nameElem.setAttribute("href", "../profile")
-        } else {
-            console.log("something broke while getting details of a user", data)
-        }
-    })
-}
+//             nameElem = document.getElementById("loggedinusername")
+//             nameElem.innerHTML = data.FirstName+" "+ data.LastName
+//             nameElem.setAttribute("href", "../profile")
+//         } else {
+//             console.log("something broke while getting details of a user", data)
+//         }
+//     })
+// }
 
 function showEntries(){
     jwt=getCookie("token=")

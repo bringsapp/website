@@ -1,9 +1,13 @@
 document.addEventListener("DOMContentLoaded", function(){
-    let loggedInuserDetails = displayLoggedInUserDetails()
-    console.log("loggedInuserDetails ", loggedInuserDetails)
+    displayLoggedInUserDetails().then((data)=>{
+        initMessagesAndCount(data.PhoneVerified)
+    })
 
     document.getElementById("notifsubs").addEventListener("click", subscribeForNotifs)
+    showMessagesCount()
+})
 
+function initMessagesAndCount(isUsersPhoneVerified){
     let jwt=getCookie("token=")
     // get username from token
     let encodedPayload = jwt.split(".")[1]
@@ -61,14 +65,22 @@ document.addEventListener("DOMContentLoaded", function(){
                     let postMessageSection = document.createElement("div")
                     postMessageSection.classList.add("postmessage")
                     postMessageSection.setAttribute("id", "postmessage-"+data[i].From.Username)
+                            let msgInfo = document.createElement("div")
+                            msgInfo.classList.add("text-cen")
+                            msgInfo.classList.add("fontsmall")
+
                         let msgBox = document.createElement("textarea")
                         msgBox.classList.add("usermsgbox")
                         msgBox.setAttribute("id", "msgbox-"+data[i].From.Username)
                         msgBox.setAttribute("userid", data[i].From.Id)
                         msgBox.setAttribute("username", data[i].From.Username)
                         msgBox.setAttribute("placeholder", "Hit enter to send.")
-                        msgBox.addEventListener("keypress", msgBoxKeyPress)
+                        msgBox.addEventListener("keypress", function(e){
+                            msgBoxKeyPress(e, isUsersPhoneVerified, msgInfo)
+                        })
                         postMessageSection.appendChild(msgBox)
+                        postMessageSection.appendChild(msgInfo)
+
                     messanger.appendChild(postMessageSection)
 
                 msgsOfUserElem.appendChild(messanger)
@@ -77,9 +89,7 @@ document.addEventListener("DOMContentLoaded", function(){
             console.log("soemthing went wrong gettting messages count")
         }
     })
-
-    showMessagesCount()
-})
+}
 
 function showConversation(e){
     let senderUsername = e.srcElement.parentNode.parentNode.children[1].innerHTML
@@ -169,21 +179,35 @@ function readAllMessage(to, from){
     })
 }
 
-function msgBoxKeyPress(e){
+function msgBoxKeyPress(e, isUsersPhoneVerified, info){
     if (e.keyCode == 13){
-       body = document.getElementById(e.srcElement.id).value
-       to = e.srcElement.getAttribute("userid")
-       toUsername = e.srcElement.getAttribute("username")
-       if (body.trim() != ""){
-        sendMessage(body, to, e.srcElement.id, toUsername)
-       } else {
-        e.srcElement.value =""
-       }
+        console.log(e)
+        body = document.getElementById(e.srcElement.id).value
+        to = e.srcElement.getAttribute("userid")
+        toUsername = e.srcElement.getAttribute("username")
+        if (!isUsersPhoneVerified){
+            // let ta = document.getElementById(e.srcElement.id)
+            // ta.setAttribute("disabled", "true")
+            // ta.value = ""
+            // ta.setAttribute("placeholder", "Your contact no doesn't seem to be verified. Please verify it to be able to send messages.")
+            info.innerHTML = "Your contact no doesn't seem to be verified. Please verify it to be able to send messages."
+            info.classList.add("warn")
+            return
+        } else{
+            info.classList.remove("warn")
+            info.innerHTML = ""
+        }
+
+        if (body.trim() != ""){
+            sendMessage(body, to, e.srcElement.id, toUsername, info)
+        } else {
+            e.srcElement.value =""
+        }
     }
 }
 
 
-function sendMessage(body, to, msgElementId, toUsername){
+function sendMessage(body, to, msgElementId, toUsername, info){
     jwt=getCookie("token=")
 
     // get username from token
@@ -209,6 +233,8 @@ function sendMessage(body, to, msgElementId, toUsername){
 
     postData(postMessage, message, {}, "POST").then((data)=>{
         if (data){
+            info.innerHTML = ""
+            info.classList.remove("warn")
             document.getElementById(msgElementId).value = ""
 
             var newMessage = document.createElement("div")
@@ -217,6 +243,8 @@ function sendMessage(body, to, msgElementId, toUsername){
             messagesHere.appendChild(newMessage)
             newMessage.scrollIntoView()
         } else {
+            info.classList.add("warn")
+            info.innerHTML = "Something went wrong, sending the message."
             console.log("something went wront writng the message", data)
         }
     })

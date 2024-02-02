@@ -130,7 +130,7 @@ function displayLoggedInUserDetails(){
     headers = {
         // "Authorization":"Bearer "+jwt
     }
-    postData(getUserDetails, {}, headers, "GET").then((data)=>{
+    return postData(getUserDetails, {}, headers, "GET").then((data)=>{
         if (data){
             imgElem = document.getElementById("loggedinuserimg")
             imgElem.setAttribute("src", data.ProfilePicture)
@@ -138,6 +138,7 @@ function displayLoggedInUserDetails(){
             nameElem = document.getElementById("loggedinusername")
             nameElem.innerHTML = data.FirstName+" "+ data.LastName
             nameElem.setAttribute("href", "../profile")
+            return data
         } else {
             console.log("something broke while getting details of a user", data)
         }
