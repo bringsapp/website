@@ -99,11 +99,9 @@ function search(){
         req.To.City = Number(toCityId)
     }
 
-    console.log(req)
 
     postData(searchTravelURL, req, headers, "POST").then((data)=>{
         if (data){
-            console.log("search result ", data)
             let e = document.getElementById("searchresult")
             e.innerHTML = ""
 
