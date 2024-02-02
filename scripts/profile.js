@@ -495,6 +495,6 @@ function showUserEntry(data){
 
             var entryCreatedOn = document.createElement("div")
             entryCreatedOn.classList.add("entrycreatedon")
-            entryCreatedOn.innerHTML = data.CreatedOn
+            entryCreatedOn.innerHTML = "Created on: "+data.CreatedOn
         entriesWrapper.appendChild(entryCreatedOn)
 }

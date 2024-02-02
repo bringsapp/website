@@ -269,6 +269,11 @@ hr{
     border-radius: 10px;
 }
 
+.entrycreatedon{
+    font-size: small;
+    margin-top: 5px;
+}
+
 .travellingdate{
     margin-top: 20px;
     /* border: 1px solid white;
