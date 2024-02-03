@@ -108,8 +108,12 @@ function handleLogoClick(){
 }
 
 function showLoadingIcon(){
+    document.getElementById("circleG").style.display = "block";
 }
 
+function hideLoadingIcon(){
+    document.getElementById("circleG").style.display = "none"
+}
 
 // is going to show details of the logged in user
 // and links for them to go to their profile and

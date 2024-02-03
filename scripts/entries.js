@@ -18,6 +18,7 @@ function displayTravels(){
         // "Authorization":"Bearer "+jwt
     }
     postData(getEntriesURL, {}, headers, "GET").then((data)=>{
+        hideLoadingIcon()
         if (data){
             for (var i=0; i< data.length; i++){
                 if (data[i].EntryType == "travel"){

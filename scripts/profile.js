@@ -1,4 +1,5 @@
 document.addEventListener("DOMContentLoaded", function(){
+    showLoadingIcon()
     displayLoggedInUserDetails()
 
     document.getElementById("travelbutton").addEventListener("click", showTravelForm)
@@ -30,8 +31,6 @@ document.addEventListener("DOMContentLoaded", function(){
             showCities(e)
         })
     }
-
-    showLoadingIcon()
     showOwnDetails()
     showEntries()
 
@@ -458,6 +457,7 @@ function showEntries(){
     }
 
     postData(getUserEntries, {}, headers, "GET").then((data)=>{
+        hideLoadingIcon()
         if (data){
             for (var i=0; i< data.length; i++){
                 showUserEntry(data[i])

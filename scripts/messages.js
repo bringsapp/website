@@ -1,4 +1,5 @@
 document.addEventListener("DOMContentLoaded", function(){
+    showLoadingIcon()
     displayLoggedInUserDetails().then((data)=>{
         initMessagesAndCount(data.PhoneVerified)
     })
@@ -19,6 +20,7 @@ function initMessagesAndCount(isUsersPhoneVerified){
         // "Authorization":"Bearer "+jwt
     }
     postData(getMessagesCount, {}, headers, "GET").then((data)=>{
+        hideLoadingIcon()
         if (data){
             let msgsOfUserElem = document.getElementById("messageswrapper")
             for (let i=0; i< data.length; i++){

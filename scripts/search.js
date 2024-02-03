@@ -55,8 +55,10 @@ function search(){
     let toCityId = getDatalistOptionsAttr(toCity, "cityid", toCity.value)
 
     if (fromCountry.value =="" || toCountry.value =="" || fromCountry.value =="start" || fromState.value =="start" || fromCity.value == "start" || toCountry.value == "start" || toState.value == "start" || toCity.value =="start"){
+    // show form in not filled warning
         return
     }
+    showLoadingIcon()
 
     let jwt=getCookie("token=")
     // get username from token
@@ -100,6 +102,7 @@ function search(){
 
 
     postData(searchTravelURL, req, headers, "POST").then((data)=>{
+        hideLoadingIcon()
         if (data){
             let e = document.getElementById("searchresult")
             e.innerHTML = ""
