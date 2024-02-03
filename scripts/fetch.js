@@ -24,11 +24,15 @@ async function postData(url = "", data = {}, headers = {}, method = "GET") {
         // }
         ok = response.ok
 
-        const result = await response.json()
         if (ok) {
+            const result = await response.json()
             return result
         } else {
-            console.log(result)
+            const notOKResult = await response.text()
+            if (notOKResult == "Token provided in request is invalid\n"){
+                window.location ="/logout"
+                return
+            }
         }
         return ok
     }

@@ -55,7 +55,6 @@ function search(){
     let toCityId = getDatalistOptionsAttr(toCity, "cityid", toCity.value)
 
     if (fromCountry.value =="" || toCountry.value =="" || fromCountry.value =="start" || fromState.value =="start" || fromCity.value == "start" || toCountry.value == "start" || toState.value == "start" || toCity.value =="start"){
-        console.log("form not filled properly")
         return
     }
 
