@@ -102,8 +102,10 @@ function search(){
 
 
     postData(searchTravelURL, req, headers, "POST").then((data)=>{
+        let searchInfo = document.getElementById("searchresultinfo")
         hideLoadingIcon()
         if (data){
+            searchInfo.innerHTML = ""
             let e = document.getElementById("searchresult")
             e.innerHTML = ""
 
@@ -124,7 +126,7 @@ function search(){
 
             }
         } else {
-            console.log("failed searching for travels")
+            searchInfo.innerHTML = "Something went wrong, please try again."
         }
     })
 }
