@@ -19,7 +19,9 @@ function displayTravels(){
     }
     postData(getEntriesURL, {}, headers, "GET").then((data)=>{
         hideLoadingIcon()
+        let entriesInfo = document.getElementById("allentriesinfo")
         if (data){
+            entriesInfo.innerHTML = ""
             for (var i=0; i< data.length; i++){
                 if (data[i].EntryType == "travel"){
                     displayTravel(data[i])
@@ -28,7 +30,7 @@ function displayTravels(){
                 }
             }
         } else {
-            console.log("something broke while getting all the travels", data)
+            entriesInfo.innerHTML = "Something went wrong fetching all the entries. Please try again."
         }
     })
 }

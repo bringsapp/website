@@ -465,7 +465,7 @@ function showEntries(){
                 showUserEntry(data[i])
             }
         } else {
-            msgInfo.innerHTML = "Something went wrong fetching user's entries. Please try again."
+            msgInfo.innerHTML = "Something went wrong fetching your entries. Please try again."
         }
     })
 }
