@@ -154,13 +154,14 @@ function createRequest(){
             msg.innerHTML = ""
             let sp = document.createElement("span")
             sp.classList.add("success")
-            sp.innerHTML = "Request entry was made successfully"
+            sp.innerHTML = "Request entry was made successfully."
             msg.appendChild(sp)
+            document.getElementById("requestformid").reset()
         } else {
             msg.innerHTML = ""
             let sp = document.createElement("span")
             sp.classList.add("warn")
-            sp.innerHTML = "Something went wrong making the request entry"
+            sp.innerHTML = "Something went wrong making the request entry."
             msg.appendChild(sp)
         }
     })
@@ -230,13 +231,15 @@ function createTravel(){
             msg.innerHTML = ""
             let sp = document.createElement("span")
             sp.classList.add("success")
-            sp.innerHTML = "Travel entry was made successfully"
+            sp.innerHTML = "Travel entry was made successfully."
             msg.appendChild(sp)
+            // reset form
+            document.getElementById("travelformid").reset()
         } else {
             msg.innerHTML = ""
             let sp = document.createElement("span")
             sp.classList.add("warn")
-            sp.innerHTML = "Something went wrong making the travel entry"
+            sp.innerHTML = "Something went wrong making the travel entry."
             msg.appendChild(sp)
         }
     })
