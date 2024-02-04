@@ -458,12 +458,14 @@ function showEntries(){
 
     postData(getUserEntries, {}, headers, "GET").then((data)=>{
         hideLoadingIcon()
+        let msgInfo = document.getElementById("entriesinfo")
         if (data){
+            msgInfo.innerHTML = ""
             for (var i=0; i< data.length; i++){
                 showUserEntry(data[i])
             }
         } else {
-            console.log("something went wrong getting user data")
+            msgInfo.innerHTML = "Something went wrong fetching user's entries. Please try again."
         }
     })
 }
