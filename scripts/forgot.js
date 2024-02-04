@@ -18,7 +18,7 @@ function resetPassword(){
         resetPassResp.innerHTML = ""
         resetPassResp.classList.remove("warn")
     }
-
+    showLoadingIcon()
     let resetReq = {
         "Username" : username,
         "Password" : passone,
@@ -27,7 +27,7 @@ function resetPassword(){
 
     let resetPassURI = host+"/password/reset"
     postData(resetPassURI, resetReq, {}, "POST").then((data) => {
-        console.log("response data",  data); // JSON data parsed by `data.json()` call
+        hideLoadingIcon()
         // ok is response.ok which returns true if response HTTP code is between
         // 200-299 https://developer.mozilla.org/en-US/docs/Web/API/Response/ok
 

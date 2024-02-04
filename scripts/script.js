@@ -15,12 +15,14 @@ document.addEventListener("DOMContentLoaded", function(){
             e.innerText = ""
         }
 
+        showLoadingIcon()
         loginCreds = {
                 Username: u,
                 Password: p
         }
         headers={}
         postData(host+"/login", loginCreds, headers, "POST").then((data) => {
+            hideLoadingIcon()
             console.log("response data",  data); // JSON data parsed by `data.json()` call
             // ok is response.ok which returns true if response HTTP code is between
             // 200-299 https://developer.mozilla.org/en-US/docs/Web/API/Response/ok
@@ -227,6 +229,7 @@ function register(){
     } else {
         e.innerHTML = ""
     }
+    showLoadingIcon("loadingReg")
 
     username = document.getElementById("regusername").value
     firstName = document.getElementById("regfirstname").value
@@ -245,16 +248,19 @@ function register(){
     }
     headers={}
     postData(host+"/register", request, headers, "POST").then((data) => {
-        console.log("response data after registration",  data); // JSON data parsed by `data.json()` call
         // ok is response.ok which returns true if response HTTP code is between
         // 200-299 https://developer.mozilla.org/en-US/docs/Web/API/Response/ok
+        hideLoadingIcon("loadingReg")
         if (data){
             if (data.Message =="User created successfully"){
-                console.log("user created successfully")
-                e.innerText = "user created successfully"
+                e.classList.remove("warn")
+                e.classList.add("success")
+                e.innerText = "Registration was successful."
             }
         } else {
-            e.innerText = "Registration failed."
+            e.classList.remove("success")
+            e.classList.add("warn")
+            e.innerText = "Something went wrong registering you to the application."
         }
     });
 }

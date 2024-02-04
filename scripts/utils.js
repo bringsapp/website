@@ -107,12 +107,20 @@ function handleLogoClick(){
     })
 }
 
-function showLoadingIcon(){
-    document.getElementById("circleG").style.display = "block";
+function showLoadingIcon(elemID = ""){
+    if (elemID == ""){
+        document.getElementById("circleG").style.display = "block";
+    } else {
+        document.getElementById(elemID).style.display = "block";
+    }
 }
 
-function hideLoadingIcon(){
-    document.getElementById("circleG").style.display = "none"
+function hideLoadingIcon(elemID = ""){
+    if (elemID == ""){
+        document.getElementById("circleG").style.display = "none"
+    } else {
+        document.getElementById(elemID).style.display = "none"
+    }
 }
 
 // is going to show details of the logged in user
