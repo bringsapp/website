@@ -116,9 +116,20 @@ function createRequest(){
     if (fromCountry.value =="" || fromCountry.value =="select"
         || toCountry.value ==""  || toCountry.value == "select"
         || requestedDate =="" || requestWeight =="" || requestWeight == "0" ) {
-        msg.innerHTML ="From country, to country, date and weight are required fields."
-        msg.classList.remove("success")
-        msg.classList.add("warn")
+
+        let rDate = new Date(requestedDate)
+        let todaysDate = todaysJustDate()
+
+        msg.innerHTML = ""
+        if ( rDate < todaysDate){
+            msg.innerHTML ="Date can not be in the past."
+            msg.classList.remove("success")
+            msg.classList.add("warn")
+        } else {
+            msg.innerHTML ="From country, to country, date and weight are required fields."
+            msg.classList.remove("success")
+            msg.classList.add("warn")
+        }
         return
     } else {
         msg.innerHTML =""
@@ -197,10 +208,25 @@ function createTravel(){
     if (fromCountry.value =="" || fromCountry.value =="select"
         || toCountry.value ==""  || toCountry.value == "select"
         || dateRangeStart =="" || dateRangeEnd=="" || weight =="" || weight == "0" ) {
-        msg.innerHTML ="From country, to country, dates and weight are required fields."
-        msg.classList.remove("success")
-        msg.classList.add("warn")
+        // verify start date is older than current date and older than end date
+        let todaysDate = todaysJustDate()
+
+        let dRangeStart = new Date(dateRangeStart)
+        let dRangeEnd =  new Date(dateRangeEnd)
+
+        console.log("todayDate ", todaysDate, "drange start ", dRangeStart, "srange end ", dRangeEnd)
+        msg.innerHTML = ""
+        if (( dRangeStart < todaysDate ) || ( dRangeEnd < dRangeStart) ){
+            msg.innerHTML ="Please input dates correctly. Start date can not be after end date, and it can not be in the past."
+            msg.classList.remove("success")
+            msg.classList.add("warn")
+        } else {
+            msg.innerHTML ="From country, to country, dates and weight are required fields."
+            msg.classList.remove("success")
+            msg.classList.add("warn")
+        }
         return
+
     } else {
         msg.innerHTML =""
         msg.classList.remove("warn")
@@ -292,7 +318,6 @@ function showStates(e){
     targetStateElem = document.getElementById(elem.getAttribute("statesElemId"))
 
     countryName = elem.value
-    console.log("elem ", elem)
     countryID = getDatalistOptionsAttr(elem, "countryid", countryName)
 
     // if (countryValue == "select"){

@@ -212,3 +212,10 @@ function createDisplayableLocation(location){
     return loc
 }
 
+function todaysJustDate(){
+    let today = new Date()
+    let currentDate = (today.getDate() < 10) ? '0'.concat(today.getDate()) : today.getDate()
+    let currentMonth = (today.getMonth()+1 < 10) ?  '0'.concat(1+today.getMonth()) : today.getMonth()
+    let currentYear = today.getFullYear()
+    return new Date(currentYear+"-"+currentMonth+"-"+currentDate)
+}
