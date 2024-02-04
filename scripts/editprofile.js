@@ -10,15 +10,22 @@ document.addEventListener("DOMContentLoaded", function(){
 
 
     document.getElementById("updatedp").addEventListener("click", function(){
+        showLoadingIcon()
         let jwt=getCookie("token=")
         let imgIp = document.getElementById("imgInp")
-        console.log(imgIp.files[0])
+
         uploadImageURL = host+"/user/dp?token="+jwt
-        postImage(uploadImageURL, imgIp.files[0], {}, "POST").then((data)=>{
+        postData(uploadImageURL, imgIp.files[0], {}, "POST").then((data)=>{
+            hideLoadingIcon()
+            let imgInfo = document.getElementById("uploadimginfo")
             if (data){
-                console.log("success uploading image")
+                imgInfo.classList.remove("warn")
+                imgInfo.classList.add("success")
+                imgInfo.innerHTML = "Image was updated successfully."
             } else {
-                console.log("failed uploading image")
+                imgInfo.classList.remove("success")
+                imgInfo.classList.add("warn")
+                imgInfo.innerHTML = "Something went wrong updating the image."
             }
         })
     })

@@ -55,7 +55,7 @@
         <div style="font-size: small;">
             Photos with aspect ratio 1:1 are recommended.
         </div>
-        <form runat="server">
+        <form enctype="multipart/form-data">
             <div class="text-cen">
                 <input class="text-cen" accept="image/*" type='file' id="imgInp" />
             </div>
@@ -65,7 +65,17 @@
             <div>
                 <button id="updatedp" onclick="return false">Update</button>
             </div>
+            <div class="text-cen" id="uploadimginfo">
+
+            </div>
           </form>
+          <div>
+            <div id="circleG">
+                <div id="circleG_1" class="circleG"></div>
+                <div id="circleG_2" class="circleG"></div>
+                <div id="circleG_3" class="circleG"></div>
+            </div>
+          </div>
     </div>
     <footer class="text-cen padding-30 bold clearboth">
         <span>
