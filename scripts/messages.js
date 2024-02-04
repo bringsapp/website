@@ -194,11 +194,7 @@ function msgBoxKeyPress(e, isUsersPhoneVerified, info){
         to = e.srcElement.getAttribute("userid")
         toUsername = e.srcElement.getAttribute("username")
         if (!isUsersPhoneVerified){
-            // let ta = document.getElementById(e.srcElement.id)
-            // ta.setAttribute("disabled", "true")
-            // ta.value = ""
-            // ta.setAttribute("placeholder", "Your contact no doesn't seem to be verified. Please verify it to be able to send messages.")
-            info.innerHTML = "Your contact no doesn't seem to be verified. Please verify it to be able to send messages."
+            info.innerHTML = "Your contact no doesn't seem to be verified. Please <a class=\"ainspan\" href=\"../profile\">verify</a> it to be able to send messages."
             info.classList.add("warn")
             return
         } else{

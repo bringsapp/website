@@ -973,3 +973,8 @@ textarea{
 .nodata{
     padding: 20px;
 }
+
+.ainspan{
+    color: inherit;
+    font-size: inherit;
+}

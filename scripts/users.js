@@ -61,7 +61,7 @@ function messageTyped(e, phoneVerified){
      if (e.keyCode == 13){
         let i = document.getElementById("newmsginfo")
         if (!phoneVerified){
-            i.innerHTML = "Your contact no doesn't seem to be verified. Please verify it to be able to send messages."
+            i.innerHTML = "Your contact no doesn't seem to be verified. Please <a class=\"ainspan\" href=\"../profile\">verify</a> it to be able to send messages."
             i.classList.add("warn")
             return
         } else {
