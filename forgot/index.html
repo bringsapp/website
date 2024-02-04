@@ -28,7 +28,7 @@
     </div>
 
     <div id="forgotpass">
-        <form>
+        <form id="resetpassform">
             <div>
                 Username:
             </div>
@@ -41,7 +41,14 @@
             <div style="margin-top: 10px;">
                 <input class="loginforminput" type="text" id="contactno" placeholder="+31123456789" autocomplete="off">
             </div>
-            <button id="sendcodeforgotpwd" onclick="return false">Send Security Code</button>
+            <button id="sendcodeforgotpwd" class="pointer" onclick="return false">Send Security Code</button>
+            <div id="sendresetotp" style="display: none;">
+                <div id="circleG" style="display: block;">
+                    <div id="circleG_1" class="circleG"></div>
+                    <div id="circleG_2" class="circleG"></div>
+                    <div id="circleG_3" class="circleG"></div>
+                </div>
+            </div>
             <div id="otpmsg"></div>
             <div style="margin-top: 20px;">
                 Security Code:<br><span style="font-size: small;">Will be sent to registered contact no.</span>
@@ -62,13 +69,13 @@
                 <input class="loginforminput" type="password" id="passwordconf" placeholder="*******">
             </div>
             <div style="margin-top: 20px;">
-                <input type="button" class="butt" id="resetpassword" value="Reset Password"> To <a href="/">Login</a>.
+                <input type="button" class="butt pointer" id="resetpassword" value="Reset Password"> To <a href="/">Login</a>.
             </div>
             <div>
                 <span id="resetpassresp"></span>
             </div>
-            <div>
-                <div id="circleG">
+            <div id="resetpasswordload" style="display: none;">
+                <div id="circleG" style="display: block;">
                     <div id="circleG_1" class="circleG"></div>
                     <div id="circleG_2" class="circleG"></div>
                     <div id="circleG_3" class="circleG"></div>

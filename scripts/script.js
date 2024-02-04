@@ -23,7 +23,6 @@ document.addEventListener("DOMContentLoaded", function(){
         headers={}
         postData(host+"/login", loginCreds, headers, "POST").then((data) => {
             hideLoadingIcon()
-            console.log("response data",  data); // JSON data parsed by `data.json()` call
             // ok is response.ok which returns true if response HTTP code is between
             // 200-299 https://developer.mozilla.org/en-US/docs/Web/API/Response/ok
             if (data){
@@ -255,7 +254,9 @@ function register(){
             if (data.Message =="User created successfully"){
                 e.classList.remove("warn")
                 e.classList.add("success")
-                e.innerText = "Registration was successful."
+                e.innerText = "Registration was successful. You can login now."
+                // reset form data
+                document.getElementById("registrationform").reset()
             }
         } else {
             e.classList.remove("success")

@@ -8,8 +8,16 @@ function resetPassword(){
     let otp = document.getElementById("forgotpassotp").value
     let passone = document.getElementById("password").value
     let passconf = document.getElementById("passwordconf").value
-
     let resetPassResp = document.getElementById("resetpassresp")
+
+    if (username == "" || otp =="" || passone =="" || passconf =="" ){
+        resetPassResp.innerHTML = ""
+        resetPassResp.classList.remove("success")
+        resetPassResp.classList.add("warn")
+        resetPassResp.innerHTML = "Please fill the form correctly."
+        return
+    }
+
     if (passone != passconf){
         resetPassResp.innerHTML = "Password and confirm password don't match."
         resetPassResp.classList.add("warn")
@@ -18,7 +26,8 @@ function resetPassword(){
         resetPassResp.innerHTML = ""
         resetPassResp.classList.remove("warn")
     }
-    showLoadingIcon()
+
+    showLoadingIcon("resetpasswordload")
     let resetReq = {
         "Username" : username,
         "Password" : passone,
@@ -27,13 +36,15 @@ function resetPassword(){
 
     let resetPassURI = host+"/password/reset"
     postData(resetPassURI, resetReq, {}, "POST").then((data) => {
-        hideLoadingIcon()
+        hideLoadingIcon("resetpasswordload")
         // ok is response.ok which returns true if response HTTP code is between
         // 200-299 https://developer.mozilla.org/en-US/docs/Web/API/Response/ok
 
         if (data){
             resetPassResp.innerHTML = "Password reset was successful."
             resetPassResp.classList.add("success")
+            // reset form
+            document.getElementById("resetpassform").reset()
         } else {
             resetPassResp.classList.add("warn")
             resetPassResp.innerHTML = "Something went wrong resetting the password."
@@ -42,14 +53,16 @@ function resetPassword(){
 }
 
 function sendPasswordResetOTP(){
+    let otpElem = document.getElementById("otpmsg")
+    otpElem.innerHTML=""
     let username = document.getElementById("username").value
     let contactno = document.getElementById("contactno").value
-    let otpElem = document.getElementById("otpmsg")
     if (username == "" || contactno == ""){
         otpElem.classList.add("warn")
         otpElem.innerHTML = "Please fill in username and contact no correctly."
         return
     }
+    showLoadingIcon("sendresetotp")
 
     let req = {
         "Username" : username,
@@ -58,10 +71,9 @@ function sendPasswordResetOTP(){
 
     let uri = host+"/password/otp"
     postData(uri, req, {}, "POST").then((data) => {
-        console.log("response data",  data); // JSON data parsed by `data.json()` call
         // ok is response.ok which returns true if response HTTP code is between
         // 200-299 https://developer.mozilla.org/en-US/docs/Web/API/Response/ok
-
+        hideLoadingIcon("sendresetotp")
         if (data){
             otpElem.innerHTML = "OTP was sent successully."
             otpElem.classList.remove("warn")
