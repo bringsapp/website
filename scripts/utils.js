@@ -157,6 +157,7 @@ function displayLoggedInUserDetails(){
     })
 }
 
+// showMessagesCount shows unread messages count in the profile
 function showMessagesCount(){
     jwt=getCookie("token=")
 

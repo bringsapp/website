@@ -489,10 +489,21 @@ function showEntries(){
         let msgInfo = document.getElementById("entriesinfo")
         if (data){
             msgInfo.innerHTML = ""
+            if (data.length == 0){
+                msgInfo.innerHTML = ""
+                msgInfo.classList.remove("warn")
+                msgInfo.classList.add("nodata")
+                msgInfo.innerHTML = "You have not made any entry yet."
+                return
+            }
+
             for (var i=0; i< data.length; i++){
                 showUserEntry(data[i])
             }
         } else {
+            msgInfo.classList.add("warn")
+            msgInfo.classList.remove("nodata")
+            msgInfo.innerHTML = ""
             msgInfo.innerHTML = "Something went wrong fetching your entries. Please try again."
         }
     })

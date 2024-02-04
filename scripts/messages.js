@@ -23,6 +23,12 @@ function initMessagesAndCount(isUsersPhoneVerified){
         hideLoadingIcon()
         if (data){
             let msgsOfUserElem = document.getElementById("messageswrapper")
+            if (data.length == 0){
+                document.getElementById("nomsgs").innerHTML = "No message found."
+            } else {
+                document.getElementById("nomsgs").innerHTML = ""
+            }
+
             for (let i=0; i< data.length; i++){
                 let messanger = document.createElement("div")
                 messanger.classList.add("conversationwrapper")

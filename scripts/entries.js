@@ -22,6 +22,13 @@ function displayTravels(){
         let entriesInfo = document.getElementById("allentriesinfo")
         if (data){
             entriesInfo.innerHTML = ""
+            if (data.length==0){
+                entriesInfo.innerHTML = ""
+                entriesInfo.classList.remove("warn")
+                entriesInfo.classList.add("nodata")
+                entriesInfo.innerHTML = "There are no entries to show."
+                return
+            }
             for (var i=0; i< data.length; i++){
                 if (data[i].EntryType == "travel"){
                     displayTravel(data[i])
@@ -30,6 +37,7 @@ function displayTravels(){
                 }
             }
         } else {
+            entriesInfo.classList.add("warn")
             entriesInfo.innerHTML = "Something went wrong fetching all the entries. Please try again."
         }
     })
