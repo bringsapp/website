@@ -29,7 +29,7 @@
     padding: 30px;
 }
 .title-city{
-    color: #0800ffa3;
+    color: #6560ff;
     font-size: inherit;
 }
 a{
@@ -45,10 +45,9 @@ a{
 }
 
 #loginspan{
-    /* border: 1px solid #0800ffa3; */
     padding: 10px;
     border-radius: 5px;
-    background-color: #0800ffa3;
+    background-color: #6560ff;
 }
 
 #loginspan a{
@@ -74,7 +73,7 @@ a{
 
 .butt{
     border: none;
-    background-color: #0800ffa3;
+    background-color: #6560ff;
     padding: 15px;
     color: white;
 }
@@ -99,7 +98,6 @@ a{
 }
 
 #faqs{
-    /* background-color: #0800ffa3; */
     width: 50%;
     margin: auto;
     margin-top: 10px;
@@ -112,7 +110,7 @@ a{
 }
 
 .highlight{
-    background-color: #0800ffa3;
+    background-color: #6560ff;
     padding: 5px;
     color: white;
 }
@@ -131,7 +129,7 @@ hr{
     margin: auto;
 	height: 1px;
 	border: none;
-	background-color: #0800ffa3;
+	background-color: #6560ff;
 }
 
 @media (max-width:1200px){
@@ -262,7 +260,6 @@ hr{
 }
 
 .atravel,.userentrieswrapper{
-    /* border: 1px solid #0800ffa3; */
     background-color: #f5f6f7;
     padding: 20px;
     margin-top: 20px;
@@ -313,12 +310,11 @@ hr{
 
 .userentrieswrapper{
     padding: 20px;
-    /* border: 1px solid #0800ffa3; */
     margin-top: 20px;
 }
 
 .entrytype{
-    background-color: #0800ffa3;
+    background-color: #6560ff;
     padding: 5px;
     color: white;
     border-radius: 5px;
@@ -368,7 +364,7 @@ hr{
 
 #usermessagebutton{
     cursor: pointer;
-    background-color: #0800ffa3;
+    background-color: #6560ff;
     color: white;
     padding: 5px;
     border-radius: 5px;
@@ -391,7 +387,6 @@ hr{
     height: 500px;
     /* background-color: #f4f4f6; */
     overflow-y: scroll;
-    /* border: 1px solid #0800ffa3; */
     padding: 20px;
 }
 
@@ -400,7 +395,7 @@ hr{
     background-color: #f4f4f6;
     overflow-wrap: normal;
     /* padding: 20px; */
-    background-color: #0800ffa3;
+    background-color: #6560ff;
     border-radius: 5px;
     margin-top: 5px;
     color: white;
@@ -415,18 +410,12 @@ hr{
 }
 
 .convmsg{
-
-    /* background-color: #0800ffa3; */
     color: white;
-    /* width: fit-content; */
     margin-top: 5px;
-
-    /* width: 100px; */
 }
 
 .convmsgspan{
-    background-color: #0800ffa3;
-    /* padding: 0px; */
+    background-color: #6560ff;
     border-radius: 5px;
 }
 
@@ -450,7 +439,7 @@ hr{
 
 .entrybuttons button{
     padding: 10px;
-    background-color: #0800ffa3;
+    background-color: #6560ff;
     color: white;
     border: none;
     cursor: pointer;
@@ -478,7 +467,6 @@ hr{
     /* text-align: center; */
     /* padding: 8px; */
     /* margin-left: 15px; */
-    /* border: 1px solid #0800ffa3; */
     /* border-radius: 5px; */
     text-align: center;
 }
@@ -527,7 +515,7 @@ hr{
 }
 
 .submitentrybutton{
-    background-color: #0800ffa3;
+    background-color: #6560ff;
     border: none;
     color: white;
     padding: 10px;
@@ -576,7 +564,7 @@ hr{
 }
 
 .addentryspn{
-    background-color: #0800ffa3;
+    background-color: #6560ff;
     padding: 5px;
     border-radius: 5px;
     color: white;
@@ -606,7 +594,6 @@ hr{
 }
 
 .conversationwrapper{
-    /* border: 1px solid #0800ffa3; */
     /* margin-top: 20px; */
     padding: 5px;
     /* background-color: gray; */
@@ -668,7 +655,7 @@ textarea{
     position: absolute;
     margin-left: 10px;
     margin-top: -10px;
-    background-color: #0800ffa3;
+    background-color: #6560ff;
     color: white;
     /* padding: 5px; */
     font-size: x-small;
@@ -727,7 +714,7 @@ textarea{
 }
 
 #otpverifybuton{
-    background-color: #0800ffa3;
+    background-color: #6560ff;
     border: none;
     color: white;
     padding: 10px;
@@ -742,7 +729,7 @@ textarea{
 
 #sendcodeforgotpwd{
     margin-top: 10px;
-    background-color: #0800ffa3;
+    background-color: #6560ff;
     border: none;
     color: white;
     padding: 5px;
@@ -821,7 +808,7 @@ textarea{
     padding: 15px;
     margin-top: 5px;
     border: none;
-    background-color: #0800ffa3;
+    background-color: #6560ff;
     color: white;
     cursor: pointer;
     border-radius: 10px;
@@ -920,7 +907,7 @@ textarea{
 	0%{}
 
 	50%{
-		background-color:#0800ffa3;
+		background-color:#6560ff;
 	}
 
 	100%{}
@@ -930,7 +917,7 @@ textarea{
 	0%{}
 
 	50%{
-		background-color:#0800ffa3;
+		background-color:#6560ff;
 	}
 
 	100%{}
@@ -940,7 +927,7 @@ textarea{
 	0%{}
 
 	50%{
-		background-color:#0800ffa3;
+		background-color:#6560ff;
 	}
 
 	100%{}
@@ -950,7 +937,7 @@ textarea{
 	0%{}
 
 	50%{
-		background-color:#0800ffa3;
+		background-color:#6560ff;
 	}
 
 	100%{}
@@ -960,7 +947,7 @@ textarea{
 	0%{}
 
 	50%{
-		background-color:#0800ffa3;
+		background-color:#6560ff;
 	}
 
 	100%{}
