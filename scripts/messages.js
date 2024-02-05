@@ -9,17 +9,13 @@ document.addEventListener("DOMContentLoaded", function(){
 })
 
 function initMessagesAndCount(isUsersPhoneVerified){
-    let jwt=getCookie("token=")
     // get username from token
     let encodedPayload = jwt.split(".")[1]
     let payload=atob(encodedPayload)
     let payloadObj=JSON.parse(payload)
 
-    let getMessagesCount = host+"/messages/count?to="+payloadObj.Username+"&token="+jwt
-    let headers = {
-        // "Authorization":"Bearer "+jwt
-    }
-    postData(getMessagesCount, {}, headers, "GET").then((data)=>{
+    let getMessagesCount = host+"/messages/count?to="+payloadObj.Username
+    postData(getMessagesCount, {}, authorizationHeader(), "GET").then((data)=>{
         hideLoadingIcon()
         if (data){
             let msgsOfUserElem = document.getElementById("messageswrapper")
@@ -144,8 +140,8 @@ function showConversation(e){
     payload=atob(encodedPayload)
     payloadObj=JSON.parse(payload)
 
-    let getConv = host+"/conversations?to="+payloadObj.Username+"&from="+senderUsername+"&token="+jwt
-    postData(getConv, {}, {}, "GET").then((data)=>{
+    let getConv = host+"/conversations?to="+payloadObj.Username+"&from="+senderUsername
+    postData(getConv, {}, authorizationHeader(), "GET").then((data)=>{
         messagesBox = document.getElementById("conv-"+senderUsername)
 
         if (data){
@@ -177,8 +173,8 @@ function showConversation(e){
 }
 
 function readAllMessage(to, from){
-    let readMessages = host+"/messages/readall?to="+to+"&from="+from+"&token="+jwt
-    postData(readMessages, {}, {}, "POST").then((data)=>{
+    let readMessages = host+"/messages/readall?to="+to+"&from="+from
+    postData(readMessages, {}, authorizationHeader(), "POST").then((data)=>{
         if (data){
             console.log(data)
         } else {
@@ -221,7 +217,7 @@ function sendMessage(body, to, msgElementId, toUsername, info){
 
     from = payloadObj.UserID
 
-    postMessage = host+"/messages?token="+jwt
+    postMessage = host+"/messages"
 
     message = {
         "From" : {
@@ -235,7 +231,7 @@ function sendMessage(body, to, msgElementId, toUsername, info){
 
     messagesHere = document.getElementById("conv-"+toUsername)
 
-    postData(postMessage, message, {}, "POST").then((data)=>{
+    postData(postMessage, message, authorizationHeader(), "POST").then((data)=>{
         if (data){
             info.innerHTML = ""
             info.classList.remove("warn")

@@ -30,10 +30,9 @@ function animateLocations(){
 
 function logout(){
     // get the new token that expires immediately
-    let jwt=getCookie("token=")
-    let logout = host+"/logout?token="+jwt
+    let logout = host+"/logout"
 
-    postData(logout, {}, {}, "GET").then((data)=>{
+    postData(logout, {}, authorizationHeader(), "GET").then((data)=>{
         if (data){
             eraseCookie()
             window.location = "/logout"
@@ -88,16 +87,9 @@ function getCookie(name) {
 // buggy
 // even if token is invalid, it would be set in the cookie
 function handleLogoClick(){
-    let jwt=getCookie("token=")
-    console.log("token is ", jwt)
-    if (jwt == null){
-        window.location = "/"
-        return
-    }
+    let validateToken = host+"/token/validate"
 
-    let validateToken = host+"/token/validate?token="+jwt
-
-    postData(validateToken, {}, {}, "GET").then((data)=>{
+    postData(validateToken, {}, authorizationHeader(), "GET").then((data)=>{
         if (data){
             window.location = "/entries"
         } else {
@@ -138,11 +130,8 @@ function displayLoggedInUserDetails(){
     payload=atob(encodedPayload) // prints '{"UserID":2,"exp":1704534268}'
     payloadObj=JSON.parse(payload)
 
-    getUserDetails = host+"/users/"+payloadObj.Username+"/?token="+jwt
-    headers = {
-        // "Authorization":"Bearer "+jwt
-    }
-    return postData(getUserDetails, {}, headers, "GET").then((data)=>{
+    getUserDetails = host+"/users/"+payloadObj.Username
+    return postData(getUserDetails, {}, authorizationHeader(), "GET").then((data)=>{
         if (data){
             imgElem = document.getElementById("loggedinuserimg")
             imgElem.setAttribute("src", data.ProfilePicture)
@@ -182,12 +171,9 @@ function showMessagesCount(){
 }
 
 function getUnreadMessagesCountTo(to = ""){
-    let getMessagesCount = host+"/messages/count?to="+payloadObj.Username+"&token="+jwt
-    let headers = {
-        // "Authorization":"Bearer "+jwt
-    }
+    let getMessagesCount = host+"/messages/count?to="+payloadObj.Username
 
-    return postData(getMessagesCount, {}, headers, "GET").then((data)=>{
+    return postData(getMessagesCount, {}, authorizationHeader(), "GET").then((data)=>{
         if (data){
             return data
         } else {
@@ -219,4 +205,16 @@ function todaysJustDate(){
     let currentMonth = (today.getMonth()+1 < 10) ?  '0'.concat(1+today.getMonth()) : today.getMonth()
     let currentYear = today.getFullYear()
     return new Date(currentYear+"-"+currentMonth+"-"+currentDate)
+}
+
+function authorizationHeader(){
+    jwt=getCookie("token=")
+
+    if (jwt == null){
+        window.location ="/logout"
+    }
+
+    return {
+        "Authorization":"Bearer "+jwt
+    }
 }

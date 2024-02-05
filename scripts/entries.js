@@ -10,14 +10,8 @@ document.addEventListener("DOMContentLoaded", function(){
 })
 
 function displayTravels(){
-    jwt=getCookie("token=")
-
-    // getTravelsURL = host+"/travels?token="+jwt
-    getEntriesURL = host+"/entries?token="+jwt
-    headers = {
-        // "Authorization":"Bearer "+jwt
-    }
-    postData(getEntriesURL, {}, headers, "GET").then((data)=>{
+    getEntriesURL = host+"/entries"
+    postData(getEntriesURL, {}, authorizationHeader(), "GET").then((data)=>{
         hideLoadingIcon()
         let entriesInfo = document.getElementById("allentriesinfo")
         if (data){

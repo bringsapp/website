@@ -44,14 +44,10 @@ function hideOTPBox(){
 
 function verifyOTP(){
     let otp = document.getElementById("otp").value
-    let jwt=getCookie("token=")
-    let otpRequest = host+"/contactno/verifyotp?otp="+otp+"&token="+jwt
-    let headers = {
-        // "Authorization":"Bearer "+jwt
-    }
+    let otpRequest = host+"/contactno/verifyotp?otp="+otp
 
     let msg = document.getElementById("otpverifmsg")
-    postData(otpRequest, {}, headers, "POST").then((data)=>{
+    postData(otpRequest, {}, authorizationHeader(), "POST").then((data)=>{
         if (data){
             msg.innerHTML=""
             msg.classList.add("success")
@@ -67,13 +63,9 @@ function verifyOTP(){
 }
 
 function sendOTPAndVerify(){
-    let jwt=getCookie("token=")
-    let otpRequest = host+"/contactno/sendotp?token="+jwt
-    let headers = {
-        // "Authorization":"Bearer "+jwt
-    }
+    let otpRequest = host+"/contactno/sendotp"
 
-    postData(otpRequest, {}, headers, "POST").then((data)=>{
+    postData(otpRequest, {}, authorizationHeader(), "POST").then((data)=>{
         if (data){
             console.log("message was sent successfully")
             // show div
@@ -153,14 +145,9 @@ function createRequest(){
     }
 
 
-    let jwt=getCookie("token=")
-    let submitRequest = host+"/requests?token="+jwt
-    let headers = {
-        // "Authorization":"Bearer "+jwt
-    }
+    let submitRequest = host+"/requests"
 
-
-    postData(submitRequest, request, headers, "POST").then((data)=>{
+    postData(submitRequest, request, authorizationHeader(), "POST").then((data)=>{
         if (data){
             msg.innerHTML = ""
             let sp = document.createElement("span")
@@ -251,8 +238,8 @@ function createTravel(){
 
     console.log("creating travel with ", travel)
 
-    travelEntry = host+"/travels?token="+jwt
-    postData(travelEntry, travel, headers, "POST").then((data)=>{
+    travelEntry = host+"/travels"
+    postData(travelEntry, travel, authorizationHeader(), "POST").then((data)=>{
         if (data){
             msg.innerHTML = ""
             let sp = document.createElement("span")
@@ -283,21 +270,11 @@ function showCities(e){
     //     console.log("country is not selected")
     //     return
     // }
-    stateID = getDatalistOptionsAttr(elem, "stateid", stateValue)
-    countryID =  getDatalistOptionsAttr(elem, "countryid", stateValue)
+    let stateID = getDatalistOptionsAttr(elem, "stateid", stateValue)
+    let countryID =  getDatalistOptionsAttr(elem, "countryid", stateValue)
 
-    jwt=getCookie("token=")
-    // get username from token
-    encodedPayload = jwt.split(".")[1]
-    payload=atob(encodedPayload)
-    payloadObj=JSON.parse(payload)
-
-    getUserDetails = host+"/countries/"+countryID+"/states/"+stateID+"/cities?token="+jwt
-    headers = {
-        // "Authorization":"Bearer "+jwt
-    }
-
-    postData(getUserDetails, {}, headers, "GET").then((data)=>{
+    let citiesURI = host+"/countries/"+countryID+"/states/"+stateID+"/cities"
+    postData(citiesURI, {}, authorizationHeader(), "GET").then((data)=>{
         if (data) {
             for (var i=0; i< data.length; i++){
                 o = document.createElement("option")
@@ -320,23 +297,9 @@ function showStates(e){
     countryName = elem.value
     countryID = getDatalistOptionsAttr(elem, "countryid", countryName)
 
-    // if (countryValue == "select"){
-    //     console.log("country is not selected")
-    //     return
-    // }
+    let statesURI = host+"/countries/"+countryID+"/states"
 
-    jwt=getCookie("token=")
-    // get username from token
-    encodedPayload = jwt.split(".")[1]
-    payload=atob(encodedPayload)
-    payloadObj=JSON.parse(payload)
-
-    getUserDetails = host+"/countries/"+countryID+"/states?token="+jwt
-    headers = {
-        // "Authorization":"Bearer "+jwt
-    }
-
-    postData(getUserDetails, {}, headers, "GET").then((data)=>{
+    postData(statesURI, {}, authorizationHeader(), "GET").then((data)=>{
         if (data){
             targetStateElem.length = 1
 
@@ -374,19 +337,9 @@ function getDatalistOptionsAttr(elem, attrName, countryName){
 // how countries displays the countries in the
 // travel and rqeust forms
 function showCountries(){
-    jwt=getCookie("token=")
+    let countriesURI = host+"/countries"
 
-    // get username from token
-    encodedPayload = jwt.split(".")[1]
-    payload=atob(encodedPayload)
-    payloadObj=JSON.parse(payload)
-
-    getUserDetails = host+"/countries?token="+jwt
-    headers = {
-        // "Authorization":"Bearer "+jwt
-    }
-
-    postData(getUserDetails, {}, headers, "GET").then((data)=>{
+    postData(countriesURI, {}, authorizationHeader(), "GET").then((data)=>{
         if (data){
             // display countries in the from and to options of travel and request forms
             for (var i=0; i< data.length; i++){
@@ -451,12 +404,9 @@ function showOwnDetails(){
     payload=atob(encodedPayload)
     payloadObj=JSON.parse(payload)
 
-    getUserDetails = host+"/users/"+payloadObj.Username+"/?token="+jwt
-    headers = {
-        // "Authorization":"Bearer "+jwt
-    }
+    let getUserDetails = host+"/users/"+payloadObj.Username
 
-    postData(getUserDetails, {}, headers, "GET").then((data)=>{
+    postData(getUserDetails, {}, authorizationHeader(), "GET").then((data)=>{
         if (data){
             if (data.PhoneVerified){
                 let metaElem = document.getElementById("loggedinusermeta")
@@ -479,12 +429,9 @@ function showEntries(){
     payload=atob(encodedPayload)
     payloadObj=JSON.parse(payload)
 
-    getUserEntries = host+"/users/"+payloadObj.Username+"/entries?token="+jwt
-    headers = {
-        // "Authorization":"Bearer "+jwt
-    }
+    let getUserEntries = host+"/users/"+payloadObj.Username+"/entries"
 
-    postData(getUserEntries, {}, headers, "GET").then((data)=>{
+    postData(getUserEntries, {}, authorizationHeader(), "GET").then((data)=>{
         hideLoadingIcon()
         let msgInfo = document.getElementById("entriesinfo")
         if (data){

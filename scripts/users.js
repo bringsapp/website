@@ -28,8 +28,8 @@ function showPreviousMessages(){
     let userTwo = document.getElementById("username").innerHTML
 
     console.log(payloadObj)
-    let getConv = host+"/conversations?to="+payloadObj.Username+"&from="+userTwo+"&token="+jwt
-    postData(getConv, {}, {}, "GET").then((data)=>{
+    let getConv = host+"/conversations?to="+payloadObj.Username+"&from="+userTwo
+    postData(getConv, {}, authorizationHeader(), "GET").then((data)=>{
         messagesBox = document.getElementById("messageshere")
 
         if (data){
@@ -89,7 +89,7 @@ function sendMessage(body, to, msgElementId){
 
     from = payloadObj.UserID
 
-    postMessage = host+"/messages?token="+jwt
+    postMessage = host+"/messages"
 
     message = {
         "From" : {
@@ -103,7 +103,7 @@ function sendMessage(body, to, msgElementId){
 
     messagesHere = document.getElementById("messageshere")
 
-    postData(postMessage, message, {}, "POST").then((data)=>{
+    postData(postMessage, message, authorizationHeader(), "POST").then((data)=>{
         let i = document.getElementById("newmsginfo")
         i.innerHTML = ""
         if (data){
@@ -137,47 +137,13 @@ function hideMessageBox(){
     hideDivWithID("messageboxtouser")
 }
 
-// // is going to show details of the logged in user
-// // and links for them to go to their profile and
-// // link to see messages
-// function displayLoggedInUserDetails(){
-//     jwt=getCookie("token=")
-
-//     // get username from token
-//     encodedPayload = jwt.split(".")[1]
-//     payload=atob(encodedPayload) // prints '{"UserID":2,"exp":1704534268}'
-//     payloadObj=JSON.parse(payload)
-
-//     getUserDetails = host+"/users/"+payloadObj.Username+"/?token="+jwt
-//     headers = {
-//         // "Authorization":"Bearer "+jwt
-//     }
-//     postData(getUserDetails, {}, headers, "GET").then((data)=>{
-//         if (data){
-//             imgElem = document.getElementById("loggedinuserimg")
-//             imgElem.setAttribute("src", data.ProfilePicture)
-
-//             nameElem = document.getElementById("loggedinusername")
-//             nameElem.innerHTML = data.FirstName+" "+ data.LastName
-//             nameElem.setAttribute("href", "../profile")
-//         } else {
-//             console.log("something broke while getting details of a user", data)
-//         }
-//     })
-// }
-
 function showEntries(){
-    jwt=getCookie("token=")
-
     hash = window.location.hash
     username = hash.split("=")[1]
 
-    getUserEntries = host+"/users/"+username+"/entries?token="+jwt
-    headers = {
-        // "Authorization":"Bearer "+jwt
-    }
+    getUserEntries = host+"/users/"+username+"/entries"
 
-    postData(getUserEntries, {}, headers, "GET").then((data)=>{
+    postData(getUserEntries, {}, authorizationHeader(), "GET").then((data)=>{
         hideLoadingIcon()
         if (data){
             for (var i=0; i< data.length; i++){
@@ -221,18 +187,13 @@ function showUserEntry(data){
 }
 
 function showUser(){
-    jwt=getCookie("token=")
-
     // we have to get the username of the user, that somone clicked on
     // from the entries page
     hash = window.location.hash
     username = hash.split("=")[1]
 
-    getProfileURL = host+"/users/"+username+"/?token="+jwt
-    headers = {
-        // "Authorization":"Bearer "+jwt
-    }
-    postData(getProfileURL, {}, headers, "GET").then((data)=>{
+    getProfileURL = host+"/users/"+username
+    postData(getProfileURL, {}, authorizationHeader(), "GET").then((data)=>{
         if (data){
                 var dpImg = document.getElementById("userimg")
                 dpImg.setAttribute("src", data.ProfilePicture)

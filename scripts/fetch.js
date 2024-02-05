@@ -13,7 +13,7 @@ async function postData(url = "", data = {}, headers = {}, method = "GET") {
 
 
         if (method !="GET"){
-            if (url.includes("/user/dp?token=")){
+            if (url.includes("/user/dp")){
                 requestInfo.body = data
             } else {
                 requestInfo.body = JSON.stringify(data)

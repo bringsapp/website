@@ -11,11 +11,10 @@ document.addEventListener("DOMContentLoaded", function(){
 
     document.getElementById("updatedp").addEventListener("click", function(){
         showLoadingIcon()
-        let jwt=getCookie("token=")
         let imgIp = document.getElementById("imgInp")
 
-        uploadImageURL = host+"/user/dp?token="+jwt
-        postData(uploadImageURL, imgIp.files[0], {}, "POST").then((data)=>{
+        uploadImageURL = host+"/user/dp"
+        postData(uploadImageURL, imgIp.files[0], authorizationHeader(), "POST").then((data)=>{
             hideLoadingIcon()
             let imgInfo = document.getElementById("uploadimginfo")
             if (data){
@@ -46,11 +45,9 @@ function displayLoggedInUserDetailsInEditProfile(){
     payload=atob(encodedPayload) // prints '{"UserID":2,"exp":1704534268}'
     payloadObj=JSON.parse(payload)
 
-    getUserDetails = host+"/users/"+payloadObj.Username+"/?token="+jwt
-    headers = {
-        // "Authorization":"Bearer "+jwt
-    }
-    postData(getUserDetails, {}, headers, "GET").then((data)=>{
+    getUserDetails = host+"/users/"+payloadObj.Username
+
+    postData(getUserDetails, {}, authorizationHeader(), "GET").then((data)=>{
         if (data){
             imgElem = document.getElementById("loggedinuserimg")
             imgElem.setAttribute("src", data.ProfilePicture)

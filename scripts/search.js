@@ -60,23 +60,12 @@ function search(){
     }
     showLoadingIcon()
 
-    let jwt=getCookie("token=")
-    // get username from token
-    let encodedPayload = jwt.split(".")[1]
-    let payload=atob(encodedPayload)
-    let payloadObj=JSON.parse(payload)
-
     let searchTravelURL = ""
     if (searchType == "travel"){
-        searchTravelURL = host+"/travels/search?token="+jwt
+        searchTravelURL = host+"/travels/search"
     } else {
-        searchTravelURL = host+"/requests/search?token="+jwt
+        searchTravelURL = host+"/requests/search"
     }
-
-    let headers = {
-        // "Authorization":"Bearer "+jwt
-    }
-
 
     let req = {
         "From":{
@@ -101,7 +90,7 @@ function search(){
     }
 
 
-    postData(searchTravelURL, req, headers, "POST").then((data)=>{
+    postData(searchTravelURL, req, authorizationHeader(), "POST").then((data)=>{
         let searchInfo = document.getElementById("searchresultinfo")
         hideLoadingIcon()
         if (data){
@@ -132,7 +121,6 @@ function search(){
 }
 
 function displayRequest(request, requestsElem){
-    console.log("show ", request, " in ", requestsElem)
     // travelElem would have one travel entry
     var travelElem = document.createElement("div")
 	travelElem.classList.add("atravel");
@@ -255,18 +243,9 @@ function showCities(e){
     stateID = getDatalistOptionsAttr(elem, "stateid", stateValue)
     countryID =  getDatalistOptionsAttr(elem, "countryid", stateValue)
 
-    jwt=getCookie("token=")
-    // get username from token
-    encodedPayload = jwt.split(".")[1]
-    payload=atob(encodedPayload)
-    payloadObj=JSON.parse(payload)
+    let getStatesCities = host+"/countries/"+countryID+"/states/"+stateID+"/cities"
 
-    getUserDetails = host+"/countries/"+countryID+"/states/"+stateID+"/cities?token="+jwt
-    headers = {
-        // "Authorization":"Bearer "+jwt
-    }
-
-    postData(getUserDetails, {}, headers, "GET").then((data)=>{
+    postData(getStatesCities, {}, authorizationHeader(), "GET").then((data)=>{
         if (data) {
             for (var i=0; i< data.length; i++){
                 o = document.createElement("option")
@@ -311,18 +290,9 @@ function showStates(e){
     //     return
     // }
 
-    jwt=getCookie("token=")
-    // get username from token
-    encodedPayload = jwt.split(".")[1]
-    payload=atob(encodedPayload)
-    payloadObj=JSON.parse(payload)
+    let getStates = host+"/countries/"+countryID+"/states"
 
-    getUserDetails = host+"/countries/"+countryID+"/states?token="+jwt
-    headers = {
-        // "Authorization":"Bearer "+jwt
-    }
-
-    postData(getUserDetails, {}, headers, "GET").then((data)=>{
+    postData(getStates, {}, authorizationHeader(), "GET").then((data)=>{
         if (data){
             targetStateElem.length = 1
 
@@ -342,19 +312,9 @@ function showStates(e){
 }
 
 function showCountries(){
-    jwt=getCookie("token=")
+    let getCountries = host+"/countries"
 
-    // get username from token
-    encodedPayload = jwt.split(".")[1]
-    payload=atob(encodedPayload)
-    payloadObj=JSON.parse(payload)
-
-    getUserDetails = host+"/countries?token="+jwt
-    headers = {
-        // "Authorization":"Bearer "+jwt
-    }
-
-    postData(getUserDetails, {}, headers, "GET").then((data)=>{
+    postData(getCountries, {}, authorizationHeader(), "GET").then((data)=>{
         if (data){
             // display countries in the from and to options of travel and request forms
             for (var i=0; i< data.length; i++){
