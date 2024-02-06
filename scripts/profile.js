@@ -104,24 +104,24 @@ function createRequest(){
     requestedDate = document.getElementById("requesteddate").value
     requestWeight = document.getElementById("requestedweight").value
 
+    let rDate = new Date(requestedDate)
+    let todaysDate = todaysJustDate()
+
     let msg = document.getElementById("requestmessage")
     if (fromCountry.value =="" || fromCountry.value =="select"
         || toCountry.value ==""  || toCountry.value == "select"
         || requestedDate =="" || requestWeight =="" || requestWeight == "0" ) {
 
-        let rDate = new Date(requestedDate)
-        let todaysDate = todaysJustDate()
-
         msg.innerHTML = ""
-        if ( rDate < todaysDate){
-            msg.innerHTML ="Date can not be in the past."
-            msg.classList.remove("success")
-            msg.classList.add("warn")
-        } else {
-            msg.innerHTML ="From country, to country, date and weight are required fields."
-            msg.classList.remove("success")
-            msg.classList.add("warn")
-        }
+        msg.innerHTML ="From country, to country, date and weight are required fields."
+        msg.classList.remove("success")
+        msg.classList.add("warn")
+        return
+    } else if (rDate < todaysDate){
+        msg.innerHTML = ""
+        msg.innerHTML ="Date can not be in the past."
+        msg.classList.remove("success")
+        msg.classList.add("warn")
         return
     } else {
         msg.innerHTML =""
@@ -167,7 +167,6 @@ function createRequest(){
 
 function createTravel(){
     // validate data
-
     fromCountry = document.getElementById("travelfromselectcountryip")
     fromState = document.getElementById("travelselectstateip")
     fromCity = document.getElementById("travelselectcityip")
@@ -175,7 +174,6 @@ function createTravel(){
     fromCountryId = getDatalistOptionsAttr(fromCountry, "countryid", fromCountry.value)
     fromStateId = getDatalistOptionsAttr(fromState, "stateid", fromState.value)
     fromCityId = getDatalistOptionsAttr(fromCity, "cityid", fromCity.value)
-
 
     toCountry = document.getElementById("traveltoselectcountryip")
     toState = document.getElementById("traveltoselectstateip")
@@ -185,41 +183,37 @@ function createTravel(){
     toStateId = getDatalistOptionsAttr(toState, "stateid", toState.value)
     toCityId = getDatalistOptionsAttr(toCity, "cityid", toCity.value)
 
-
     dateRangeStart = document.getElementById("traveldaterangestart").value
     dateRangeEnd = document.getElementById("traveldaterangeend").value
 
     weight = document.getElementById("travelitemweight").value
 
+    let todaysDate = todaysJustDate()
+    let dRangeStart = new Date(dateRangeStart)
+    let dRangeEnd =  new Date(dateRangeEnd)
+
     let msg = document.getElementById("travelmessage")
     if (fromCountry.value =="" || fromCountry.value =="select"
         || toCountry.value ==""  || toCountry.value == "select"
         || dateRangeStart =="" || dateRangeEnd=="" || weight =="" || weight == "0" ) {
-        // verify start date is older than current date and older than end date
-        let todaysDate = todaysJustDate()
-
-        let dRangeStart = new Date(dateRangeStart)
-        let dRangeEnd =  new Date(dateRangeEnd)
-
-        console.log("todayDate ", todaysDate, "drange start ", dRangeStart, "srange end ", dRangeEnd)
         msg.innerHTML = ""
-        if (( dRangeStart < todaysDate ) || ( dRangeEnd < dRangeStart) ){
-            msg.innerHTML ="Please input dates correctly. Start date can not be after end date, and it can not be in the past."
-            msg.classList.remove("success")
-            msg.classList.add("warn")
-        } else {
-            msg.innerHTML ="From country, to country, dates and weight are required fields."
-            msg.classList.remove("success")
-            msg.classList.add("warn")
-        }
+        msg.innerHTML ="From country, to country, dates and weight are required fields."
+        msg.classList.remove("success")
+        msg.classList.add("warn")
         return
 
+    } else if (( dRangeStart < todaysDate ) || ( dRangeEnd < dRangeStart) ){
+        msg.innerHTML =""
+        msg.innerHTML ="Please input dates correctly. Start date can not be after end date, and it can not be in the past."
+        msg.classList.remove("success")
+        msg.classList.add("warn")
+        return
     } else {
         msg.innerHTML =""
         msg.classList.remove("warn")
         msg.classList.remove("success")
     }
-
+    console.log("after validation")
     travel = {
         "From":{
             "Country": Number(fromCountryId),
@@ -276,6 +270,7 @@ function showCities(e){
     let citiesURI = host+"/countries/"+countryID+"/states/"+stateID+"/cities"
     postData(citiesURI, {}, authorizationHeader(), "GET").then((data)=>{
         if (data) {
+            emptyDataList(targetCitiesElem)
             for (var i=0; i< data.length; i++){
                 o = document.createElement("option")
                 o.innerHTML = data[i].Name
@@ -291,8 +286,8 @@ function showCities(e){
 
 function showStates(e){
     console.log(e)
-    elem = document.getElementById(e.srcElement.id)
-    targetStateElem = document.getElementById(elem.getAttribute("statesElemId"))
+    let elem = document.getElementById(e.srcElement.id)
+    let targetStateElem = document.getElementById(elem.getAttribute("statesElemId"))
 
     countryName = elem.value
     countryID = getDatalistOptionsAttr(elem, "countryid", countryName)
@@ -301,10 +296,9 @@ function showStates(e){
 
     postData(statesURI, {}, authorizationHeader(), "GET").then((data)=>{
         if (data){
-            targetStateElem.length = 1
-
+            emptyDataList(targetStateElem)
             for (var i=0; i<data.length; i++){
-                o = document.createElement("option")
+                let o = document.createElement("option")
                 o.innerHTML = data[i].Name +" ("+data[i].ISO2Code+")"
                 o.setAttribute("value", data[i].Name +" ("+data[i].ISO2Code+")")
                 o.setAttribute("stateid", data[i].Id)
@@ -318,7 +312,17 @@ function showStates(e){
     })
 }
 
+function emptyDataList(dataList){
+    // set datalist's respective input field to empty
+    dataList.parentNode.children[0].value=""
+
+    dataList.innerHTML = ""
+}
+
 function getDatalistOptionsAttr(elem, attrName, countryName){
+    if (countryName == ""){
+        return ""
+    }
     parent = elem.parentNode
     siblings = parent.children
     for (var i=0; i< siblings.length; i++){
