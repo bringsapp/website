@@ -1,7 +1,7 @@
 *{
     font-family: 'Sen', sans-serif;
     margin: 0;
-    font-size: large;
+    /* font-size: large; */
     word-wrap: break-word;
 }
 #logo{
@@ -57,7 +57,7 @@ a{
 .loginforminput{
     border: none;
     padding: 15px;
-    background-color: #f4f4f6;
+    background-color: white;
     width: 90%;
 }
 
@@ -84,6 +84,8 @@ a{
 
 #how{
     width: 50%;
+    background-color: #eaedfe;
+    border-radius: 10px;
 }
 
 .sections{
@@ -158,6 +160,12 @@ hr{
     }
 }
 
+
+@media (max-width: 900px) {
+    #wrapper{
+        flex-direction: column !important;
+    }
+}
 
 @media (max-width:650px) {
     #travels,#entries,#searchcontent,#messageswrapper,#userdetails{
@@ -964,4 +972,26 @@ textarea{
 .ainspan{
     color: inherit;
     font-size: inherit;
+}
+
+#wrapper {
+    background-color: #f4f4f6;
+    display: flex;
+    flex-direction: row;
+    width: 75%;
+    margin: auto;
+    border-radius: 15px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    padding-top: 70px;
+    padding-bottom: 70px;
+    padding-left: 30px;
+    padding-right: 30px;
+}
+
+footer{
+    /* background-color: #6560ff; */
+    margin-top: 20px;
+    /* width: 90%; */
+    /* margin:auto; */
 }

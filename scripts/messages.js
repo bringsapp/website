@@ -17,6 +17,7 @@ function initMessagesAndCount(isUsersPhoneVerified){
     let getMessagesCount = host+"/messages/count?to="+payloadObj.Username
     postData(getMessagesCount, {}, authorizationHeader(), "GET").then((data)=>{
         hideLoadingIcon()
+        console.log("data that we got for messages and count ", data)
         if (data){
             let msgsOfUserElem = document.getElementById("messageswrapper")
             if (data.length == 0){
