@@ -261,13 +261,16 @@ function subscribeForNotifs(){
     let vapidPublicKey =
       'BOZ5ZT9HIZPM9r_fFh5DIiv5uNQ80i10m1kMcxTVEB522WujTj6q6x9JNIjPUj5i5DlTJssaX5K7f8XOiM13-nQ';
 
-
+    let notifStatus = document.getElementById("subsstatus")
     if ('serviceWorker' in navigator ){
         navigator.serviceWorker.register('sw.js').then(function (registration){
             return registration.pushManager.getSubscription().then(function (subscription){
                 if (subscription){
                     // already subscribed
-                    console.log("already subd ", subscription)
+                    notifStatus.innerHTML = "You are already subscribed for notifications."
+                    setTimeout(() => {
+                        notifStatus.innerHTML=""
+                    }, 4000);
                     return
                 }
 
@@ -293,9 +296,15 @@ function subscribeForNotifs(){
                     }
                     postData(host+'/notifs/register?userid='+from, subData, headers,"POST").then((data)=>{
                         if (data){
-                            console.log("subscribed successfully.")
+                            notifStatus.innerHTML = "You are now subscribed for new messages notifications."
+                            setTimeout(() => {
+                                notifStatus.innerHTML = ""
+                            }, 4000);
                         } else {
-                            console.log("something went wrong subscribing")
+                            notifStatus.innerHTML = "Somthing went wrong. Please try again."
+                            setTimeout(() => {
+                                notifStatus.innerHTML = ""
+                            }, 4000);
                         }
                     })
                 })
