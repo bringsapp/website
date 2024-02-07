@@ -1,7 +1,6 @@
 *{
     font-family: 'Sen', sans-serif;
     margin: 0;
-    /* font-size: large; */
     word-wrap: break-word;
 }
 #logo{
@@ -57,8 +56,12 @@ a{
 .loginforminput{
     border: none;
     padding: 15px;
-    background-color: white;
+    background-color: #f4f4f6;
     width: 90%;
+}
+
+.bgwhite{
+    background-color: white;
 }
 
 #reggender{
@@ -113,7 +116,7 @@ a{
 
 .highlight{
     background-color: #6560ff;
-    padding: 5px;
+    padding: 2px;
     color: white;
 }
 
@@ -150,7 +153,7 @@ hr{
         width: 100%;
     }
     #how{
-        width: 100%;
+        width: 100% !important;
     }
     .sectioncontainer{
         width: 80%;
@@ -164,6 +167,9 @@ hr{
 @media (max-width: 900px) {
     #wrapper{
         flex-direction: column !important;
+    }
+    #how{
+        width: 75%;
     }
 }
 
