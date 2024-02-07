@@ -281,29 +281,23 @@ function subscribeForNotifs(){
                     let rawAuthSecret = subscription.getKey ? subscription.getKey('auth'):'';
                     authSecret = rawAuthSecret ? btoa(String.fromCharCode.apply(null, new Uint8Array(rawAuthSecret))):'';
                     endpoint = subscription.endpoint
-                    let jwt=getCookie("token=")
-                    return fetch(host+'/notifs/register?userid='+from+'&token='+jwt, {
-                        method: 'post',
-                        mode: 'no-cors',
-                        headers: new Headers({
-                            'content-type': 'application/json'
-                        }),
-                        body: JSON.stringify({
-                            endpoint: endpoint,
-                            key: key,
-                            authSecret: authSecret,
-                        })
+
+                    let headers =  new Headers({
+                            'content-type': 'application/json',
+                            'Authorization' : 'Bearer '+jwt
+                            })
+                    let subData = {
+                        endpoint: endpoint,
+                        key: key,
+                        authSecret: authSecret,
+                    }
+                    postData(host+'/notifs/register?userid='+from, subData, headers,"POST").then((data)=>{
+                        if (data){
+                            console.log("subscribed successfully.")
+                        } else {
+                            console.log("something went wrong subscribing")
+                        }
                     })
-                    // postData(host+"/notifs/register", {
-                    //     endpoint: endpoint,
-                    //     key: key,
-                    //     authSecret: authSecret,
-                    // },
-                    // {
-                    //     'content-type': 'application/json'
-                    // },
-                    // "POST"
-                    // )
                 })
 
             })

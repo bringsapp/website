@@ -208,7 +208,7 @@ function todaysJustDate(){
 }
 
 function authorizationHeader(){
-    jwt=getCookie("token=")
+    let jwt=getCookie("token=")
 
     if (jwt == null){
         window.location ="/logout"

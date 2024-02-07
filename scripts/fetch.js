@@ -11,7 +11,6 @@ async function postData(url = "", data = {}, headers = {}, method = "GET") {
             referrerPolicy: "no-referrer",
         }
 
-
         if (method !="GET"){
             if (url.includes("/user/dp")){
                 requestInfo.body = data
