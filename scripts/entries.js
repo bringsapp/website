@@ -69,7 +69,7 @@ function displayRequest(travel){
         travelPost.classList.add("travelpost")
         travelPost.innerHTML = "Is anyone travelling from <span class=\"travellocation\">"+createDisplayableLocation(travel.From)
         +"</span> to <span class=\"travellocation\">"+createDisplayableLocation(travel.To)+"</span> and can bring around "+travel.Weight+
-            "grams of parcel for me."
+            " grams of parcel for me."
         travelElem.appendChild(travelPost)
 
         // travellingDate would have travel dates of traveller
@@ -124,7 +124,7 @@ function displayTravel(travel){
         travelPost.classList.add("travelpost")
         travelPost.innerHTML = "I am travelling from <span class=\"travellocation\">"+createDisplayableLocation(travel.From)+
         "</span> to <span class=\"travellocation\">"+createDisplayableLocation(travel.To)+"</span> and can bring around "+travel.Weight+
-            "grams of parcel with me."
+            " grams of parcel with me."
         travelElem.appendChild(travelPost)
 
         // travellingDate would have travel dates of traveller

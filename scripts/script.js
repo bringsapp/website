@@ -155,7 +155,7 @@ function isPhoneRegistered(){
     postData(host+"/contactno/registered?no="+phoneNo, {}, {}, "GET").then((data) => {
         if (data){
             if (data.Message == "true"){
-                phoneMsg.innerHTML = "Phone no is already registered, it looks like you already have an account."
+                phoneMsg.innerHTML = "Contact number is already registered, it looks like you already have an account."
                 phoneMsg.classList.remove("success")
                 phoneMsg.classList.add("warn")
                 this.setAttribute("valid", "false")
@@ -166,7 +166,7 @@ function isPhoneRegistered(){
         } else {
             phoneMsg.classList.add("warn")
             phoneMsg.classList.remove("success")
-            phoneMsg.innerHTML = "Something went wrong, while checking if phone is already registered."
+            phoneMsg.innerHTML = "Something went wrong, while checking if contact number is already registered."
             this.setAttribute("valid", false)
         }
     })

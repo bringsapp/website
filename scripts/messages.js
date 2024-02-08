@@ -21,7 +21,7 @@ function initMessagesAndCount(isUsersPhoneVerified){
         if (data){
             let msgsOfUserElem = document.getElementById("messageswrapper")
             if (data.length == 0){
-                document.getElementById("nomsgs").innerHTML = "No message found."
+                document.getElementById("nomsgs").innerHTML = "No messages found."
             } else {
                 document.getElementById("nomsgs").innerHTML = ""
             }
@@ -191,7 +191,7 @@ function msgBoxKeyPress(e, isUsersPhoneVerified, info){
         to = e.srcElement.getAttribute("userid")
         toUsername = e.srcElement.getAttribute("username")
         if (!isUsersPhoneVerified){
-            info.innerHTML = "Your contact no doesn't seem to be verified. Please <a class=\"ainspan\" href=\"../profile\">verify</a> it to be able to send messages."
+            info.innerHTML = "Your contact number doesn't seem to be verified. Please <a class=\"ainspan\" href=\"../profile\">verify</a> it to be able to send messages."
             info.classList.add("warn")
             return
         } else{
@@ -246,7 +246,6 @@ function sendMessage(body, to, msgElementId, toUsername, info){
         } else {
             info.classList.add("warn")
             info.innerHTML = "Something went wrong, sending the message."
-            console.log("something went wront writng the message", data)
         }
     })
 }
