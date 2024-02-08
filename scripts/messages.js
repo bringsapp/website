@@ -267,7 +267,7 @@ function subscribeForNotifs(){
                     notifStatus.innerHTML = "You are already subscribed for notifications."
                     setTimeout(() => {
                         notifStatus.innerHTML=""
-                    }, 4000);
+                    }, 10000);
                     return
                 }
 
@@ -296,12 +296,12 @@ function subscribeForNotifs(){
                             notifStatus.innerHTML = "You are now subscribed for new messages notifications."
                             setTimeout(() => {
                                 notifStatus.innerHTML = ""
-                            }, 4000);
+                            }, 10000);
                         } else {
                             notifStatus.innerHTML = "Somthing went wrong. Please try again."
                             setTimeout(() => {
                                 notifStatus.innerHTML = ""
-                            }, 4000);
+                            }, 10000);
                         }
                     })
                 })
