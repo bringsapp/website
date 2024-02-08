@@ -33,7 +33,6 @@ async function postData(url = "", data = {}, headers = {}, method = "GET") {
             return result
         } else {
             const notOKResult = await response.text()
-            console.log("notOKResult ", notOKResult)
             if (notOKResult == "Token provided in request is invalid\n"){
                 window.location ="/logout"
                 return
@@ -42,6 +41,6 @@ async function postData(url = "", data = {}, headers = {}, method = "GET") {
         return ok
     }
     catch (error){
-        console.log("Error in catch ",error)
+        console.log("Something broke ", error)
     }
   }

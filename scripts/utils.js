@@ -52,12 +52,6 @@ function hideDivWithID(id){
 }
 
 function eraseCookie() {
-    // let t = getCookie("token")
-    // const event = new Date('14 Jun 2017 00:00:00 PDT');
-    // let expires = event.toUTCString()
-    // c = name + "="+t+";"+ expires+"; SameSite=None; Secure";
-    // console.log("expires cookie ", c)
-    // document.cookie = c
     document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
 }
 
@@ -72,7 +66,6 @@ function createCookie(name, value, expiration) {
         expires = "";
     }
     c = name + "=" + value + ";"+ expires+"; SameSite=None; Secure";
-    console.log("setting cookie ", c)
     document.cookie = c
 }
 

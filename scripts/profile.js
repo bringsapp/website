@@ -66,7 +66,6 @@ function sendOTPAndVerify(){
 
     postData(otpRequest, {}, authorizationHeader(), "POST").then((data)=>{
         if (data){
-            console.log("message was sent successfully")
             // show div
             document.getElementById("otpwrapper").style.display = "block"
         } else{
@@ -212,7 +211,6 @@ function createTravel(){
         msg.classList.remove("warn")
         msg.classList.remove("success")
     }
-    console.log("after validation")
     travel = {
         "From":{
             "Country": Number(fromCountryId),
@@ -228,8 +226,6 @@ function createTravel(){
         "TravelDateRangeEnd": dateRangeEnd,
         "Weight": Number(weight)
     }
-
-    console.log("creating travel with ", travel)
 
     travelEntry = host+"/travels"
     postData(travelEntry, travel, authorizationHeader(), "POST").then((data)=>{
@@ -249,9 +245,6 @@ function createTravel(){
             msg.appendChild(sp)
         }
     })
-
-
-    console.log(fromCountryId, fromStateId, fromCityId)
 }
 
 function showCities(e){
@@ -284,7 +277,6 @@ function showCities(e){
 }
 
 function showStates(e){
-    console.log(e)
     let elem = document.getElementById(e.srcElement.id)
     let targetStateElem = document.getElementById(elem.getAttribute("statesElemId"))
 
@@ -372,8 +364,6 @@ function showCountries(){
                 anOption4.innerHTML = data[i].Name+" ("+data[i].ISO2Code+")"
                 anOption4.setAttribute("value", data[i].Name+" ("+data[i].ISO2Code+")")
                 anOption4.setAttribute("countryid", data[i].Id)
-
-                // console.log(travelFrom, travelTo, requestFrom, requestTo, anOption)
 
                 travelFrom.appendChild(anOption)
                 travelTo.appendChild(anOption2)

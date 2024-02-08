@@ -17,7 +17,6 @@ function initMessagesAndCount(isUsersPhoneVerified){
     let getMessagesCount = host+"/messages/count?to="+payloadObj.Username
     postData(getMessagesCount, {}, authorizationHeader(), "GET").then((data)=>{
         hideLoadingIcon()
-        console.log("data that we got for messages and count ", data)
         if (data){
             let msgsOfUserElem = document.getElementById("messageswrapper")
             if (data.length == 0){
@@ -91,7 +90,7 @@ function initMessagesAndCount(isUsersPhoneVerified){
                 msgsOfUserElem.appendChild(messanger)
             }
         } else {
-            console.log("soemthing went wrong gettting messages count")
+            console.log("soemthing went wrong gettting messages count.")
         }
     })
 }
@@ -165,7 +164,7 @@ function showConversation(e){
                 messagesBox.appendChild(msg)
             }
         } else {
-            console.log("something  went wrong getting all the conversations")
+            console.log("something went wrong getting all the conversations.")
         }
     })
     // TODO: scroll to the bottom if there are two many messages, there is no point staying at the top
@@ -177,16 +176,15 @@ function readAllMessage(to, from){
     let readMessages = host+"/messages/readall?to="+to+"&from="+from
     postData(readMessages, {}, authorizationHeader(), "POST").then((data)=>{
         if (data){
-            console.log(data)
+            // console.log(data)
         } else {
-            console.log("Something went wrong reading data from ", from , " to ", to)
+            console.log("Something went wrong reading all the messages.")
         }
     })
 }
 
 function msgBoxKeyPress(e, isUsersPhoneVerified, info){
     if (e.keyCode == 13){
-        console.log(e)
         body = document.getElementById(e.srcElement.id).value
         to = e.srcElement.getAttribute("userid")
         toUsername = e.srcElement.getAttribute("username")

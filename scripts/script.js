@@ -282,7 +282,6 @@ function showRegistrationForm(){
 }
 
 function showLoginForm(){
-    console.log("showLoginForm was clicked")
     hideDivWithID("registration")
     showDivWithID("login")
 }

@@ -27,7 +27,6 @@ function showPreviousMessages(){
     payloadObj=JSON.parse(payload)
     let userTwo = document.getElementById("username").innerHTML
 
-    console.log(payloadObj)
     let getConv = host+"/conversations?to="+payloadObj.Username+"&from="+userTwo
     postData(getConv, {}, authorizationHeader(), "GET").then((data)=>{
         messagesBox = document.getElementById("messageshere")
@@ -209,7 +208,6 @@ function showUser(){
 
                 var phoneVerified = document.getElementById("isphoneverified")
                 let verifImg = document.createElement("img")
-                console.log("phone verified ", data.PhoneVerified)
                 if (data.PhoneVerified == true){
                     verifImg.setAttribute("src", "../images/success.png")
                 } else {
