@@ -41,6 +41,7 @@ a{
 
 #login input{
     border-radius: 5px;
+    font-size: large;
 }
 
 #loginspan{
@@ -115,9 +116,11 @@ a{
 }
 
 .highlight{
-    background-color: #6560ff;
+    /* background-color: #6560ff; */
     padding: 2px;
-    color: white;
+    /* color: white; */
+    border: 1px solid #6560ff;
+    border-radius: 5px;
 }
 
 .questions{
@@ -224,6 +227,7 @@ hr{
 
 #registration input{
     border-radius: 5px;
+    font-size: large;
 }
 
 #leftentriessection, #rightentriessection{
@@ -743,11 +747,12 @@ textarea{
 
 #sendcodeforgotpwd{
     margin-top: 10px;
-    background-color: #6560ff;
+    /* background-color: #6560ff; */
     border: none;
-    color: white;
+    /* color: white; */
     padding: 5px;
     border-radius: 5px;
+    border: 1px solid #6560ff;
 }
 
 #forgotpass{
@@ -757,6 +762,7 @@ textarea{
 
 #forgotpass input{
     border-radius: 5px;
+    font-size: large;
 }
 
 @media (max-width:1000px) {

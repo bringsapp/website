@@ -405,7 +405,7 @@ function showOwnDetails(){
                 let metaElem = document.getElementById("loggedinusermeta")
                 metaElem.innerHTML = ""
                 let verifiedElem = document.createElement("span")
-                verifiedElem.innerHTML = "Phone is verified"
+                verifiedElem.innerHTML = "Contact number is verified."
                 metaElem.appendChild(verifiedElem)
             }
         } else {

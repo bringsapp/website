@@ -52,6 +52,7 @@ function displayRequest(travel){
             nameWrapper.appendChild(dp)
                 var img = document.createElement("img")
                 img.setAttribute("src", travel.CreatedBy.ProfilePicture);
+                img.setAttribute("alt", "Poster's profile picture")
                 img.classList.add("dpimg")
                 dp.appendChild(img)
 
@@ -105,6 +106,7 @@ function displayTravel(travel){
             nameWrapper.appendChild(dp)
                 var img = document.createElement("img")
                 img.setAttribute("src", travel.CreatedBy.ProfilePicture);
+                img.setAttribute("alt", "Poster's profile picture")
                 img.classList.add("dpimg")
                 dp.appendChild(img)
 

@@ -127,6 +127,7 @@ function displayLoggedInUserDetails(){
     return postData(getUserDetails, {}, authorizationHeader(), "GET").then((data)=>{
         if (data){
             imgElem = document.getElementById("loggedinuserimg")
+            imgElem.setAttribute("alt", "Logged in user's profile picture")
             imgElem.setAttribute("src", data.ProfilePicture)
 
             nameElem = document.getElementById("loggedinusername")
