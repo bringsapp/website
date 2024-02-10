@@ -722,7 +722,7 @@ textarea{
     box-sizing: border-box;
     background-color: #f5f6f7;
     border-radius: 10px;
-    /* display: none; */
+    display: none;
 }
 
 @media (max-width:900px) {
