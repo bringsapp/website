@@ -502,6 +502,7 @@ hr{
     background-color: #f5f6f7;
     border-radius: 10px;
     box-sizing: border-box;
+    font-size: medium;
 }
 
 #requestform input{
@@ -511,12 +512,8 @@ hr{
     border: none;
     background-color: #f5f6f7;
     border-radius: 10px;
+    font-size: medium;
 }
-
-/* #travelfrom input{
-    text-align: center;
-    padding: 5px;
-} */
 
 /* #travelto input{
     text-align: center;
@@ -538,6 +535,7 @@ hr{
     color: white;
     padding: 10px;
     border-radius: 5px;
+    font-size: medium;
 }
 
 .warn{
@@ -709,6 +707,7 @@ textarea{
     border: none;
     background-color: #f5f6f7;
     border-radius: 10px;
+    font-size: medium;
 }
 
 .hidden{
