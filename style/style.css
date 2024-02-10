@@ -722,13 +722,26 @@ textarea{
     box-sizing: border-box;
     background-color: #f5f6f7;
     border-radius: 10px;
-    display: none;
+    /* display: none; */
+}
+
+@media (max-width:900px) {
+    #otpwrapper{
+        width: 70%;
+    }
+}
+
+@media (max-width:700px) {
+    #otpwrapper{
+        width: 90%;
+    }
 }
 
 #otpwrapper input{
     padding: 10px;
     border: none;
     border-radius: 5px;
+    font-size: medium;
 }
 
 #otpverifybuton{
@@ -738,6 +751,8 @@ textarea{
     padding: 10px;
     margin-top: 5px;
     border-radius: 5px;
+    margin-top: 10px;
+    font-size: medium;
 }
 
 #isphoneverified img{
