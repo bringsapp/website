@@ -18,9 +18,9 @@ async function postData(url = "", data = {}, headers = {}, method = "GET") {
                 requestInfo.body = JSON.stringify(data)
             }
         }
-        console.log("immediately before fetch")
+
         const response = await fetch(url, requestInfo);
-        console.log("immediately after fetch")
+
         // in some cases we wouldn't want ok response and wouldn't want to throw an
         // error, for example invalid password et
         // if (!response.ok){
@@ -29,11 +29,9 @@ async function postData(url = "", data = {}, headers = {}, method = "GET") {
         ok = response.ok
 
         if (ok) {
-            console.log("response was ok")
             const result = await response.json()
             return result
         } else {
-            console.log("response was not ok")
             const notOKResult = await response.text()
             if (notOKResult == "Token provided in request is invalid\n"){
                 window.location ="/logout"
