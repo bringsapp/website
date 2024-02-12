@@ -8,6 +8,12 @@
     padding: 10px;
     cursor: pointer;
 }
+
+#landinglogo{
+    font-size: 48px;
+    padding: 10px;
+}
+
 .bold{
     font-weight: bold;
     /* font-weight: 600; */
@@ -266,6 +272,18 @@ hr{
     height: inherit;
     width: inherit;
     border-radius: 5px;
+    object-fit: cover;
+    object-position: top;
+}
+
+.maindp{
+    object-fit: cover;
+    object-position: top;
+}
+
+.userdp{
+    object-fit: cover;
+    object-position: top;
 }
 
 .namewrapper{
@@ -825,6 +843,8 @@ textarea{
 #imgpreview img{
     width: inherit;
     height: inherit;
+    object-fit: cover;
+    object-position: top;
 }
 
 #editdpwrapper input{
