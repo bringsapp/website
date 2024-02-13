@@ -7,10 +7,22 @@ document.addEventListener("DOMContentLoaded", function(){
         logoutButton.addEventListener("click", logout)
     }
 
-    document.getElementById("logo").addEventListener("click", handleLogoClick)
+    let logoElem = document.getElementById("logo")
+    if (logoElem){
+        logoElem.addEventListener("click", handleLogoClick)
+    }
+
+
+    let landingLogoElem = document.getElementById("landinglogo")
+    if (landingLogoElem){
+        landingLogoElem.addEventListener("click", handleLandingLogoClick)
+    }
     // animateLocations()
 })
 
+function handleLandingLogoClick(){
+    window.location = "/"
+}
 
 function animateLocations(){
     let sources = ["The Hague", "New Delhi"]

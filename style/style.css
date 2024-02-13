@@ -3,15 +3,10 @@
     margin: 0;
     word-wrap: break-word;
 }
-#logo{
+#logo,#landinglogo{
     font-size: 48px;
     padding: 10px;
     cursor: pointer;
-}
-
-#landinglogo{
-    font-size: 48px;
-    padding: 10px;
 }
 
 .bold{
