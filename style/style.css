@@ -1030,6 +1030,14 @@ textarea{
     padding-right: 30px;
 }
 
+@media (max-width: 392px) {
+    #wrapper{
+        width: 80%;
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+}
+
 footer{
     /* background-color: #6560ff; */
     margin-top: 20px;
