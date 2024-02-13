@@ -663,8 +663,9 @@ hr{
     border: none;
     border: 1px solid gray;
     border-radius: 5px;
-    padding: 3px;
+    padding: 15px;
     width: 70%;
+    font-size: medium;
 }
 
 #messageinput{
@@ -672,8 +673,9 @@ hr{
     border: none;
     border: 1px solid gray;
     border-radius: 5px;
-    padding: 3px;
+    padding: 15px;
     width: 70%;
+    font-size: medium;
 }
 
 textarea{
