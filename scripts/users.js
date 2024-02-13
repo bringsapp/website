@@ -144,6 +144,13 @@ function showEntries(){
     postData(getUserEntries, {}, authorizationHeader(), "GET").then((data)=>{
         hideLoadingIcon()
         if (data){
+            let entriesInfo = document.getElementById("userentriesinfo")
+            if (data.length == 0){
+                entriesInfo.innerHTML = "No entries found."
+                return
+            } else {
+                entriesInfo.innerHTML = ""
+            }
             for (var i=0; i< data.length; i++){
                 showUserEntry(data[i])
             }
