@@ -449,12 +449,15 @@ hr{
 .convmsgspan{
     background-color: #6560ff;
     border-radius: 5px;
+    padding-left: 7px;
+    padding-right: 7px;
 }
 
 .convmsgspantwo{
     background-color: #ffbf00a9;
-    /* padding: 0px; */
     border-radius: 5px;
+    padding-left: 7px;
+    padding-right: 7px;
 }
 
 #createentries{
@@ -695,14 +698,6 @@ textarea{
     font-size: x-small;
     border-radius: 10px;
 }
-
-/* .convmsgspan{
-    line-height: 5px;
-}
-
-.convmsgspantwo{
-    line-height: 5px;
-} */
 
 .travellername{
     padding-top: 15px;
