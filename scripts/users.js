@@ -8,6 +8,10 @@ document.addEventListener("DOMContentLoaded", function(){
         document.getElementById("messageinput").addEventListener("keypress", (e)=>{
             messageTyped(e, data.PhoneVerified)
         })
+
+        document.getElementById("sendmsgbutton").addEventListener("click", (e)=>{
+            sendMsgClicked(e, data.PhoneVerified)
+        })
     })
 
     showUser()
@@ -58,24 +62,42 @@ function showPreviousMessages(){
 
 function messageTyped(e, phoneVerified){
      if (e.keyCode == 13){
-        let i = document.getElementById("newmsginfo")
-        if (!phoneVerified){
-            i.innerHTML = "Your contact number doesn't seem to be verified. Please <a class=\"ainspan\" href=\"../profile\">verify</a> it to be able to send messages."
-            i.classList.add("warn")
-            return
-        } else {
-            i.innerHTML = ""
-            i.classList.remove("warn")
-        }
+        let info = document.getElementById("newmsginfo")
 
-        body = document.getElementById(e.srcElement.id).value
-        to = document.getElementById("hiddenuserid").innerHTML
-        if (body.trim() !=""){
-            sendMessage(body, to, e.srcElement.id)
-        } else {
-            e.srcElement.value =""
-        }
+        let msgElementID = e.srcElement.id
+        let body = document.getElementById(msgElementID).value
+        let to = document.getElementById("hiddenuserid").innerHTML
+
+        validateAndSend(body, to, phoneVerified, info, msgElementID)
      }
+}
+
+function sendMsgClicked(e, phoneVerified){
+    let info = document.getElementById("newmsginfo")
+
+    let btn = document.getElementById(e.srcElement.id)
+    let msgElementID = btn.getAttribute("msgelemid")
+    let body = document.getElementById(msgElementID).value
+    let to = document.getElementById("hiddenuserid").innerHTML
+
+    validateAndSend(body, to, phoneVerified, info, msgElementID)
+}
+
+function validateAndSend(body, to, phoneVerified, msgInfoElem, msgElemId){
+    if (!phoneVerified){
+        msgInfoElem.innerHTML = "Your contact number doesn't seem to be verified. Please <a class=\"ainspan\" href=\"../profile\">verify</a> it to be able to send messages."
+        msgInfoElem.classList.add("warn")
+        return
+    } else {
+        msgInfoElem.innerHTML = ""
+        msgInfoElem.classList.remove("warn")
+    }
+
+    if (body.trim() !=""){
+        sendMessage(body, to, msgElemId)
+    } else {
+        document.getElementById(msgElemId).value =""
+    }
 }
 
 function sendMessage(body, to, msgElementId){

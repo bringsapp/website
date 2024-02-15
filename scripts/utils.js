@@ -1,5 +1,5 @@
-host = "https://api.bringsapp.com"
-// host = "http://127.0.0.1:8080"
+// host = "https://api.bringsapp.com"
+host = "http://127.0.0.1:8080"
 
 document.addEventListener("DOMContentLoaded", function(){
     let logoutButton = document.getElementById("logout")

@@ -73,16 +73,34 @@ function initMessagesAndCount(isUsersPhoneVerified){
                             msgInfo.classList.add("text-cen")
                             msgInfo.classList.add("fontsmall")
 
-                        let msgBox = document.createElement("textarea")
-                        msgBox.classList.add("usermsgbox")
-                        msgBox.setAttribute("id", "msgbox-"+data[i].From.Username)
-                        msgBox.setAttribute("userid", data[i].From.Id)
-                        msgBox.setAttribute("username", data[i].From.Username)
-                        msgBox.setAttribute("placeholder", "Hit enter to send.")
-                        msgBox.addEventListener("keypress", function(e){
-                            msgBoxKeyPress(e, isUsersPhoneVerified, msgInfo)
-                        })
-                        postMessageSection.appendChild(msgBox)
+                        let msgBoxDiv = document.createElement("div")
+                            let msgBox = document.createElement("textarea")
+                            msgBox.classList.add("usermsgbox")
+                            msgBox.setAttribute("id", "msgbox-"+data[i].From.Username)
+                            msgBox.setAttribute("userid", data[i].From.Id)
+                            msgBox.setAttribute("username", data[i].From.Username)
+                            msgBox.setAttribute("placeholder", "Hit enter to send.")
+                            msgBox.addEventListener("keypress", function(e){
+                                msgBoxKeyPress(e, isUsersPhoneVerified, msgInfo)
+                            })
+                            msgBoxDiv.appendChild(msgBox)
+                        postMessageSection.appendChild(msgBoxDiv)
+
+                        let sendMsgButtonDiv = document.createElement("div")
+                            let sendMsgButton = document.createElement("button")
+                            sendMsgButton.classList.add("fontlarge")
+                            sendMsgButton.classList.add("sendbutton")
+                            sendMsgButton.setAttribute("msgelemid", "msgbox-"+data[i].From.Username)
+                            sendMsgButton.setAttribute("userid", data[i].From.Id)
+                            sendMsgButton.setAttribute("username", data[i].From.Username)
+                            sendMsgButton.setAttribute("id", "sendbutton"+data[i].From.Username)
+                            sendMsgButton.addEventListener("click", function(e){
+                                msgSendButtonClicked(e, isUsersPhoneVerified, msgInfo)
+                            })
+                            sendMsgButton.innerHTML = "Send"
+                        sendMsgButtonDiv.appendChild(sendMsgButton)
+
+                        postMessageSection.appendChild(sendMsgButtonDiv)
                         postMessageSection.appendChild(msgInfo)
 
                     messanger.appendChild(postMessageSection)
@@ -117,14 +135,14 @@ function showConversation(e){
     convBox.innerHTML = ""
 
     // hide all the post message text areas and just how the clicked one
-    let allMsgBoxes = document.getElementsByClassName("usermsgbox")
+    let allMsgBoxes = document.getElementsByClassName("postmessage")
     for (let i=0; i< allMsgBoxes.length; i++){
         let id = allMsgBoxes[i].getAttribute("id")
-        if (id != "msgbox-"+clickedId){
+        if (id != "postmessage-"+clickedId){
             allMsgBoxes[i].style.display = "none"
         }
     }
-    let msgBox = document.getElementById("msgbox-"+senderUsername)
+    let msgBox = document.getElementById("postmessage-"+senderUsername)
     if (msgBox.style.display == "block"){
         msgBox.style.display ="none"
     } else if (msgBox.style.display == "none"){
@@ -185,26 +203,44 @@ function readAllMessage(to, from){
 
 function msgBoxKeyPress(e, isUsersPhoneVerified, info){
     if (e.keyCode == 13){
-        body = document.getElementById(e.srcElement.id).value
-        to = e.srcElement.getAttribute("userid")
-        toUsername = e.srcElement.getAttribute("username")
-        if (!isUsersPhoneVerified){
-            info.innerHTML = "Your contact number doesn't seem to be verified. Please <a class=\"ainspan\" href=\"../profile\">verify</a> it to be able to send messages."
-            info.classList.add("warn")
-            return
-        } else{
-            info.classList.remove("warn")
-            info.innerHTML = ""
-        }
+        let srcElementId = e.srcElement.id
+        let body = document.getElementById(srcElementId).value
+        let toId = e.srcElement.getAttribute("userid")
+        let toUsername = e.srcElement.getAttribute("username")
 
-        if (body.trim() != ""){
-            sendMessage(body, to, e.srcElement.id, toUsername, info)
-        } else {
-            e.srcElement.value =""
-        }
+        validateAndSend(body, toId, toUsername, isUsersPhoneVerified, info, srcElementId)
     }
 }
 
+function validateAndSend(body, toId, toUsername, isUsersPhoneVerified, info, msgElemId){
+    if (!isUsersPhoneVerified){
+        info.innerHTML = "Your contact number doesn't seem to be verified. Please <a class=\"ainspan\" href=\"../profile\">verify</a> it to be able to send messages."
+        info.classList.add("warn")
+        return
+    } else{
+        info.classList.remove("warn")
+        info.innerHTML = ""
+    }
+
+    if (body.trim() != ""){
+        sendMessage(body, toId, msgElemId, toUsername, info)
+    } else {
+        document.getElementById(msgElemId).value =""
+    }
+}
+
+function msgSendButtonClicked(e, isUsersPhoneVerified, info){
+    console.log(e)
+    let btn = document.getElementById(e.srcElement.id)
+    let msgElemId = btn.getAttribute("msgelemid")
+
+    let body = document.getElementById(msgElemId).value
+    let toId = btn.getAttribute("userid")
+    let toUsername = btn.getAttribute("username")
+
+
+    validateAndSend(body, toId, toUsername, isUsersPhoneVerified, info, msgElemId)
+}
 
 function sendMessage(body, to, msgElementId, toUsername, info){
     jwt=getCookie("token=")
