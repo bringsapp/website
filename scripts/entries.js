@@ -60,7 +60,7 @@ function displayRequest(travel){
             var named = document.createElement("div")
             named.classList.add("travellername")
                 var nameanchor = document.createElement("a")
-                nameanchor.setAttribute("href", "../users#username="+travel.CreatedBy.Username);
+                nameanchor.setAttribute("href", userNameAnchorInEntries(travel.CreatedBy.Username));
                 nameanchor.innerHTML=travel.CreatedBy.FirstName+" "+travel.CreatedBy.LastName
                 named.appendChild(nameanchor)
             nameWrapper.appendChild(named)
@@ -116,7 +116,7 @@ function displayTravel(travel){
             // name.innerHTML = travel.Traveller.FirstName+" "+travel.Traveller.LastName
             nameWrapper.appendChild(name)
                 var nameanchor = document.createElement("a")
-                nameanchor.setAttribute("href", "../users#username="+travel.CreatedBy.Username);
+                nameanchor.setAttribute("href",   userNameAnchorInEntries(travel.CreatedBy.Username));
                 nameanchor.innerHTML=travel.CreatedBy.FirstName+" "+travel.CreatedBy.LastName
                 name.appendChild(nameanchor)
 

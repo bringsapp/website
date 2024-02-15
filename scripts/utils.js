@@ -7,10 +7,22 @@ document.addEventListener("DOMContentLoaded", function(){
         logoutButton.addEventListener("click", logout)
     }
 
-    document.getElementById("logo").addEventListener("click", handleLogoClick)
+    let logoElem = document.getElementById("logo")
+    if (logoElem){
+        logoElem.addEventListener("click", handleLogoClick)
+    }
+
+
+    let landingLogoElem = document.getElementById("landinglogo")
+    if (landingLogoElem){
+        landingLogoElem.addEventListener("click", handleLandingLogoClick)
+    }
     // animateLocations()
 })
 
+function handleLandingLogoClick(){
+    window.location = "/"
+}
 
 function animateLocations(){
     let sources = ["The Hague", "New Delhi"]
@@ -211,4 +223,24 @@ function authorizationHeader(){
     return {
         "Authorization":"Bearer "+jwt
     }
+}
+
+function userNameAnchorInEntries(username){
+    let jwt=getCookie("token=")
+
+    if (jwt == null){
+        window.location ="/logout"
+    }
+
+    // get username from token
+    let encodedPayload = jwt.split(".")[1]
+    let payload = atob(encodedPayload) // prints '{"UserID":2,"exp":1704534268}'
+    let payloadObj = JSON.parse(payload)
+
+    if (username == payloadObj.Username){
+        // click on name of logged in user
+        return "../profile"
+    }
+
+    return "../users#username="+username
 }

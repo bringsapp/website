@@ -2,16 +2,12 @@
     font-family: 'Sen', sans-serif;
     margin: 0;
     word-wrap: break-word;
+    font-size: large;
 }
-#logo{
+#logo,#landinglogo{
     font-size: 48px;
     padding: 10px;
     cursor: pointer;
-}
-
-#landinglogo{
-    font-size: 48px;
-    padding: 10px;
 }
 
 .bold{
@@ -453,12 +449,15 @@ hr{
 .convmsgspan{
     background-color: #6560ff;
     border-radius: 5px;
+    padding-left: 7px;
+    padding-right: 7px;
 }
 
 .convmsgspantwo{
     background-color: #ffbf00a9;
-    /* padding: 0px; */
     border-radius: 5px;
+    padding-left: 7px;
+    padding-right: 7px;
 }
 
 #createentries{
@@ -660,25 +659,29 @@ hr{
 
 .postmessage{
     margin-top: 10px;
+    display: none;
+    text-align: center;
 }
 
 .usermsgbox{
-    display: none;
+    /* display: none; */
     margin: auto;
     border: none;
-    border: 1px solid gray;
+    border: 2px solid black;
     border-radius: 5px;
-    padding: 3px;
+    padding: 15px;
     width: 70%;
+    /* font-size: medium; */
 }
 
 #messageinput{
     margin: auto;
     border: none;
-    border: 1px solid gray;
+    border: 2px solid black;
     border-radius: 5px;
-    padding: 3px;
+    padding: 15px;
     width: 70%;
+    font-size: medium;
 }
 
 textarea{
@@ -695,14 +698,6 @@ textarea{
     font-size: x-small;
     border-radius: 10px;
 }
-
-/* .convmsgspan{
-    line-height: 5px;
-}
-
-.convmsgspantwo{
-    line-height: 5px;
-} */
 
 .travellername{
     padding-top: 15px;
@@ -1035,6 +1030,14 @@ textarea{
     padding-right: 30px;
 }
 
+@media (max-width: 392px) {
+    #wrapper{
+        width: 80%;
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+}
+
 footer{
     /* background-color: #6560ff; */
     margin-top: 20px;
@@ -1045,4 +1048,42 @@ footer{
 #loginbuttonwrapper{
     display: flex;
     align-items: center;
+}
+
+.fontmed{
+    font-size: medium;
+}
+
+.fontlarge{
+    font-size: large;
+}
+
+
+.sendbutton{
+    text-align: center;
+    border: none;
+    color: black;
+    box-sizing: border-box;
+    border: 2px solid black;
+    cursor: pointer;
+    padding-left: 15px;
+    padding-right: 45px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    background-color: white;
+    /* margin-top: -7px; */
+    border-radius: 0px 0px 10px 10px;
+}
+
+
+#sendmsgbutton::after{
+    content: url("../images/send.png");
+    position: absolute;
+    margin-left: 10px;
+}
+
+.sendbutton::after{
+    content: url("../images/send.png");
+    position: absolute;
+    margin-left: 10px;
 }

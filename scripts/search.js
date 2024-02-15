@@ -142,7 +142,7 @@ function displayRequest(request, requestsElem){
             // name.innerHTML = travel.Traveller.FirstName+" "+travel.Traveller.LastName
             nameWrapper.appendChild(name)
                 var nameanchor = document.createElement("a")
-                nameanchor.setAttribute("href", "../users#username="+request.Requester.Username);
+                nameanchor.setAttribute("href", userNameAnchorInEntries(request.Requester.Username));
                 nameanchor.innerHTML=request.Requester.FirstName+" "+request.Requester.LastName
                 name.appendChild(nameanchor)
 
@@ -196,7 +196,7 @@ function displayTravel(travel, travelsElem){
             // name.innerHTML = travel.Traveller.FirstName+" "+travel.Traveller.LastName
             nameWrapper.appendChild(name)
                 var nameanchor = document.createElement("a")
-                nameanchor.setAttribute("href", "../users#username="+travel.Traveller.Username);
+                nameanchor.setAttribute("href", userNameAnchorInEntries(travel.Traveller.Username));
                 nameanchor.innerHTML=travel.Traveller.FirstName+" "+travel.Traveller.LastName
                 name.appendChild(nameanchor)
 

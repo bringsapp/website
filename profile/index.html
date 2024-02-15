@@ -82,7 +82,12 @@
     <div id="entryforms">
         <div id="travelform" class="entryform">
             <div>
-                <span class="closeentryforms"><img src="../images/left-arrow.png" class="backarrow" /></span>
+                <div>
+                    <span class="closeentryforms"><img src="../images/left-arrow.png" class="backarrow" /></span>
+                </div>
+                <div class="text-cen bold">
+                    Add a Travel.
+                </div>
             </div>
             <form id="travelformid">
                 <div id="travelfrom" class="formsections">
@@ -126,7 +131,8 @@
                     </div>
                 </div>
                 <div  class="formsections">
-                    Travelling between <input type="date" id="traveldaterangestart" /> and <input type="date" id="traveldaterangeend" /> and can carry <input type="text" id="travelitemweight" /> grams of item.
+                    Travelling between <input type="date" id="traveldaterangestart" placeholder="dd/mm/yyyy" /> and
+                    <input type="date" id="traveldaterangeend" placeholder="dd/mm/yyyy" /> and can carry <input type="text" id="travelitemweight" /> grams of item.
                 </div>
                 <div class="formsections" style="margin-bottom: 10px;">
                     <button id="submittravel" class="submitentrybutton pointer" onclick="return false">Submit Travel</button>
@@ -137,12 +143,17 @@
         </div>
         <div id="requestform" class="entryform">
             <div>
-                <span class="closeentryforms"><img src="../images/left-arrow.png" class="backarrow" /></span>
+                <div>
+                    <span class="closeentryforms"><img src="../images/left-arrow.png" class="backarrow" /></span>
+                </div>
+                <div class="text-cen bold">
+                    Add a request.
+                </div>
             </div>
             <form id="requestformid">
                 <div id="requestfrom" class="formsections">
                     <div>
-                        Requesting From:
+                        From:
                     </div>
                     <div id="requestfromcountries" class="fromselect fromselectipdiv">
                         <input placeholder="Country" id="requestfromselectcountryip" list="requestfromselectcountry" class="selectcountry" statesElemId="requestselectstate"/>
@@ -181,7 +192,7 @@
                     </div>
                 </div>
                 <div  class="formsections">
-                    It weighs around <input type="text" id="requestedweight" /> and I preferrably need this before <input type="date" id="requesteddate"/>.
+                    It weighs around <input type="text" id="requestedweight" /> and I preferrably need this before <input type="date" id="requesteddate" placeholder="dd/mm/yyyy"/>.
                 </div>
                 <div class="formsections" style="margin-bottom: 10px;">
                     <button id="submitrequest" class="submitentrybutton pointer" onclick="return false">Submit Request</button>
@@ -191,8 +202,6 @@
             </form>
         </div>
     </div>
-
-
 
     <div id="entrieswrapper">
         <div>
