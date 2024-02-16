@@ -273,8 +273,14 @@ function sendMessage(body, to, msgElementId, toUsername, info){
             document.getElementById(msgElementId).value = ""
 
             var newMessage = document.createElement("div")
-            newMessage.classList.add("newmsg")
-            newMessage.innerHTML = body
+            newMessage.classList.add("convmsg")
+            newMessage.classList.add("fromusertologgedin")
+
+                var msgSpan = document.createElement("span")
+                msgSpan.innerHTML = body
+                msgSpan.classList.add("convmsgspan")
+                newMessage.appendChild(msgSpan)
+
             messagesHere.appendChild(newMessage)
             newMessage.scrollIntoView()
         } else {

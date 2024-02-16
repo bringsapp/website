@@ -434,11 +434,11 @@ hr{
 }
 
 .fromloggedintouser{
-    text-align: right;
+    text-align: left;
 }
 
 .fromusertologgedin{
-    text-align: left;
+    text-align: right;
 }
 
 .convmsg{
