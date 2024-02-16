@@ -464,11 +464,11 @@ function showUserEntry(data){
             var entry = document.createElement("div")
             entry.classList.add("userentry")
             if (data.EntryType =="travel"){
-                entry.innerHTML = "I am traveling from <span class=\"bold\">"+
+                entry.innerHTML = "I am travelling from <span class=\"bold\">"+
                 createDisplayableLocation(data.From)+"</span> to <span class=\"bold\">"+
                 createDisplayableLocation(data.To)+".";
             } else if (data.EntryType =="request") {
-                entry.innerHTML = "Is anyone traveling from <span class=\"bold\">"+
+                entry.innerHTML = "Is anyone travelling from <span class=\"bold\">"+
                 createDisplayableLocation(data.From)+"</span> to <span class=\"bold\">"+
                 createDisplayableLocation(data.To)+".";
             }
