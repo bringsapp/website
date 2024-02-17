@@ -4,37 +4,37 @@
     "description": "Web application that can be used to figure out if someone is travelling between locations to that people can request them to bring someting.",
     "icons": [
       {
-        "src": "images/logos/appicons/rad20/logo-48.png",
+        "src": "images/logos/appicons/rad5/logo-48.png",
         "sizes": "48x48",
         "type": "image/png"
       },
       {
-        "src": "images/logos/appicons/rad20/logo-72.png",
+        "src": "images/logos/appicons/rad5/logo-72.png",
         "sizes": "72x72",
         "type": "image/png"
       },
       {
-        "src": "images/logos/appicons/rad20/logo-96.png",
+        "src": "images/logos/appicons/rad5/logo-96.png",
         "sizes": "96x96",
         "type": "image/png"
       },
       {
-        "src": "images/logos/appicons/rad20/logo-144.png",
+        "src": "images/logos/appicons/rad5/logo-144.png",
         "sizes": "144x144",
         "type": "image/png"
       },
       {
-        "src": "images/logos/appicons/rad20/logo-168.png",
+        "src": "images/logos/appicons/rad5/logo-168.png",
         "sizes": "168x168",
         "type": "image/png"
       },
       {
-        "src": "images/logos/appicons/rad20/logo-192.png",
+        "src": "images/logos/appicons/rad5/logo-192.png",
         "sizes": "192x192",
         "type": "image/png"
       },
       {
-        "src": "images/logos/appicons/rad20/logo-512.png",
+        "src": "images/logos/appicons/rad5/logo-512.png",
         "sizes": "512x512",
         "type": "image/png"
       }

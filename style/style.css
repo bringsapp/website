@@ -416,7 +416,7 @@ hr{
 }
 
 #messageshere{
-    height: 500px;
+    height: 300px;
     /* background-color: #f4f4f6; */
     overflow-y: scroll;
     padding: 20px;
