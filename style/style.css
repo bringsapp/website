@@ -24,7 +24,7 @@
     background-image: url('../images/dot-grid.png');
     background-color: #fffcf3;
     padding: 90px;
-    /* font-weight: bold; */
+    padding-bottom: 40px;
 }
 .padding-30{
     padding: 30px;
@@ -192,7 +192,7 @@ hr{
 }
 
 /* profile add entry buttons */
-@media (max-width:410px){
+@media (max-width:600px){
     #title{
         padding-left: 10px;
         padding-right: 10px;
@@ -1085,3 +1085,21 @@ footer{
 .navhl{
     border-bottom: 2px solid;
 }
+
+.helpbox{
+    width: 50%;
+    margin: auto;
+    margin-top: 40px;
+    font-size: medium;
+    border: 1px solid #6560ff;
+    border-radius: 10px;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+@media (max-width:900px){
+    .helpbox{
+        width: 90%;
+    }
+}
+
