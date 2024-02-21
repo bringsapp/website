@@ -489,10 +489,6 @@ hr{
     border-radius: 5px;
 }
 
-.toselectipdiv,.fromselectipdiv{
-    /* margin-top: 5px; */
-}
-
 .toselectipdiv input{
     padding: 5px;
 }
@@ -568,7 +564,7 @@ hr{
 }
 
 .navdiv{
-    float: left;
+    padding-bottom: 5px;
     width: 32px;
     height: 32px;
     cursor: pointer;
@@ -585,15 +581,13 @@ hr{
     height: inherit;
 }
 
-.ml-20{
-    margin-left: 20px;
-}
-
 #navigation{
     margin-top: 20px !important;
     margin: auto;
     width: 240px;
     height: 32px;
+    display: flex;
+    justify-content: space-between;
 }
 
 .addentryspn{
@@ -1086,4 +1080,8 @@ footer{
     content: url("../images/send.png");
     position: absolute;
     margin-left: 10px;
+}
+
+.navhl{
+    border-bottom: 2px solid;
 }
