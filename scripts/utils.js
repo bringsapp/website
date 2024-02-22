@@ -244,3 +244,10 @@ function userNameAnchorInEntries(username){
 
     return "../users#username="+username
 }
+
+function emptyDataList(dataList){
+    // set datalist's respective input field to empty
+    dataList.parentNode.children[0].value=""
+
+    dataList.innerHTML = ""
+}

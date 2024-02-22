@@ -303,13 +303,6 @@ function showStates(e){
     })
 }
 
-function emptyDataList(dataList){
-    // set datalist's respective input field to empty
-    dataList.parentNode.children[0].value=""
-
-    dataList.innerHTML = ""
-}
-
 function getDatalistOptionsAttr(elem, attrName, countryName){
     if (countryName == ""){
         return ""
