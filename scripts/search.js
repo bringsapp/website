@@ -247,6 +247,7 @@ function showCities(e){
 
     postData(getStatesCities, {}, authorizationHeader(), "GET").then((data)=>{
         if (data) {
+            emptyDataList(targetCitiesElem)
             for (var i=0; i< data.length; i++){
                 o = document.createElement("option")
                 o.innerHTML = data[i].Name
@@ -261,6 +262,10 @@ function showCities(e){
 }
 
 function getDatalistOptionsAttr(elem, attrName, countryName){
+    if (countryName == ""){
+        return ""
+    }
+
     parent = elem.parentNode
     siblings = parent.children
     for (var i=0; i< siblings.length; i++){
@@ -294,8 +299,7 @@ function showStates(e){
 
     postData(getStates, {}, authorizationHeader(), "GET").then((data)=>{
         if (data){
-            targetStateElem.length = 1
-
+            emptyDataList(targetStateElem)
             for (var i=0; i<data.length; i++){
                 o = document.createElement("option")
                 o.innerHTML = data[i].Name +" ("+data[i].ISO2Code+")"
