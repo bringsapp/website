@@ -272,9 +272,9 @@ function getDatalistOptionsAttr(elem, attrName, countryName){
         // nodeName:  "DATALIST"
         if (siblings[i].nodeName == "DATALIST"){
             datalist = siblings[i]
-            for (var i=0; i < datalist.options.length; i++){
-                if (datalist.options[i].value == countryName){
-                    return datalist.options[i].getAttribute(attrName)
+            for (var j=0; j < datalist.options.length; j++){
+                if (datalist.options[j].value == countryName){
+                    return datalist.options[j].getAttribute(attrName)
                 }
             }
         }

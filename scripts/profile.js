@@ -186,11 +186,20 @@ function createTravel(){
 
     weight = document.getElementById("travelitemweight").value
 
+    let msg = document.getElementById("travelmessage")
+    // handle cases where random inputs are added manually and not selected via datalist
+    if (fromCountryId === undefined || fromStateId === undefined || fromCityId === undefined || toCountryId === undefined || toStateId === undefined || toCityId === undefined){
+        msg.innerHTML = ""
+        msg.innerHTML ="Please input data correctly. Select inputs from drop down if available."
+        msg.classList.remove("success")
+        msg.classList.add("warn")
+        return
+    }
+
     let todaysDate = todaysJustDate()
     let dRangeStart = new Date(dateRangeStart)
     let dRangeEnd =  new Date(dateRangeEnd)
 
-    let msg = document.getElementById("travelmessage")
     if (fromCountry.value =="" || fromCountry.value =="select"
         || toCountry.value ==""  || toCountry.value == "select"
         || dateRangeStart =="" || dateRangeEnd=="" || weight =="" || weight == "0" ) {
@@ -259,6 +268,18 @@ function showCities(e){
     let stateID = getDatalistOptionsAttr(elem, "stateid", stateValue)
     let countryID =  getDatalistOptionsAttr(elem, "countryid", stateValue)
 
+    let msg = document.getElementById("travelmessage")
+    if (stateID === undefined || countryID === undefined){
+        msg.innerHTML = ""
+        msg.innerHTML ="Please select country from drop down."
+        msg.classList.remove("success")
+        msg.classList.add("warn")
+        return
+    } else {
+        msg.innerHTML = ""
+        msg.classList.remove("warn")
+    }
+
     let citiesURI = host+"/countries/"+countryID+"/states/"+stateID+"/cities"
     postData(citiesURI, {}, authorizationHeader(), "GET").then((data)=>{
         if (data) {
@@ -282,6 +303,18 @@ function showStates(e){
 
     countryName = elem.value
     countryID = getDatalistOptionsAttr(elem, "countryid", countryName)
+
+    let msg = document.getElementById("travelmessage")
+    if (countryID === undefined){
+        msg.innerHTML = ""
+        msg.innerHTML ="Please select country from drop down."
+        msg.classList.remove("success")
+        msg.classList.add("warn")
+        return
+    } else {
+        msg.innerHTML = ""
+        msg.classList.remove("warn")
+    }
 
     let statesURI = host+"/countries/"+countryID+"/states"
 
@@ -313,9 +346,9 @@ function getDatalistOptionsAttr(elem, attrName, countryName){
         // nodeName:  "DATALIST"
         if (siblings[i].nodeName == "DATALIST"){
             datalist = siblings[i]
-            for (var i=0; i < datalist.options.length; i++){
-                if (datalist.options[i].value == countryName){
-                    return datalist.options[i].getAttribute(attrName)
+            for (var j=0; j < datalist.options.length; j++){
+                if (datalist.options[j].value == countryName){
+                    return datalist.options[j].getAttribute(attrName)
                 }
             }
         }
